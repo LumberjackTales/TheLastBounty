@@ -1,0 +1,91 @@
+CREATE TABLE IF NOT EXISTS Casella (
+    id int,
+    nome varchar(30),
+    descrizioneIniziale text,
+    descrizioneAggiuntiva text,
+    descrizioneAggiornata text,
+    enterable boolean DEFAULT 1,
+    PRIMARY KEY (id)
+);
+
+-- Creazione tabella di collegamento tra Casella e Casella
+CREATE TABLE IF NOT EXISTS ConnessioniCaselle (
+    casella_id1 INT,
+    casella_id2 INT,
+    direzione ENUM('n', 's', 'e', 'o'),
+    FOREIGN KEY (casella_id1) REFERENCES Casella(id),
+    FOREIGN KEY (casella_id2) REFERENCES Casella(id),
+    PRIMARY KEY (casella_id1, casella_id2)
+);
+
+-- Creazione Dialoghi
+CREATE TABLE IF NOT EXISTS Dialoghi (
+    id int,
+    priorita boolean DEFAULT false,
+    dialogoIniziale text,
+    rispostaSeCorretta text,
+    rispostaSeErrata text,
+    rispostaCorretta text,
+    FOREIGN KEY (id) REFERENCES Casella(id),
+    PRIMARY KEY (id, priorita)
+
+);
+
+-- Creazione Oggetto
+CREATE TABLE IF NOT EXISTS Oggetto (
+    id INT PRIMARY KEY,
+    nome varchar(30),
+    descrizione text,
+    quantita int,
+    pickable boolean DEFAULT false,
+    visible boolean DEFAULT true
+);
+
+-- Creazione tabella di collegamento tra Casella e Oggetto
+CREATE TABLE IF NOT EXISTS Casella_Oggetto (
+    casella_id INT,
+    oggetto_id INT,
+    quantita INT,
+    PRIMARY KEY (casella_id, oggetto_id),
+    FOREIGN KEY (casella_id) REFERENCES Casella(id),
+    FOREIGN KEY (oggetto_id) REFERENCES Oggetto(id)
+);
+
+-- Updated Alias table
+CREATE TABLE IF NOT EXISTS Alias (
+    id INT,
+    alias varchar(30),
+    FOREIGN KEY (id) REFERENCES Oggetto(id),
+    PRIMARY KEY (id, alias)
+);
+
+--Bosco iniziale
+INSERT INTO Casella(id, nome, descrizioneIniziale, descrizioneAggiuntiva, descrizioneAggiornata)
+VALUES
+(100,"Ingresso del bosco","Sei all'ingresso del bosco. un sentiero si dirama dinnazni a te, mentre sei circondato da alberi alti e fitti. Aiuta il nostro giovane hunter nel riscuotere la sua ultima taglia.\n TUTORIAL \n - Muoviti tramite i comandi Nord (N), Est (E), Ovest (O), Sud (S). \n- Ricordati che puoi sia raccogliere che utilizzare oggetti ed osservare attentamente un luogo attravareso il comando (OSSEVA).","Sei ritornato all'ingresso del bosco, ma noti che qualcosa è cambiato. Il sentiero da cui eri entrato ora non c'è più lasciando al suo posto tanti alberi che non ti fanno passare.",""),
+(101,"Uno strano albero","Tra gli alberi noti un albero molto particolare, il suo colore differisce da tutti gli altri, difatti noti che è di un colore bianco cenere.","Questo albero sembra essere molto antico,chissà da quanto tempo si trova in questo bosco.",""),
+(102,"Un albero caduto", "Tra gli alberi noti un albero caduto, sembra essere stato abbattuto da qualcosa oppure da qualcuno, m non riesci a capire cosa.","In lontananza verso ovest noti una casa, ma non riesci a capire se è abitata o meno.",""),
+(103,"Verso la casa","Ti trovi davanti ad una casa, da come è tenuta sembra essere abitata, ma non riesci a capire da chi.","Secondo me dovresti entrare, magari incontri qualcuno che ti può aiutare. (vai ad ovest per entrare)",""),
+(104,"Il falegname","Ti trovi all'interno della casa, la casa è tenuta con molta cura, con quadri appesi alle pareti e un camino acceso che riscalda l'ambiente. Noti un falegname molto anziano con una folta barba bianca, con un cappotto ricamato in pelle di orso ed un cappello dalla forma particolare, seduta su una sedia a dondolo che ti guarda con fare stupito. Sembra che ti voglia parlare.\nTUTORIAL\n- Per parlare con qualcuno usa il comando (PARLA), dopodichè il programma chiederà in input la risposta.","Hai già parlato con il falegname, cosa vuoi fare ora?",""),
+(105,"Un animale morto","Nel mentre prosegui nel bosco noti un orso squoiato a terra, sembra essere stato ucciso da qualcuno con un colpo di arma da fuoco.","Sembra che qualcuno abbia ucciso questo orso, forse dovresti cercare di capire chi è stato.",""),
+(106,"Verso la cripta","Ti trovi davanti ad una cripta, sembra essere molto antica, sembra essere molto profonda e buia, non riesci a vedere cosa c'è al suo interno.","La cripta sembra essere molto profonda,sembra ci sia qualcosa di interessante, forse dovresti entrare (vai ad est per entrare).",""),
+(107,"La cripta","Ti trovi all'interno della cripta, sembra essere molto antica, suddivisa in quattro stanze, ognuna di esse non presenta una porta ed al suo interno noti solo delle scritte sulle pareti. Doversti provare a visitare queste stanze.","Hai già visitato questa cripta, se hai letto tutte le scritte puoi uscire andando ad ovest.",""),
+
+
+
+
+
+
+
+--Cripta
+INSERT INTO Casella(id, nome, descrizioneIniziale, descrizioneAggiuntiva, descrizioneAggiornata)
+VALUES
+(208,"Mini corridoio","Ti trovi in un mini corridoio,più avanti inizi a vedere le varie stanze.","Vai ad ovest per trovarti davanti alle prime due stanze della cripta.",""),
+(209,"Le prime stanze","Ti trovi in mezzo alle due stanze della cripta, una davanti ed una dietro di te, sembra che le due stanze siano molto simili tra loro.","Sei all'entrata delle stanze, puoi decidere di entrare in una di esse (vai a [NORD] per entrare nella prima stanza, vai a [SUD] per entrare nella seconda stanza, oppure puoi proseguire nei meandri della cripta andando ad [EST].",""),
+(210,"Sanza ninfa","Ti trovi nella seconda stanza della cripta, sembra essere molto antica, al suo interno noti delle scritte sulle pareti che sembrano essere molto interessanti. Puoi osservare la stanza per scoprire cosa c'è scritto.","La ninfa è una creatura mitologica, che si dice abiti le foreste e i boschi, è spesso associata alla natura e alla bellezza. Si dice che le ninfe siano molto legate agli alberi e alle piante, e che parlino una strana lingua non comprensibile agli essere umani. Esse presentano un corpo semi-umano con dei capelli lunghissimi e le orecchie a punta,il colore della loro pelle è un blu marino molto chiaro, mentre i loro occhi sono di un verde smeraldo molto intenso. Esse dimorano nei laghi dei boschi maledetti per aiutare le persone ad uscire dal bosco, questo solo però se si riesce a comunicare con loro e rispondere ad una specifica domanda, quasi come se fosse un gioco.",""),
+(211,"Stanza del bosco","Ti trovi nella prima stanza della cripta, sembra essere molto antica, al suo interno noti delle scritte sulle pareti che sembrano essere molto interessanti. Puoi osservare la stanza per scoprire cosa c'è scritto.","Il bosco qui presente si dice sia maledetto e che una volta al suo interno non vi si riesca più ad uscirne. Il bosco nell'antichità era un luogo di pace e tranquillità, abitato da molte crature mitologiche come elfi e ninfe, ma ora a causa del mostro che risiede nel tempio è diventato un luogo di paura e terrore.",""),
+(212,"Mini corridoio 2","Hai superato le prime due stanze della cripta, più avanti ci sono le ultime due conviene visitarle.","Se hai visitato tutte le stanze puoi uscire dalla cripta andando sempre ad ovest, altrimenti puoi proseguire verso est per visitare le ultime due stanze.",""),
+(213,"Le ultime stanze","Hai raggiunto le ultime due stanze della cripta, come prima ne hai una avanti ed una dietro di te, dovresti vedere che cosa contengono.","Se hai visitato tutte e due le stanze puoi uscire dalla cripta.",""),
+(214,"Stanza del triangolo delle bermuda","Sei nella penultima stanza della cripta stavolta però trovi delle pergamene con delle scritte leggibili, fai [OSSERVA] per leggere le pergamene ","Ci sono acque che anche il cielo rifiuta di guardare. Un tratto di mare, nascosto tra tempeste e silenzi, chiamato da molti Triangolo delle Bermuda, ma conosciuto dai marinai più antichi come il Triangolo del Diavolo. Qui le bussole impazziscono. Le stelle si spengono. Le navi scompaiono nel nulla. Al centro di questo triangolo, tra nebbie fitte e correnti innaturali, si dice che cresca un bosco impossibile, i cui alberi affondano le radici direttamente nel mare. Un luogo che non dovrebbe esistere. Nel cuore del bosco si annidi una creatura che non ha nome nei libri degli uomini. Alcuni la chiamano Velgrath, altri la vedono solo nei sogni, pochi tornano a raccontarlo.",""),
+(215,"Stanza del villaggio del falegname","Ti trovi nell'ultima stanza della cripta anche qui ci sono delle pergamene, fai [OSSERVA] per leggerne il contenuto.","Ai margini del Bosco Maledetto, nel cuore del Triangolo delle Bermuda, si trovava un piccolo villaggio chiamato Neravel. I suoi abitanti vivevano in equilibrio precario tra mare e foresta, ben sapendo che nessuno doveva entrare tra gli alberi avvolti dalla nebbia. Nel cuore del bosco c’è un tempio, e nel tempio, qualcosa che una volta fu uomo. Così ammonivano gli anziani, quel qualcosa era Vangrath. Una creatura semi-umana, un tempo parte dei Custodi del Silenzio, corrotta dal potere dell’Arca del Vuoto, dimenticata tra le rovine di Thal’Zar. Ora era un essere contorto, legato alla magia del bosco e alla follia delle dimensioni spezzate. Per anni Vangrath restò dormiente, rinchiuso nel tempio sepolto sotto radici e incubi. Ma un giorno, qualcuno — o qualcosa — osò infrangere i sigilli antichi. Le nebbie si fecero più spesse. Gli animali fuggirono. Le notti diventarono troppo silenziose. Poi arrivò la strage. Neravel fu distrutta in una sola notte. Non da fuoco o tempesta, ma da presenze che non lasciavano impronte, da ombre che si muovevano con fame. I pochi superstiti raccontarono di una figura alta, dal volto spezzato, che camminava tra le case sussurrando verità che facevano impazzire. Da allora, nessuno si avvicina più al Bosco Maledetto. Dove sorgeva il villaggio, ora c’è solo una radura vuota e il sussurro costante di un nome che il vento non vuole pronunciare: Vangrath.","");
+
