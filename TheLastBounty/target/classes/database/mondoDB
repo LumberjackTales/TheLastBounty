@@ -1,0 +1,82 @@
+CREATE TABLE IF NOT EXISTS Casella (
+    id int,
+    nome varchar(30),
+    descrizioneIniziale text,
+    descrizioneAggiuntiva text,
+    descrizioneAggiornata text,
+    enterable boolean DEFAULT 1,
+    PRIMARY KEY (id)
+);
+
+-- Creazione tabella di collegamento tra Casella e Casella
+CREATE TABLE IF NOT EXISTS ConnessioniCaselle (
+    casella_id1 INT,
+    casella_id2 INT,
+    direzione ENUM('n', 's', 'e', 'o'),
+    FOREIGN KEY (casella_id1) REFERENCES Casella(id),
+    FOREIGN KEY (casella_id2) REFERENCES Casella(id),
+    PRIMARY KEY (casella_id1, casella_id2)
+);
+
+-- Creazione Dialoghi
+CREATE TABLE IF NOT EXISTS Dialoghi (
+    id int,
+    priorita boolean DEFAULT false,
+    dialogoIniziale text,
+    rispostaSeCorretta text,
+    rispostaSeErrata text,
+    rispostaCorretta text,
+    FOREIGN KEY (id) REFERENCES Casella(id),
+    PRIMARY KEY (id, priorita)
+
+);
+
+-- Creazione Oggetto
+CREATE TABLE IF NOT EXISTS Oggetto (
+    id INT PRIMARY KEY,
+    nome varchar(30),
+    descrizione text,
+    quantita int,
+    pickable boolean DEFAULT false,
+    visible boolean DEFAULT true
+);
+
+-- Creazione tabella di collegamento tra Casella e Oggetto
+CREATE TABLE IF NOT EXISTS Casella_Oggetto (
+    casella_id INT,
+    oggetto_id INT,
+    quantita INT,
+    PRIMARY KEY (casella_id, oggetto_id),
+    FOREIGN KEY (casella_id) REFERENCES Casella(id),
+    FOREIGN KEY (oggetto_id) REFERENCES Oggetto(id)
+);
+
+-- Updated Alias table
+CREATE TABLE IF NOT EXISTS Alias (
+    id INT,
+    alias varchar(30),
+    FOREIGN KEY (id) REFERENCES Oggetto(id),
+    PRIMARY KEY (id, alias)
+);
+
+--Bosco iniziale
+INSERT INTO Casella(id, nome, descrizioneIniziale, descrizioneAggiuntiva, descrizioneAggiornata)
+VALUES
+(100,"Ingresso del bosco","Sei all'ingresso del bosco. un sentiero si dirama dinnazni a te, mentre sei circondato da alberi alti e fitti. Aiuta il nostro giovane hunter nel riscuotere la sua ultima taglia.\n TUTORIAL \n - Muoviti tramite i comandi Nord (N), Est (E), Ovest (O), Sud (S). \n- Ricordati che puoi sia raccogliere che utilizzare oggetti ed osservare attentamente un luogo attravareso il comando (OSSEVA).","Sei ritornato all'ingresso del bosco, ma noti che qualcosa è cambiato. Il sentiero da cui eri entrato ora non c'è più lasciando al suo posto tanti alberi che non ti fanno passare.",""),
+(101,"Uno strano albero","Tra gli alberi noti un albero molto particolare, il suo colore differisce da tutti gli altri, difatti noti che è di un colore bianco cenere.","Questo albero sembra essere molto antico,chissà da quanto tempo si trova in questo bosco.",""),
+(102,"Un albero caduto", "Tra gli alberi noti un albero caduto, sembra essere stato abbattuto da qualcosa oppure da qualcuno, m non riesci a capire cosa.","In lontananza verso ovest noti una casa, ma non riesci a capire se è abitata o meno.",""),
+(103,"Verso la casa","Ti trovi davanti ad una casa, da come è tenuta sembra essere abitata, ma non riesci a capire da chi.","Secondo me dovresti entrare, magari incontri qualcuno che ti può aiutare. (vai ad ovest per entrare)",""),
+(104,"Il falegname","Ti trovi all'interno della casa, la casa è tenuta con molta cura, con quadri appesi alle pareti e un camino acceso che riscalda l'ambiente. Noti un falegname molto anziano con una folta barba bianca, con un cappotto ricamato in pelle di orso ed un cappello dalla forma particolare, seduta su una sedia a dondolo che ti guarda con fare stupito. Sembra che ti voglia parlare.\nTUTORIAL\n- Per parlare con qualcuno usa il comando (PARLA), dopodichè il programma chiederà in input la risposta.","Hai già parlato con il falegname, cosa vuoi fare ora?",""),
+(105,"Un animale morto","Nel mentre prosegui nel bosco noti un orso squoiato a terra, sembra essere stato ucciso da qualcuno con un colpo di arma da fuoco.","Sembra che qualcuno abbia ucciso questo orso, forse dovresti cercare di capire chi è stato.",""),
+(106,"Verso la cripta","Ti trovi davanti ad una cripta, sembra essere molto antica, sembra essere molto profonda e buia, non riesci a vedere cosa c'è al suo interno.","La cripta sembra essere molto profonda,sembra ci sia qualcosa di interessante, forse dovresti entrare (vai ad est per entrare).",""),
+(107,"La cripta","Ti trovi all'interno della cripta, sembra essere molto antica, suddivisa in quattro stanze, ognuna di esse non presenta una porta ed al suo interno noti solo delle scritte sulle pareti. Doversti provare a visitare queste stanze.","Hai già visitato questa cripta, se hai letto tutte le scritte puoi uscire andando ad ovest.",""),
+
+
+
+
+
+
+--Cripta
+INSERT INTO Casella(id, nome, descrizioneIniziale, descrizioneAggiuntiva, descrizioneAggiornata)
+VALUES
+(208,"Mini corridoio","Ti trovi in un mini corridoio,più avanti inizi a vedere le varie stanze.","Vai ad ovest per trovarti davanti alle prime due stanze della cripta.",""),
