@@ -4,6 +4,13 @@
  */
 package grafica;
 
+import java.io.InputStream;
+
+import javax.swing.BorderFactory;
+
+import java.awt.Color;
+import java.awt.Font;
+
 /**
  *
  * @author francescomiccoli
@@ -18,6 +25,16 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
+    private Font caricaFontUncial(float size) {
+        try (InputStream is = getClass().getResourceAsStream("/resource/fonts/UncialAntiqua-Regular.otf")) {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            return font.deriveFont(size);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Font("Serif", Font.PLAIN, (int) size); // fallback
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,7 +42,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        
         jPanel1 = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
@@ -69,6 +86,65 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+    
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridBagLayout()); // Layout per centrare i componenti
+
+        // Crea un pannello orizzontale per i pulsanti
+        javax.swing.JPanel buttonPanel = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 30, 30));
+        buttonPanel.setOpaque(false); // Sfondo trasparente
+
+        
+        java.awt.Color textColor = java.awt.Color.BLACK;
+
+
+        javax.swing.JButton gioca = new javax.swing.JButton("Gioca");
+        buttonPanel.add(gioca);
+        gioca.setFont(caricaFontUncial(30f));
+        gioca.setForeground(textColor);
+
+        //gioca.setFont(caricaFontUncial(30f));
+        //gioca.setFocusPainted(false);
+        gioca.setBackground(new Color(100, 150, 150, 155)); // Sfondo semi-trasparente
+        //gioca.setForeground(new Color(212, 175, 55));
+        //gioca.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 0, true));
+        //gioca.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+       
+
+        javax.swing.JButton carica_partita = new javax.swing.JButton("Carica Partita");
+        buttonPanel.add(carica_partita);
+
+        javax.swing.JButton classifica = new javax.swing.JButton("Classifica");
+        buttonPanel.add(classifica);
+
+        javax.swing.JButton impostazioni = new javax.swing.JButton("Impostazioni");
+        buttonPanel.add(impostazioni);
+
+        javax.swing.JButton esci = new javax.swing.JButton("Esci");
+        buttonPanel.add(esci);
+
+        javax.swing.JButton riconoscimenti = new javax.swing.JButton("Riconoscimenti");
+        buttonPanel.add(riconoscimenti);
+
+            
+        
+
+        // Centra il pannello dei pulsanti usando GridBagConstraints
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = java.awt.GridBagConstraints.CENTER;
+        jPanel1.add(buttonPanel, gbc);
+
+        // ...continua con il resto del tuo codice per layout e pack...
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(true);
+
+        getContentPane().setLayout(new java.awt.BorderLayout());
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }
