@@ -116,18 +116,33 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
 
         javax.swing.JButton carica_partita = new javax.swing.JButton("Carica Partita");
         buttonPanel.add(carica_partita);
+        carica_partita.setFont(caricaFontUncial(30f));
+        carica_partita.setForeground(textColor);
+        carica_partita.setBackground(new Color(100, 150, 150, 155));
 
         javax.swing.JButton classifica = new javax.swing.JButton("Classifica");
         buttonPanel.add(classifica);
+        classifica.setFont(caricaFontUncial(30f));
+        classifica.setForeground(textColor);
+        classifica.setBackground(new Color(100, 150, 150, 155));
 
         javax.swing.JButton impostazioni = new javax.swing.JButton("Impostazioni");
         buttonPanel.add(impostazioni);
+        impostazioni.setFont(caricaFontUncial(30f));
+        impostazioni.setForeground(textColor);
+        impostazioni.setBackground(new Color(100, 150, 150, 155));
 
         javax.swing.JButton esci = new javax.swing.JButton("Esci");
         buttonPanel.add(esci);
+        esci.setFont(caricaFontUncial(30f));
+        esci.setForeground(textColor);
+        esci.setBackground(new Color(100, 150, 150, 155));
 
         javax.swing.JButton riconoscimenti = new javax.swing.JButton("Riconoscimenti");
         buttonPanel.add(riconoscimenti);
+        riconoscimenti.setFont(caricaFontUncial(30f));
+        riconoscimenti.setForeground(textColor);
+        riconoscimenti.setBackground(new Color(100, 150, 150, 155));
 
             
         
