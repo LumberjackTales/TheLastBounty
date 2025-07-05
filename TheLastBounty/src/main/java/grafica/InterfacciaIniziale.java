@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -119,24 +120,45 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         carica_partita.setFont(caricaFontUncial(30f));
         carica_partita.setForeground(textColor);
         carica_partita.setBackground(new Color(100, 150, 150, 155));
-
+        carica_partita.addActionListener (e -> {
+//            new CaricaPartita();
+        });
+  
         javax.swing.JButton classifica = new javax.swing.JButton("Classifica");
         buttonPanel.add(classifica);
         classifica.setFont(caricaFontUncial(30f));
         classifica.setForeground(textColor);
         classifica.setBackground(new Color(100, 150, 150, 155));
+        classifica.addActionListener (e-> {
+   //         new Classifica();
+        });
 
         javax.swing.JButton impostazioni = new javax.swing.JButton("Impostazioni");
         buttonPanel.add(impostazioni);
         impostazioni.setFont(caricaFontUncial(30f));
         impostazioni.setForeground(textColor);
         impostazioni.setBackground(new Color(100, 150, 150, 155));
+        impostazioni.addActionListener (e -> {
+     //       new Impostazioni();
+        });
 
         javax.swing.JButton esci = new javax.swing.JButton("Esci");
         buttonPanel.add(esci);
         esci.setFont(caricaFontUncial(30f));
         esci.setForeground(textColor);
         esci.setBackground(new Color(100, 150, 150, 155));
+        esci.addActionListener(e -> {
+            int scelta = JOptionPane.showConfirmDialog(
+                    null,
+                    "Sei sicuro di voler uscire?",
+                    "Conferma Uscita",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (scelta == JOptionPane.YES_OPTION) {
+                System.exit(0); // chiude il programma
+            }
+        });
 
         javax.swing.JButton riconoscimenti = new javax.swing.JButton("Riconoscimenti");
         buttonPanel.add(riconoscimenti);
@@ -201,5 +223,11 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton gioca;
+    private javax.swing.JButton carica_partita;
+    private javax.swing.JButton impostazioni;
+    private javax.swing.JButton esci;
+    private javax.swing.JButton riconoscimenti;
+    
     // End of variables declaration//GEN-END:variables
 }
