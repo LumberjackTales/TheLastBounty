@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author francescomiccoli
+ * @author marzullidino
+ * @author sivoroberto
  */
 public class InterfacciaIniziale extends javax.swing.JFrame {
 
@@ -138,9 +140,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         impostazioni.setFont(caricaFontUncial(30f));
         impostazioni.setForeground(textColor);
         impostazioni.setBackground(new Color(100, 150, 150, 155));
-        impostazioni.addActionListener (e -> {
-     //       new Impostazioni();
-        });
+        impostazioni.addActionListener(e -> new InterfacciaImpostazioni(this).setVisible(true));
 
         javax.swing.JButton esci = new javax.swing.JButton("Esci");
         buttonPanel.add(esci);

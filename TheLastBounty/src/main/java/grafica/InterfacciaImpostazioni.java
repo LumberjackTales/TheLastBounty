@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package grafica;
 
 import java.awt.BorderLayout;
@@ -9,13 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.InputStream;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,12 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+
 public class InterfacciaImpostazioni extends JFrame {
 
-  
     private InterfacciaIniziale parentFrame;
 
-  
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
     private static final Color WHITE_CUSTOM = new Color(250, 249, 246);
     private static final Color RED_CUSTOM = new Color(238, 75, 43); 
@@ -36,7 +28,6 @@ public class InterfacciaImpostazioni extends JFrame {
     private static final Color BROWN_WARM = new Color(139, 69, 19, 180); 
     private static final Color TEXT_BUTTON_COLOR = Color.WHITE; 
 
-  
     private JPanel mainPanel;
     private JLabel titleLabel;
     private JPanel controlsPanel; 
@@ -58,12 +49,11 @@ public class InterfacciaImpostazioni extends JFrame {
         this.parentFrame = parentFrame;
         initializeFrameSettings();
         initComponents();
-        updateMusicToggleButtonState(); 
+        // updateMusicToggleButtonState(); // attivare se serve
     }
 
     private void initializeFrameSettings() {
         setTitle("Impostazioni di Gioco");
-     
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/img/Capanna.png")));
         setSize(800, 600);
         setMinimumSize(new Dimension(600, 450)); 
@@ -78,13 +68,11 @@ public class InterfacciaImpostazioni extends JFrame {
         mainPanel.setBackground(BLACK_CUSTOM);
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 
-        
         titleLabel = new JLabel("Impostazioni", SwingConstants.CENTER);
         titleLabel.setFont(caricaFontUncial(36f));
         titleLabel.setForeground(WHITE_CUSTOM);
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-     
         controlsPanel = new JPanel();
         controlsPanel.setLayout(new javax.swing.BoxLayout(controlsPanel, javax.swing.BoxLayout.Y_AXIS));
         controlsPanel.setOpaque(false); 
@@ -93,8 +81,7 @@ public class InterfacciaImpostazioni extends JFrame {
         setupMusicControls();
         setupVolumeControls();
         setupTextSpeedControls();
-        
-     
+
         controlsPanel.add(musicPanel);
         controlsPanel.add(javax.swing.Box.createVerticalStrut(30)); 
         controlsPanel.add(volumePanel);
@@ -103,7 +90,6 @@ public class InterfacciaImpostazioni extends JFrame {
 
         mainPanel.add(controlsPanel, BorderLayout.CENTER);
 
-     
         closeButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         closeButtonPanel.setOpaque(false);
         setupCloseButton();
@@ -115,16 +101,10 @@ public class InterfacciaImpostazioni extends JFrame {
 
     private Font caricaFontUncial(float size) {
         try (InputStream is = getClass().getResourceAsStream("/resource/fonts/UncialAntiqua-Regular.otf")) {
-            if (is == null) {
-                System.err.println("Errore: Impossibile trovare il file del font in InterfacciaImpostazioni. Percorso: /resource/fonts/UncialAntiqua-Regular.otf");
-                return new Font("Serif", Font.PLAIN, (int) size);
-            }
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             return font.deriveFont(size);
-        } catch (IOException | FontFormatException e) {
-            System.err.println("Errore durante il caricamento del font Uncial Antiqua in InterfacciaImpostazioni:");
-            e.printStackTrace();
-            return new Font("Serif", Font.PLAIN, (int) size); 
+        } catch (Exception e) {
+            return new Font("Serif", Font.PLAIN, (int) size); // fallback
         }
     }
 
@@ -149,28 +129,29 @@ public class InterfacciaImpostazioni extends JFrame {
 
         musicToggleButton = new JButton("Mute");
         styleButton(musicToggleButton, BROWN_WARM, RED_CUSTOM, 16f, new Dimension(150, 40));
-       
+
         try {
-            ImageIcon musicIcon = new ImageIcon(new ImageIcon(getClass().getResource("/resource/img/icons/music_icon.png")).getImage()
-                    .getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            ImageIcon musicIcon = new ImageIcon(new ImageIcon(getClass().getResource("/resource/img/icons/music_icon.png"))
+                    .getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
             musicToggleButton.setIcon(musicIcon);
         } catch (Exception e) {
             System.err.println("Icona musica non trovata: /resource/img/icons/music_icon.png");
         }
 
-        musicToggleButton.addActionListener(e -> {
-            if (parentFrame != null && parentFrame.Musica() != null) {
-                if (parentFrame.Musica().isPlaying()) {
-                    parentFrame.Musica().pausaMusica();
-                    musicToggleButton.setText("Play");
-                    musicToggleButton.setForeground(GREEN_CUSTOM); 
-                } else {
-                    parentFrame.Musica().riprendiMusica();
-                    musicToggleButton.setText("Mute");
-                    musicToggleButton.setForeground(RED_CUSTOM);
-                }
-            }
-        });
+        // musicToggleButton.addActionListener(e -> {
+        //     if (parentFrame != null && parentFrame.Musica() != null) {
+        //         if (parentFrame.Musica().isPlaying()) {
+        //             parentFrame.Musica().pausaMusica();
+        //             musicToggleButton.setText("Play");
+        //             musicToggleButton.setForeground(GREEN_CUSTOM); 
+        //         } else {
+        //             parentFrame.Musica().riprendiMusica();
+        //             musicToggleButton.setText("Mute");
+        //             musicToggleButton.setForeground(RED_CUSTOM);
+        //         }
+        //     }
+        // });
+
         musicPanel.add(musicToggleButton);
     }
 
@@ -185,16 +166,14 @@ public class InterfacciaImpostazioni extends JFrame {
 
         volumeDownButton = new JButton("-");
         styleButton(volumeDownButton, BROWN_WARM, WHITE_CUSTOM, 20f, new Dimension(60, 40));
-        volumeDownButton.addActionListener(e -> {
-            if (parentFrame != null && parentFrame.Musica() != null) {
-                
-                parentFrame.Musica().setVolume(Math.max(parentFrame.Musica().Volume() - 5f, -80f));
-            }
-        });
+        // volumeDownButton.addActionListener(e -> {
+        //     if (parentFrame != null && parentFrame.Musica() != null) {
+        //         parentFrame.Musica().setVolume(Math.max(parentFrame.Musica().Volume() - 5f, -80f));
+        //     }
+        // });
         volumePanel.add(volumeDownButton);
-        
-       
-        JLabel currentVolumeLevel = new JLabel("50%"); 
+
+        JLabel currentVolumeLevel = new JLabel("50%");
         currentVolumeLevel.setFont(caricaFontUncial(18f));
         currentVolumeLevel.setForeground(WHITE_CUSTOM);
         currentVolumeLevel.setPreferredSize(new Dimension(80, 40));
@@ -203,12 +182,11 @@ public class InterfacciaImpostazioni extends JFrame {
 
         volumeUpButton = new JButton("+");
         styleButton(volumeUpButton, BROWN_WARM, WHITE_CUSTOM, 20f, new Dimension(60, 40));
-        volumeUpButton.addActionListener(e -> {
-            if (parentFrame != null && parentFrame.Musica() != null) {
-     
-                parentFrame.Musica().setVolume(Math.min(parentFrame.Musica().Volume() + 5f, 6f));
-            }
-        });
+        // volumeUpButton.addActionListener(e -> {
+        //     if (parentFrame != null && parentFrame.Musica() != null) {
+        //         parentFrame.Musica().setVolume(Math.min(parentFrame.Musica().Volume() + 5f, 6f));
+        //     }
+        // });
         volumePanel.add(volumeUpButton);
     }
 
@@ -223,71 +201,47 @@ public class InterfacciaImpostazioni extends JFrame {
 
         slowTextButton = new JButton("Lento");
         styleButton(slowTextButton, BROWN_WARM, TEXT_BUTTON_COLOR, 16f, new Dimension(100, 40));
-        slowTextButton.addActionListener(e -> {
-            if (parentFrame != null) {
-                parentFrame.setTextDisplaySpeed(200); 
-            }
-        });
+        // slowTextButton.addActionListener(e -> {
+        //     if (parentFrame != null) {
+        //         parentFrame.setTextDisplaySpeed(200);
+        //     }
+        // });
         textSpeedPanel.add(slowTextButton);
 
         mediumTextButton = new JButton("Medio");
         styleButton(mediumTextButton, BROWN_WARM, TEXT_BUTTON_COLOR, 16f, new Dimension(100, 40));
-        mediumTextButton.addActionListener(e -> {
-            if (parentFrame != null) {
-                parentFrame.setTextDisplaySpeed(50); 
-            }
-        });
+        // mediumTextButton.addActionListener(e -> {
+        //     if (parentFrame != null) {
+        //         parentFrame.setTextDisplaySpeed(50);
+        //     }
+        // });
         textSpeedPanel.add(mediumTextButton);
 
         fastTextButton = new JButton("Veloce");
         styleButton(fastTextButton, BROWN_WARM, TEXT_BUTTON_COLOR, 16f, new Dimension(100, 40));
-        fastTextButton.addActionListener(e -> {
-            if (parentFrame != null) {
-                parentFrame.setTextDisplaySpeed(10); 
-            }
-        });
+        // fastTextButton.addActionListener(e -> {
+        //     if (parentFrame != null) {
+        //         parentFrame.setTextDisplaySpeed(10);
+        //     }
+        // });
         textSpeedPanel.add(fastTextButton);
     }
 
     private void setupCloseButton() {
         closeButton = new JButton("Chiudi");
         styleButton(closeButton, RED_CUSTOM, WHITE_CUSTOM, 20f, new Dimension(150, 50));
-        closeButton.addActionListener(e -> dispose()); 
-    }
-    
-    private void updateMusicToggleButtonState() {
-        if (parentFrame != null && parentFrame.Musica() != null) {
-            if (parentFrame.Musica().isPlaying()) {
-                musicToggleButton.setText("Mute");
-                musicToggleButton.setForeground(RED_CUSTOM);
-            } else {
-                musicToggleButton.setText("Play");
-                musicToggleButton.setForeground(GREEN_CUSTOM);
-            }
-        }
+        closeButton.addActionListener(e -> dispose());
     }
 
-    public static void main(String[] args) {
-       
-        InterfacciaIniziale dummyParentFrame = new InterfacciaIniziale() {
-           
-            private Musica dummyMusica = new Musica("dummy/path.wav"); 
-
-            @Override
-            public Musica Musica() {
-                return dummyMusica;
-            }
-
-            @Override
-            public void setTextDisplaySpeed(int delayMillis) {
-                System.out.println("Velocità testo impostata a: " + delayMillis + "ms (dummy)");
-            }
-        };
-       
-        dummyParentFrame.setVisible(false);
-
-        java.awt.EventQueue.invokeLater(() -> {
-            new InterfacciaImpostazioni(dummyParentFrame).setVisible(true);
-        });
-    }
+    // private void updateMusicToggleButtonState() {
+    //     if (parentFrame != null && parentFrame.Musica() != null) {
+    //         if (parentFrame.Musica().isPlaying()) {
+    //             musicToggleButton.setText("Mute");
+    //             musicToggleButton.setForeground(RED_CUSTOM);
+    //         } else {
+    //             musicToggleButton.setText("Play");
+    //             musicToggleButton.setForeground(GREEN_CUSTOM);
+    //         }
+    //     }
+    // }
 }
