@@ -51,7 +51,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
-                java.net.URL imgUrl = getClass().getResource("/resource/img/schermata_principale.jpeg");
+                java.net.URL imgUrl = getClass().getResource("/resource/img/schermata_principale.png");
                 if (imgUrl != null) {
                     backgroundImage = new javax.swing.ImageIcon(imgUrl).getImage();
                 }

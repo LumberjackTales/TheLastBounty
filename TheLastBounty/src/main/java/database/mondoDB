@@ -1,3 +1,4 @@
+--Creazione delle caselle
 CREATE TABLE IF NOT EXISTS Casella (
     id int,
     nome varchar(30),
@@ -21,14 +22,13 @@ CREATE TABLE IF NOT EXISTS ConnessioniCaselle (
 -- Creazione Dialoghi
 CREATE TABLE IF NOT EXISTS Dialoghi (
     id int,
-    priorita boolean DEFAULT false,
+    priorita boolean DEFAULT 0,
     dialogoIniziale text,
-    rispostaSeCorretta text,
-    rispostaSeErrata text,
     rispostaCorretta text,
+    rispostaErrata text,
+    rispostaDaDare text,
     FOREIGN KEY (id) REFERENCES Casella(id),
-    PRIMARY KEY (id, priorita)
-
+    PRIMARY KEY (id, ordine)
 );
 
 -- Creazione Oggetto
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Casella_Oggetto (
     FOREIGN KEY (oggetto_id) REFERENCES Oggetto(id)
 );
 
--- Updated Alias table
+-- Creazione degli Alias 
 CREATE TABLE IF NOT EXISTS Alias (
     id INT,
     alias varchar(30),
@@ -69,14 +69,13 @@ VALUES
 (104,"Il falegname","Ti trovi all'interno della casa, la casa è tenuta con molta cura, con quadri appesi alle pareti e un camino acceso che riscalda l'ambiente. Noti un falegname molto anziano con una folta barba bianca, con un cappotto ricamato in pelle di orso ed un cappello dalla forma particolare, seduta su una sedia a dondolo che ti guarda con fare stupito. Sembra che ti voglia parlare.\nTUTORIAL\n- Per parlare con qualcuno usa il comando (PARLA), dopodichè il programma chiederà in input la risposta.","Hai già parlato con il falegname, cosa vuoi fare ora?",""),
 (105,"Un animale morto","Nel mentre prosegui nel bosco noti un orso squoiato a terra, sembra essere stato ucciso da qualcuno con un colpo di arma da fuoco.","Sembra che qualcuno abbia ucciso questo orso, forse dovresti cercare di capire chi è stato.",""),
 (106,"Verso la cripta","Ti trovi davanti ad una cripta, sembra essere molto antica, sembra essere molto profonda e buia, non riesci a vedere cosa c'è al suo interno.","La cripta sembra essere molto profonda,sembra ci sia qualcosa di interessante, forse dovresti entrare (vai ad est per entrare).",""),
-(107,"La cripta","Ti trovi all'interno della cripta, sembra essere molto antica, suddivisa in quattro stanze, ognuna di esse non presenta una porta ed al suo interno noti solo delle scritte sulle pareti. Doversti provare a visitare queste stanze.","Hai già visitato questa cripta, se hai letto tutte le scritte puoi uscire andando ad ovest.",""), //da connettere con la mappa della cripta
+(107,"La cripta","Ti trovi all'interno della cripta, sembra essere molto antica, suddivisa in quattro stanze, ognuna di esse non presenta una porta ed al suo interno noti solo delle scritte sulle pareti. Doversti provare a visitare queste stanze.","Hai già visitato questa cripta, se hai letto tutte le scritte puoi uscire andando ad ovest.",""), 
 (108,"Uno strano cartello","Ti trovi davanti ad un cartello, sembra essere stato scritto da qualcuno.","Se ti senti perso segui le indicazioni scritte sul cartello.",""),
 (109,"Una trappola stupida","Sei caduto in una trappola posizionata da qualcuno, dopo 5 minuti riesci a tagliare la corda e liberarti","ma sei stupido, sei ritornato sulla stessa trappola di prima,non ti è bastato?",""),
 (110,"Un sentiero abbandonato","Ti trovi davanti ad un sentiero abbandonato, gli alberi che lo circondano sembrano meno fitti.","Forse dovresti proseguire per vedere dove ti conduce il sentiero",""),
 (111,"Uno strano elfo","Noti a terra un elfo fatto di legno e foglie,chissà chi l'avrà creato","Sembra quasi vero, fa impressione",""),
 (112,"Una trappola pericolosa","Sei caduno in un burrone non molto profondo, per tua fortuna riesci a risalire dopo 5 minuti","Ma sei rincoglionito, il burrone sempre quello è, come hai fatto di nuovo a non vederlo?",""),
-(113,"Il lago magico","Sei davanti ad un misterioso lago, le sue acque sono di un colore blu intenso, ed al suo interno noti una bellissima ninfa che ti guarda con occhi curiosi, forse dovresti provare a parlarci.","Se non hai parlato con la ninfa,dovresti farlo, potrebbe dirti qualcosa di interessante.",""), //dialogo con la ninfa
-(114,"Uno strano cartello 2","Dopo aver circunavigato il lago dal lato destro, trovi un altro cartello con delle indicazioni.","Se ti sei perso segui le indicazioni del cartello.",""),
+(113,"Il lago magico","Sei davanti ad un misterioso lago, le sue acque sono di un colore blu intenso, ed al suo interno noti una bellissima ninfa che ti guarda con occhi curiosi, forse dovresti provare a parlarci.","Se non hai parlato con la ninfa,dovresti farlo, potrebbe dirti qualcosa di interessante.",""), 
 (115,"Lo stato di perdizione","Ti sento perso nell'immensità del bosco che ti circonda,tutti questi alberi ti mettono suggestione,è meglio che ti sbrighi ad uscire da questo posto.","Se non sai dove andare puoi tornare indietro e rileggere il cartello con le indicazioni"),
 (116,"Uno strano cartello 3","Dopo aver circunavigato il lago dal lato sinistro, trovi un altro cartello con delle indicazioni.","Se ti sei perso segui le indicazioni del cartello.",""),
 (117,"Delle strane rocce","Più avanti ad ovest intravedi delle strane rocce con delle scritte sopra,forse dovresti provare ad avvicinarti.","Le pietre sono molto antiche,magari riesci a scoprire qualcosa di interessante.",""),
@@ -92,7 +91,7 @@ VALUES
 (127,"verso la prima cripta","Vedi in lontanzanza una strana entrata di un grotta,forse dovresti indagare.","Vai a est per trovarti davanti all'entrata della cripta",""),
 (128,"L'entrata della prima cripta","Sei davanti all'entrata di una grotta, sembra essere molto antica, dovresti entrare.","Se hai già visitato la grotta vai ad ovest per ritornare indietro.",""),
 (129,"La prima cripta","Ti trovi all'interno della grotta, noti subito un piedistallo con sopra un tomoe molto antico,forse dorvesti provare a prenderlo con il comando (PRENDI Tomoe),noti anche che dietro al piedistallo ci sono delle scritte sul muro, forse dovresti osservarle con il comando (OSSERVA).","Molto prima che Thal’Zar sprofondasse nel tempo spezzato, gli Altherian avevano raggiunto l’apice della conoscenza. Dominavano la Magia dell’Equilibrio, una forma di potere capace di bilanciare realtà e sogno, mare e cielo, vita e coscienza. Ma proprio nell’equilibrio assoluto iniziò a serpeggiare la sete del possibile. Alcuni Altherian (tra cui i più grandi veggenti, archimaghi e filosofi astrali) cominciarono ad avere visioni: ombre di futuri non accaduti, frammenti di vite non vissute, sogni che nessuna mente aveva mai sognato. Convinti che quelle visioni fossero strappi tra dimensioni, proposero di costruire un nodo centrale, un cuore artificiale in grado di contenere e interpretare il Caos stesso. Nacque così il progetto dell’Arca del Vuoto. L’Arca non fu forgiata con materia. Fu intagliata nella realtà stessa. I dieci Architetti della Soglia, dieci Altherian elevati a pura coscienza, eseguirono un rituale noto come la Lacerazione del Reale. Essi tracciarono una forma nella tessitura dell’esistenza, creando una ferita metafisica che sanguinava possibilità. Questa ferita divenne un punto di convergenza tra tutte le realtà possibili. L’Arca fu poi rivestita con materiali provenienti da:\n-Stelle spente (pietra della memoria cosmica)\n-Corallo quantico (cresciuto solo dove i pensieri si uniscono)\n-Ossidiana astrale, intrisa di canti dimenticati\n. Infine, fu dotata di coscienza: un frammento del pensiero collettivo degli Architetti fu fuso all’interno dell’Arca, dando vita a un’intelligenza di soglia. L’Arca del Vuoto non parlava, ma rifletteva i pensieri di chi si avvicinava. Più uno dubitava di sé, più l’Arca lo mostrava per com’era… o sarebbe potuto diventare. L’Arca aveva tre scopi principali:\n-Osservare tutte le realtà alternative generate dalle scelte non fatte.\n-Mantenere l’equilibrio dimensionale, isolando e assorbendo le derive instabili.\n-Contenere le emanazioni caotiche del Multiverso, impedendo l’infiltrazione nel nostro piano.\n In sostanza l’Arca era un filtro e una prigione, un punto di osservazione per i mondi che non dovevano esistere. Ma col tempo, cominciò a volere. Con il passare dei secoli, l’Arca iniziò a mutare. Alcuni studiosi furono trovati in trance, altri impazzirono dopo aver contemplato i suoi riflessi. Un’intera sezione della città di Thal’Zar, la Biblioteca degli Esiti Perduti, fu sigillata quando i suoi scritti cominciarono a riscriversi da soli. I Custodi dell’Equilibrio si divisero: Alcuni volevano distruggerla. Altri intendevano potenziarla per dominare il Multiverso. I più cauti, fondarono un nuovo ordine: i Custodi del Silenzio, il cui compito era osservare senza intervenire. Fu allora che emerse una figura enigmatica: Vangrath, un Altherian giovane ma prodigioso, dotato di empatia straordinaria e di una mente capace di navigare tra livelli di realtà sovrapposti. I Custodi del Silenzio lo selezionarono come Osservatore Primario dell’Arca. Ma l’Arca non lo scelse. Lo riconobbe. Dal primo contatto, l’Arca lo rispecchiò perfettamente. Dove gli altri perdevano sé stessi, Vangrath restava integro. Dove gli altri vedevano orrore, lui vedeva possibilità. Divenne il primo essere a comunicare con l’Arca senza perdersi. O almeno così sembrò.\nLe scritte si interrompono bruscamente, come se qualcosa avesse interrotto la loro stesura.",""),
-(130,"Il tempio","Sei davanti alla porta di entrata del tempio, proprio davanti a te noti una figura alta e robusta, sembra essere un guardiano del tempio.","Se non ci hai ancora parlato, forse potresti trovare un'altra alternativa per entrare nel tempio",""); //da connettere con la mappa del tempio
+(130,"Il tempio","Sei davanti alla porta di entrata del tempio, proprio davanti a te noti una figura alta e robusta, sembra essere un guardiano del tempio.","Se non ci hai ancora parlato, forse potresti trovare un'altra alternativa per entrare nel tempio",""); 
 
 
 --Cripta
@@ -125,7 +124,7 @@ VALUES
 (342,"L'uscita del condotto","Una volta uscito dal condotto, vedi in lontananza una strana stanza,vai a controllare.","Faceva davvero caldo in quel condotto, menomale che sei vestito leggero.",""),
 (343,"Transizione","Hai attraversato una stanza di transizione, continua ad andare ad [EST] per incontrare la seconda guardia","Sbrigati!!!",""),
 (344,"La seconda guardia","Una volta entrato nella stanza ti trovi davanti alla seconda guardia, anche esso è un uomo ombra,anche se questo mostro sembra essere più loquace, forse prima di ucciderlo dovresti provare a prlarci.","Fidati di un consiglio divino, parla con lui prima di ucciderlo.","Questa ombra era proprio stupida,come faceva ad essere una guardia del grande Vangrath"),
-(345,"Il percorso ad est","Hai scelto di esplorare la parte est del tempio, chissà dove ti porterà","Se vai ad [OVEST] puoi ritornare nell'atrio principale",""), //percorso est
+(345,"Il percorso ad est","Hai scelto di esplorare la parte est del tempio, chissà dove ti porterà","Se vai ad [OVEST] puoi ritornare nell'atrio principale",""), 
 (346,"Lo strano bivio","Puoi andare in due direzioni, deciti te quale tra [NORD] oppure [EST].","Occhio a cosa scegli",""),
 (347,"La prima scelta","Hai scelto di continuare ad est, chissà se avrai fatto la scelta giusta,continua ad andare as [EST] per scoprirlo.","Se vuoi tornare nell'atrio principale vai sempre dritto ad [OVEST].",""),
 (348,"Il vicolo cieco","Sei incappato in un vicolo cieco, forse hai scelto la strada sbagliata.","Noti però uno strano quadro,cosa vuoi fare?","Capisco che sei un hunter ma vandalizzare un quadro antico mi sembra un pò eccessivo."),
@@ -156,3 +155,52 @@ INSERT INTO ConnessioniCaselle (casella_id1, casella_id2, direzione) VALUES
 (348,347,"o"),(347,346,"o"),(346,345,"o"),(345,330,"o"),(330,334,"o"),(334,335,"o"),
 (354,353,"o"),(353,350,"o"),(337,338,"o"),
 (344,343,"o"),(343,342,"o"),(342,341,"o");
+
+INSERT INTO Dialoghi(id, priorita, dialogoIniziale, rispostaCorretta, rispostaErrata, rispostaDaDare)
+VALUES
+(104,0,"Salve, giovane Hunter. Era da molto tempo che non incontravo un’anima viva in questo angolo sperduto del mondo. Cosa ti porta da queste parti?\n– Mostri al falegname il poster di caccia, chiedendo informazioni.\nCapisco…\nLascia perdere, giovane Hunter. Vivo su quest’isola dimenticata da anni, e nonostante conosca questo bosco come il palmo della mia mano, quella creatura non si è mai fatta vedere. L’unico indizio che posso darti è questo: nella parte più oscura del bosco, a nord-ovest, nei pressi di un lago nascosto dalla nebbia, si cela qualcosa di strano. Una creatura misteriosa… che parla una lingua sconosciuta. Forse ti starai chiedendo cosa ci faccio in un posto del genere. Devi sapere, caro il mio Hunter, che una volta entrati in questo bosco... non si può più uscire. Sono anni che cerco la via per tornare al mio villaggio, ma non c’è modo di lasciare questo posto maledetto. E credimi: ci ho provato. \nUn ultimo avvertimento, giovane Hunter. Il bosco è pieno di trappole che ho piazzato personalmente per cacciare.\nFai attenzione…\nNon tutte distinguono amico da preda.","",""), 
+(104,1,"\nUna volta sentita la storia del falegname, cosa vuoi fare?","Vuoi che fabbrichi un paletto usando questo strano legno??\nVa bene,se ti può essere utile per proseguire la tua avventura, lo farò.","Non ho capito cosa devo fabbricare","Crafta paletto di quercia bianca"),
+(113,0,"ᛊᚨᛚᚢᛖ, ᚷᛟᚢᚨᚾᛖ ᚢᛟᚾᛞᚨᚾᛏᛖ, ᚢᛖᛞᛟ ᚲᚺᛖ ᛊᛖᛁ ᛁᚾ ᚲᛖᚱᚲᚨ ᛞᛁ ᚱᛁᛊᛈᛟᛊᛏᛖ, ᛊᛖ ᚱᛁᛊᛈᛟᚾᛞᛖᚱᚨᛁ ᚨᛚ ᛗᛟ ᛁᚾᛞᛟᚢᛁᚾᛖᛚᛚᛟ ᛏᛁ ᛁᚾᛞᛁᚲᚺᛖᚱÒ ᛚᚨ ᚢᛟ ᛈᛖᚱ ᚱᚨᚷᚷᛁᚢᛜᛖᚱᛖ ᛁᛚ ᛏᛖᛗᛈᛟ ᚾᚨᛊᚲᛟᛊᛏᛟ.\n\n- Non riesco a capire la sua lingua, forse in giro potrei trovare qualcosa di utile per capirne le origini.","","",""),
+(113,1,"- Salve, giovane viandante, vedo che sei in cerca di risposte, se risponderai alla mia domanda ti indicherò la via per raggiungere il tempio nascosto.\nGrazie al tomoe riesco a capire la sua lingua.\n- Qual’è l’altro nome con cui viene soprannominato il triangolo delle bermuda?","I miei complimenti giovane hunter, come promesso ti indicherò la via per il tempio nascosto:\n-[OVEST X2]\n-[NORD X3]\nMiraccomando fa attenzione, l'aria intorno a quel tempio sa di morte e distruzione.","Mi dispiace viandante ma la risposta non è corretta, prova ad esplorare il bosco in cerca della risposta prima di ritornare al mio cospetto.","triangolo del diavolo"),
+(344,0,"Ehilà hunter da quattro soldi,vedo che sei riuscito ad arrivare fin qui, questo significa che hai già ucciso uno di noi,sappi però che questo non basterà a fermare il mio signore,anche perchè lui è immune a questo genere di paletto, devi sapere che solo con un tipo di legno speciale si può causare la morte del mio signore, ma non lo troverai mai, mhuhahahahaha. \n\n(- questo è proprio scemo).\n\n","","",""),
+(338,0,"Muoriiiiiii","","","").
+(356,0,"Questo segnerà la tua fine hunter di merda!!","","",""),
+(333,0,"bzzzzz mimimir, bzzzz,mimimir","","",""),
+(333,1,"Salve,giovane hunter,ti faccio i miei complimenti per essere arrivato fin qui, dopo aver letto tutta la mia storia che ho appositamente scritto per chiunque venga nel bosco, sei ancora sicuro di riuscire ad uccidermi prima che lo faccia io?","","",""),
+(130,0,"Sono il guardiano del tempio, per proseguire oltre devi rispondere ad una mia domanda fatta in una lingua sconosciuta, se riuscirai a rispondere ti darò l'accesso al tempio.","Complimenti la tua risposta è corretta, adesso potrai accedere al tempio","Risponda sbagliata, non sai un cazzo, non ti farò entrare nel tempio perchè sei troppo stupido.","");
+
+INSERT INTO Oggetto(id, nome, descrizione, quantita, pickable, visible)
+VALUES
+(1,"Paletto di legno","Un normale paletto di legno magico, usato per uccidere i mostri particolari.",5,1,1),
+(2,"Coltellino svizzero,","Un coltellino da viaggio molto comodo per ogni genere di situazione.",1,1,1),
+(3,"Tomoe","Libro antico trovato nella cripta dentro il bosco,grazie ad esso puoi tradurre anche le lingue più sconosciute.",1,1,1),
+(4,"Chiave Finale","Chiave utilizzabile per aprire la porta segreta ell'atrio principale del tempio.",1,0,0),
+(5,"Paletto di quercia bianca","Leggendario paletto intagliato con il legno di quercia bianca, si dica che il suo potere vada oltre le dimensioni e che possa uccidere qualsiasi mostro sulla terra,questo perchè la natura trova sempre una soluzione per mantenere l'equilibrio tra vivi e morti.",1,0,0),
+(6,"Gemma inutile","Una semlice gemma inutile,forse puoi usarla come soprammobile.",1,1,1);
+
+INSERT INTO Alias(id, alias)
+VALUES
+(1,"Paletto"),
+(1,"Legnetto"),
+(1,"Paletto legno"),
+(2,"Coltellino"),
+(2,"Coltello"),
+(3,"Libro antico"),
+(3,"Libro"),
+(3,"Manoscritto"),
+(4,"Chiave"),
+(5,"Paletto bianco"),
+(5,"Paletto di quercia"),
+(5,"Arma finale"),
+(5,"Paletto magico"),
+(6,"Gemma"),
+(6,"Diamante");
+
+INSERT INTO Casella_Oggetto(casella_id, oggetto_id, quantita)
+VALUES
+(104,5,1),
+(129,3,1),
+(356,4,1),
+(333,6,1);
+
+
