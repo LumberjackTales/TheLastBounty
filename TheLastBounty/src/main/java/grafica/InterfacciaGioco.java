@@ -25,6 +25,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultCaret;
 
+import grafica.InterfacciaImpostazioni;
+
 import eccezioni.GameFileException;
 import eccezioni.GameNotAvailableException;
 import componentiaggiuntivi.Chrono;
@@ -459,7 +461,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     private void impostazioniMouseClicked(ActionEvent evt) {
-        InterfacciaImpostazioni impostazioni = new InterfacciaImpostazioni(InterfacciaGioco.this);
+        InterfacciaImpostazioni impostazioni = new InterfacciaImpostazioni(this);
         impostazioni.setVisible(true);
     }
 

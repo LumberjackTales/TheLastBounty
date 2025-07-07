@@ -1,4 +1,4 @@
-package other;
+package componentiaggiuntivi;
 
 import java.io.Serializable;
 import java.util.ArrayList;
