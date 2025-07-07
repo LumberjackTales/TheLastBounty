@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package grafica;
 
 import java.awt.Color;
@@ -21,15 +25,15 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultCaret;
 
-//import eccezioni.GameFileException;
-//import eccezioni.GameNotAvailableException;
+import eccezioni.GameFileException;
+import eccezioni.GameNotAvailableException;
 import componentiaggiuntivi.Chrono;
 import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.Musica;
-//import componentiAggiuntivi.StampaTesto;
+import componentiaggiuntivi.StampaTesto;
 import componentiaggiuntivi.Utils;
-//import parser.Parser;
-//import parser.ParserOutput;
+import parser.Parser;
+import parser.ParserOutput;
 import observer.TheLastBounty;
 
 /**
@@ -92,7 +96,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     public void mainComponents(boolean loadGame, File f) throws Exception {
-        game = new LeArmonieDelCustode();
+        game = new TheLastBounty();
         game.setChrono(chrono);
 
         try {
@@ -109,7 +113,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             } else {
                 try {
                     ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-                    LeArmonieDelCustode temp = (LeArmonieDelCustode) ois.readObject();
+                    TheLastBounty temp = (TheLastBounty) ois.readObject();
                     temp.attachObeservers();
                     game = temp;
                     chrono = game.getChrono();
@@ -227,7 +231,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         imageViewer.setBackground(WHITE);
 
-        imageLabel.setIcon(getScaledImage(new ImageIcon(LUCAPG)));
+        //imageLabel.setIcon(getScaledImage(new ImageIcon(LUCAPG)));
         imageViewer.add(imageLabel);
 
         underPanel.setBackground(WHITE);
@@ -303,9 +307,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         music.setVolume(0.5f);
         // Imposta il loop della musica
         music.setLoop(true);
-        abbasa_musica.setIcon(new ImageIcon(new ImageIcon("resource/img/icons/volume_down_icon.png").getImage()
+        abbassa_musica.setIcon(new ImageIcon(new ImageIcon("/resource/img/icons/volume_down_icon.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        abbasa_musica.setText("-");
+        abbassa_musica.setText("-");
 
 
         // Gestione pulsante musica
@@ -510,14 +514,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         return parentFrame;
     }
 
-    private javax.swing.JPanel buttonPanelExit;
     private javax.swing.JFrame confermaChiusura;
     private javax.swing.JButton esci;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel imageViewer;
     private javax.swing.JButton inventario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel macroPanel;
     private javax.swing.JPanel panel;
@@ -530,7 +531,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private javax.swing.JButton alza_musica;
     private javax.swing.JButton musica;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu tendina;
     private javax.swing.JMenuItem impostazioni;
     private javax.swing.JLabel cronometro;
 }
