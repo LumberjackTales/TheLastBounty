@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;
@@ -156,6 +157,18 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         //gioca.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 0, true));
         //gioca.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        gioca.addActionListener(e -> {
+            InterfacciaGioco gioco = null;
+            try {
+                gioco = new InterfacciaGioco(InterfacciaIniziale.this);
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            gioco.setVisible(true);
+            setVisible(false);
+        });
+
        
 
         javax.swing.JButton carica_partita = new javax.swing.JButton("Carica Partita");
@@ -164,8 +177,31 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         carica_partita.setForeground(textColor);
         carica_partita.setBackground(new Color(100, 150, 150, 155));
         aggiungiIcona(carica_partita, "/resource/img/icone/icona_carica_partita.png");
-        carica_partita.addActionListener (e -> {
-//            new CaricaPartita();
+
+        JFileChooser fileChooser = new javax.swing.JFileChooser();
+
+        fileChooser.setDialogTitle("Caricamento Salvataggio");
+        fileChooser.setCurrentDirectory(new java.io.File("."));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Files .dat", "dat"));
+        fileChooser.setAcceptAllFileFilterUsed(false);
+
+        carica_partita.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                int valore = fileChooser.showOpenDialog(InterfacciaIniziale.this);
+                if (valore == javax.swing.JFileChooser.APPROVE_OPTION) {
+                    try {
+                        java.io.File file = fileChooser.getSelectedFile();
+                        InterfacciaGioco gioco = new InterfacciaGioco(InterfacciaIniziale.this, file);
+                        gioco.setVisible(true);
+                        setVisible(false);
+                    } catch (Exception e) {
+                        //musica.playMusic("resource/other/menu_soundtrack.wav");
+                        JOptionPane.showMessageDialog(InterfacciaIniziale.this, e.getMessage(), "Errore",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
         });
   
         javax.swing.JButton classifica = new javax.swing.JButton("Classifica");
