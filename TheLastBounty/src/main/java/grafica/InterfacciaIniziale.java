@@ -40,6 +40,19 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         }
     }
 
+    private void aggiungiIcona(javax.swing.JButton bottone, String pathIcona) {
+    java.net.URL imgUrl = getClass().getResource(pathIcona);
+    if (imgUrl != null) {
+        ImageIcon icon = new ImageIcon(imgUrl);
+        Image scaled = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        bottone.setIcon(new ImageIcon(scaled));
+        bottone.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        bottone.setIconTextGap(10); // Spazio tra icona e testo
+    } else {
+        System.err.println("Icona non trovata: " + pathIcona);
+    }
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,6 +122,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         buttonPanel.add(gioca);
         gioca.setFont(caricaFontUncial(30f));
         gioca.setForeground(textColor);
+        aggiungiIcona(gioca, "/resource/img/icone/icona_gioca.png");
 
         //gioca.setFont(caricaFontUncial(30f));
         //gioca.setFocusPainted(false);
@@ -124,6 +138,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         carica_partita.setFont(caricaFontUncial(30f));
         carica_partita.setForeground(textColor);
         carica_partita.setBackground(new Color(100, 150, 150, 155));
+        aggiungiIcona(carica_partita, "/resource/img/icone/icona_carica_partita.png");
         carica_partita.addActionListener (e -> {
 //            new CaricaPartita();
         });
@@ -133,6 +148,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         classifica.setFont(caricaFontUncial(30f));
         classifica.setForeground(textColor);
         classifica.setBackground(new Color(100, 150, 150, 155));
+        aggiungiIcona(classifica, "/resource/img/icone/icona_classifica.png");
         classifica.addActionListener (e-> {
    //         new Classifica();
         });
@@ -143,15 +159,14 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         impostazioni.setForeground(textColor);
         impostazioni.setBackground(new Color(100, 150, 150, 155));
         impostazioni.addActionListener(e -> new InterfacciaImpostazioni(this).setVisible(true));
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resource/img/icone/icona_opzioni.png"));
-        Image scaledImage = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH); // dimensione 30x30 px, puoi cambiare
-        impostazioni.setIcon(new ImageIcon(scaledImage));
+        aggiungiIcona(impostazioni, "/resource/img/icone/icona_opzioni.png");
 
         javax.swing.JButton esci = new javax.swing.JButton("Esci");
         buttonPanel.add(esci);
         esci.setFont(caricaFontUncial(30f));
         esci.setForeground(textColor);
         esci.setBackground(new Color(100, 150, 150, 155));
+        aggiungiIcona(esci, "/resource/img/icone/icona_esci.png");
         
         esci.addActionListener(e -> {
             int scelta = JOptionPane.showConfirmDialog(
@@ -171,6 +186,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         riconoscimenti.setFont(caricaFontUncial(30f));
         riconoscimenti.setForeground(textColor);
         riconoscimenti.setBackground(new Color(100, 150, 150, 155));
+        aggiungiIcona(riconoscimenti, "/resource/img/icone/icona_riconoscimenti.png");
 
             
         
