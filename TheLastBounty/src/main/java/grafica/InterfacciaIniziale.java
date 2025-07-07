@@ -10,6 +10,8 @@ import javax.swing.BorderFactory;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -141,6 +143,9 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         impostazioni.setForeground(textColor);
         impostazioni.setBackground(new Color(100, 150, 150, 155));
         impostazioni.addActionListener(e -> new InterfacciaImpostazioni(this).setVisible(true));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resource/img/icone/icona_opzioni.png"));
+        Image scaledImage = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH); // dimensione 30x30 px, puoi cambiare
+        impostazioni.setIcon(new ImageIcon(scaledImage));
 
         javax.swing.JButton esci = new javax.swing.JButton("Esci");
         buttonPanel.add(esci);
