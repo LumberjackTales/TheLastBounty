@@ -152,6 +152,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         esci.setFont(caricaFontUncial(30f));
         esci.setForeground(textColor);
         esci.setBackground(new Color(100, 150, 150, 155));
+        
         esci.addActionListener(e -> {
             int scelta = JOptionPane.showConfirmDialog(
                     null,

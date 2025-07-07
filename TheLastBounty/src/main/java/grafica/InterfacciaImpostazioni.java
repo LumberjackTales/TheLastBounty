@@ -45,6 +45,7 @@ public class InterfacciaImpostazioni extends JFrame {
     private JPanel closeButtonPanel;
     private JButton closeButton;
 
+
     public InterfacciaImpostazioni(InterfacciaIniziale parentFrame) {
         this.parentFrame = parentFrame;
         initializeFrameSettings();
@@ -54,7 +55,7 @@ public class InterfacciaImpostazioni extends JFrame {
 
     private void initializeFrameSettings() {
         setTitle("Impostazioni di Gioco");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/img/Capanna.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/img/Capanna_2.0_.png")));
         setSize(800, 600);
         setMinimumSize(new Dimension(600, 450)); 
         setLocationRelativeTo(null); 
@@ -67,6 +68,22 @@ public class InterfacciaImpostazioni extends JFrame {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(BLACK_CUSTOM);
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
+            mainPanel = new javax.swing.JPanel() {
+            private java.awt.Image backgroundImage = null;
+            {
+                java.net.URL imgUrl = getClass().getResource("/resource/img/Capanna_2.0_.png");
+                if (imgUrl != null) {
+                    backgroundImage = new javax.swing.ImageIcon(imgUrl).getImage();
+                }
+            }
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
 
         titleLabel = new JLabel("Impostazioni", SwingConstants.CENTER);
         titleLabel.setFont(caricaFontUncial(36f));
