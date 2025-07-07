@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultCaret;
 
 //import eccezioni.GameFileException;
@@ -371,8 +372,10 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
             }
         });
-
+        underPanel.add(abbassa_musica);
         underPanel.add(musica);
+        underPanel.add(alza_musica);
+
 
         esci.setBackground(BACKGROUND_BEIGE);
         esci.setForeground(TEXT);
@@ -523,6 +526,8 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private javax.swing.JTextArea textArea;
     private javax.swing.JTextField textBox;
     private javax.swing.JPanel underPanel;
+    private javax.swing.JButton abbassa_musica;
+    private javax.swing.JButton alza_musica;
     private javax.swing.JButton musica;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu tendina;
