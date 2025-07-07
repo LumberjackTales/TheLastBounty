@@ -13,6 +13,12 @@ import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.LineUnavailableException;
+
 
 /**
  *
@@ -53,6 +59,23 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     }
 }
 
+    private void riproduciAudio(String pathAudio) {
+    try {
+        java.net.URL audioUrl = getClass().getResource(pathAudio);
+        if (audioUrl == null) {
+            System.err.println("Audio non trovato: " + pathAudio);
+            return;
+        }
+
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
+    } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
+        e.printStackTrace();
+    }
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +84,8 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         
+             setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+    riproduciAudio("/resource/audio/musica_intro.wav"); 
         jPanel1 = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
