@@ -15,6 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Musica {
 
     private Clip musicaGioco;
+    private boolean isPaused=false;
 
     /**
      * Metodo che avvia la riproduzione della musica all'esecuzione del programma.
@@ -30,9 +31,9 @@ public class Musica {
             }
 
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
+            musicaGioco = AudioSystem.getClip();
+            musicaGioco.open(audioStream);
+            musicaGioco.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -57,6 +58,7 @@ public class Musica {
         if (musicaGioco != null && musicaGioco.isRunning()) {
             // musicaGioco.setMicrosecondPosition(musicaGioco.getMicrosecondPosition());
             musicaGioco.stop();
+            isPaused = true;
         }
     }
 
@@ -65,6 +67,11 @@ public class Musica {
      */
     public void riprendiMusica() {
         musicaGioco.start();
+        isPaused = false;
+    }
+
+    public boolean isInPaused(){
+        return isPaused;
     }
 
     /**
@@ -82,8 +89,10 @@ public class Musica {
      * @param volume livello del volume da impostare in decibel
      */
     public void setVolume(float volume) {
-        FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(volume);
+        if (volume < 0f || volume > 1f)
+            throw new IllegalArgumentException("Volume not valid: " + volume);
+        FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);        
+        gainControl.setValue(20f * (float) Math.log10(volume));
     }
 
     /**
@@ -92,8 +101,8 @@ public class Musica {
      * @return il livello corrente del volume in decibel
      */
     public float getVolume() {
-        FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);
-        return gainControl.getValue();
+        FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);        
+        return (float) Math.pow(10f, gainControl.getValue() / 20f);
     }
 
     /**
@@ -110,5 +119,6 @@ public class Musica {
             Logger.getLogger(Musica.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+ 
 
 }

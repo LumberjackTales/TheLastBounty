@@ -11,7 +11,7 @@ public class StampaTesto implements Runnable {
 
     private String[] paroleDaStampare;
     private int parolaCorrente;
-    private int ATTESA = 50;
+    private static int ATTESA = 50;
     private final JTextArea textAreaOutput;
     private final JTextField textFieldInput;
     private final JButton skip;
@@ -113,7 +113,7 @@ public class StampaTesto implements Runnable {
      * 
      * @param attesa Tempo di attesa in millisecondi
      */
-    public void setAttesa(int attesa) {
+    public static void setAttesa(int attesa) {
         ATTESA = attesa;
     }
 

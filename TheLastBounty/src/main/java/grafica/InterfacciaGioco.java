@@ -57,8 +57,24 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private final Color WHITE = new Color(250, 249, 246);
     private final Color RED = new Color(238, 75, 43);
     private final Color GREEN = new Color(9, 121, 105);
+    private javax.swing.JFrame confermaChiusura;
+    private javax.swing.JButton esci;
+    private javax.swing.JLabel imageLabel;
+    private javax.swing.JPanel imageViewer;
+    private javax.swing.JButton inventario;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JPanel macroPanel;
+    private javax.swing.JPanel panel;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JButton skip;
+    private javax.swing.JTextArea textArea;
+    private javax.swing.JTextField textBox;
+    private javax.swing.JPanel underPanel;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem impostazioni;
+    private javax.swing.JLabel cronometro;
 
-    Musica music = new Musica();
+    Musica musica = new Musica();
 
     private Parser parser = null;
 
@@ -133,11 +149,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                                     """);
             stampa.stampa(game.getIntro());
         } catch (GameFileException ex) {
-            music.stopMusica();
+            musica.stopMusica();
             throw ex;
         } catch (Exception ex) {
             Logger.getLogger(InterfacciaGioco.class.getName()).log(Level.SEVERE, null, ex);
-            music.stopMusica();
+            musica.stopMusica();
             throw new GameNotAvailableException();
         }
     }
@@ -169,9 +185,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         skip = new javax.swing.JButton();
         inventario = new javax.swing.JButton();
         esci = new javax.swing.JButton();
-        abbassa_musica = new javax.swing.JButton();
-        musica = new javax.swing.JButton();
-        alza_musica = new javax.swing.JButton();
 
         cronometro = new javax.swing.JLabel();
         impostazioni = new javax.swing.JMenuItem();
@@ -277,7 +290,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         impostazioni.setText("Impostazioni");
         impostazioni.setPreferredSize(new java.awt.Dimension(105, 30));
-        impostazioni.addActionListener(this::impostazioniMouseClicked);
+        impostazioni.addActionListener(e -> new InterfacciaImpostazioni(musica).setVisible(true));
 
         chrono.start();
 
@@ -295,7 +308,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             cronometro.setText(chrono.getTimeFormatted());
         }, 0, 1, TimeUnit.SECONDS);
 
-        menuBar.add(tendina);
+        menuBar.add(impostazioni);
         menuBar.add(javax.swing.Box.createHorizontalGlue());
         menuBar.add(cronometro);
 
@@ -304,83 +317,19 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         setJMenuBar(menuBar);
 
         // Avvio musica
-        music.playMusic("/resource/audio/background_music.wav");
+        musica.playMusic("/resource/audio/background_music.wav");
         // Imposta il volume della musica
-        music.setVolume(0.5f);
+        musica.setVolume(0.5f);
         // Imposta il loop della musica
         //music.setLoop(true);
-        abbassa_musica.setIcon(new ImageIcon(new ImageIcon("/resource/img/icons/volume_down_icon.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        abbassa_musica.setText("-");
-
-
-        // Gestione pulsante musica
-        musica.setIcon(new ImageIcon(new ImageIcon("/resource/img/icone/meno.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        musica.setText("Mute");
-        musica.setBackground(BACKGROUND_BEIGE);
-        musica.setForeground(RED);
-        musica.setPreferredSize(new java.awt.Dimension(105, 30));
-
-        alza_musica.setIcon(new ImageIcon(new ImageIcon("/resource/img/icone/piu.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        abbassa_musica.setText("+");
-
-        musica.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                if (music.isPlaying()) {
-                    music.pausaMusica();
-                    musica.setText("Play");
-                    musica.setForeground(GREEN);
-                } else {
-                    music.riprendiMusica();
-                    musica.setText("Mute");
-                    musica.setForeground(RED);
-                }
-            }
-        });
-        abbassa_musica.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                music.lowerVolume();
-            }
-        });
-
-        alza_musica.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                music.raiseVolume();
-            }
-        });
+        
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent evt) {
-                music.stopMusica();
+                musica.stopMusica();
             }
         });
-
-        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-            @Override
-            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                if (music.isPlaying()) {
-                    musica.setText("Mute");
-                    musica.setForeground(RED);
-                } else {
-                    musica.setText("Play");
-                    musica.setForeground(GREEN);
-                }
-            }
-
-            @Override
-            public void windowLostFocus(java.awt.event.WindowEvent evt) {
-
-            }
-        });
-        underPanel.add(abbassa_musica);
-        underPanel.add(musica);
-        underPanel.add(alza_musica);
 
 
         esci.setBackground(BACKGROUND_BEIGE);
@@ -460,10 +409,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         }
     }
 
-    private void impostazioniMouseClicked(ActionEvent evt) {
-        InterfacciaImpostazioni impostazioni = new InterfacciaImpostazioni(this);
-        impostazioni.setVisible(true);
-    }
 
     private void skipMouseReleased(java.awt.event.MouseEvent evt) {
         if (skip.isEnabled()) {
@@ -505,7 +450,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     public final Musica getMusica() {
-        return music;
+        return musica;
     }
 
     public Chrono getChrono() {
@@ -516,23 +461,5 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         return parentFrame;
     }
 
-    private javax.swing.JFrame confermaChiusura;
-    private javax.swing.JButton esci;
-    private javax.swing.JLabel imageLabel;
-    private javax.swing.JPanel imageViewer;
-    private javax.swing.JButton inventario;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JPanel macroPanel;
-    private javax.swing.JPanel panel;
-    private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JButton skip;
-    private javax.swing.JTextArea textArea;
-    private javax.swing.JTextField textBox;
-    private javax.swing.JPanel underPanel;
-    private javax.swing.JButton abbassa_musica;
-    private javax.swing.JButton alza_musica;
-    private javax.swing.JButton musica;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem impostazioni;
-    private javax.swing.JLabel cronometro;
+    
 }

@@ -16,10 +16,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import componentiaggiuntivi.Musica;
+import componentiaggiuntivi.StampaTesto;
+
 
 public class InterfacciaImpostazioni extends JFrame {
 
-    private InterfacciaIniziale parentFrame;
+    private Musica musica;
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
     private static final Color WHITE_CUSTOM = new Color(250, 249, 246);
@@ -44,12 +47,17 @@ public class InterfacciaImpostazioni extends JFrame {
     private JButton fastTextButton;
     private JPanel closeButtonPanel;
     private JButton closeButton;
+    private JLabel currentVolumeLevel;
+
+    
 
 
-    public InterfacciaImpostazioni(InterfacciaIniziale parentFrame) {
-        this.parentFrame = parentFrame;
+    public InterfacciaImpostazioni(Musica musica) {
+        //this.parentFrame = parentFrame;
+        this.musica = musica;
         initializeFrameSettings();
         initComponents();
+        cambiaStatoPulsante();
         // updateMusicToggleButtonState(); // attivare se serve
     }
 
@@ -155,19 +163,19 @@ public class InterfacciaImpostazioni extends JFrame {
             System.err.println("Icona musica non trovata: /resource/img/icons/music_icon.png");
         }
 
-        // musicToggleButton.addActionListener(e -> {
-        //     if (parentFrame != null && parentFrame.Musica() != null) {
-        //         if (parentFrame.Musica().isPlaying()) {
-        //             parentFrame.Musica().pausaMusica();
-        //             musicToggleButton.setText("Play");
-        //             musicToggleButton.setForeground(GREEN_CUSTOM); 
-        //         } else {
-        //             parentFrame.Musica().riprendiMusica();
-        //             musicToggleButton.setText("Mute");
-        //             musicToggleButton.setForeground(RED_CUSTOM);
-        //         }
-        //     }
-        // });
+        musicToggleButton.addActionListener(e -> {
+             if (musica != null) {
+                 if (musica.isPlaying()) {
+                     musica.pausaMusica();
+                     musicToggleButton.setText("Play");
+                     musicToggleButton.setForeground(GREEN_CUSTOM); 
+                 } else {
+                     musica.riprendiMusica();
+                     musicToggleButton.setText("Mute");
+                     musicToggleButton.setForeground(RED_CUSTOM);
+                 }
+             }
+         });
 
         musicPanel.add(musicToggleButton);
     }
@@ -183,14 +191,14 @@ public class InterfacciaImpostazioni extends JFrame {
 
         volumeDownButton = new JButton("-");
         styleButton(volumeDownButton, BROWN_WARM, WHITE_CUSTOM, 20f, new Dimension(60, 40));
-        // volumeDownButton.addActionListener(e -> {
-        //     if (parentFrame != null && parentFrame.Musica() != null) {
-        //         parentFrame.Musica().setVolume(Math.max(parentFrame.Musica().Volume() - 5f, -80f));
-        //     }
-        // });
+        volumeDownButton.addActionListener(e -> {
+            musica.setVolume(musica.getVolume() - 0.1f);
+            percentualeToIntero();
+        });
         volumePanel.add(volumeDownButton);
 
-        JLabel currentVolumeLevel = new JLabel("50%");
+        currentVolumeLevel = new JLabel();
+        percentualeToIntero();
         currentVolumeLevel.setFont(caricaFontUncial(18f));
         currentVolumeLevel.setForeground(WHITE_CUSTOM);
         currentVolumeLevel.setPreferredSize(new Dimension(80, 40));
@@ -199,11 +207,10 @@ public class InterfacciaImpostazioni extends JFrame {
 
         volumeUpButton = new JButton("+");
         styleButton(volumeUpButton, BROWN_WARM, WHITE_CUSTOM, 20f, new Dimension(60, 40));
-        // volumeUpButton.addActionListener(e -> {
-        //     if (parentFrame != null && parentFrame.Musica() != null) {
-        //         parentFrame.Musica().setVolume(Math.min(parentFrame.Musica().Volume() + 5f, 6f));
-        //     }
-        // });
+        volumeUpButton.addActionListener(e -> {
+            musica.setVolume(musica.getVolume() + 0.1f);
+            percentualeToIntero();
+         });
         volumePanel.add(volumeUpButton);
     }
 
@@ -218,29 +225,23 @@ public class InterfacciaImpostazioni extends JFrame {
 
         slowTextButton = new JButton("Lento");
         styleButton(slowTextButton, BROWN_WARM, TEXT_BUTTON_COLOR, 16f, new Dimension(100, 40));
-        // slowTextButton.addActionListener(e -> {
-        //     if (parentFrame != null) {
-        //         parentFrame.setTextDisplaySpeed(200);
-        //     }
-        // });
+        slowTextButton.addActionListener(e -> {
+            StampaTesto.setAttesa(150);
+         });
         textSpeedPanel.add(slowTextButton);
 
         mediumTextButton = new JButton("Medio");
         styleButton(mediumTextButton, BROWN_WARM, TEXT_BUTTON_COLOR, 16f, new Dimension(100, 40));
-        // mediumTextButton.addActionListener(e -> {
-        //     if (parentFrame != null) {
-        //         parentFrame.setTextDisplaySpeed(50);
-        //     }
-        // });
+        mediumTextButton.addActionListener(e -> {
+            StampaTesto.setAttesa(50);
+        });
         textSpeedPanel.add(mediumTextButton);
 
         fastTextButton = new JButton("Veloce");
         styleButton(fastTextButton, BROWN_WARM, TEXT_BUTTON_COLOR, 16f, new Dimension(100, 40));
-        // fastTextButton.addActionListener(e -> {
-        //     if (parentFrame != null) {
-        //         parentFrame.setTextDisplaySpeed(10);
-        //     }
-        // });
+        fastTextButton.addActionListener(e -> {
+            StampaTesto.setAttesa(10);
+        });
         textSpeedPanel.add(fastTextButton);
     }
 
@@ -250,15 +251,20 @@ public class InterfacciaImpostazioni extends JFrame {
         closeButton.addActionListener(e -> dispose());
     }
 
-    // private void updateMusicToggleButtonState() {
-    //     if (parentFrame != null && parentFrame.Musica() != null) {
-    //         if (parentFrame.Musica().isPlaying()) {
-    //             musicToggleButton.setText("Mute");
-    //             musicToggleButton.setForeground(RED_CUSTOM);
-    //         } else {
-    //             musicToggleButton.setText("Play");
-    //             musicToggleButton.setForeground(GREEN_CUSTOM);
-    //         }
-    //     }
-    // }
+    private void cambiaStatoPulsante(){
+        if (musica != null) {
+                 if (!musica.isPlaying()) {
+                     musicToggleButton.setText("Play");
+                     musicToggleButton.setForeground(GREEN_CUSTOM); 
+                 } else {
+                     musicToggleButton.setText("Mute");
+                     musicToggleButton.setForeground(RED_CUSTOM);
+                 }
+        }
+    }
+
+    public void percentualeToIntero(){
+        int volume = (int) ((musica.getVolume()) * 100);
+        currentVolumeLevel.setText(volume + "%");       
+    }
 }
