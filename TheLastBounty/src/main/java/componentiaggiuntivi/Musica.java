@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
@@ -20,17 +21,20 @@ public class Musica {
      * 
      * @param filePath percorso del file audio da riprodurre
      */
-    public void playMusic(String filePath) {
+    public void playMusic(String pathAudio) {
         try {
-            File musicFile = new File(filePath);
-            musicaGioco = AudioSystem.getClip();
+            java.net.URL audioUrl = getClass().getResource(pathAudio);
+            if (audioUrl == null) {
+                System.err.println("Audio non trovato: " + pathAudio);
+                return;
+            }
 
-            musicaGioco.open(AudioSystem.getAudioInputStream(musicFile));
-
-            musicaGioco.loop(Clip.LOOP_CONTINUOUSLY);
-
-            musicaGioco.start();
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 

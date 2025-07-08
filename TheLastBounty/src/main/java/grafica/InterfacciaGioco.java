@@ -308,7 +308,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         // Imposta il volume della musica
         music.setVolume(0.5f);
         // Imposta il loop della musica
-        music.setLoop(true);
+        //music.setLoop(true);
         abbassa_musica.setIcon(new ImageIcon(new ImageIcon("/resource/img/icons/volume_down_icon.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         abbassa_musica.setText("-");
@@ -324,7 +324,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         alza_musica.setIcon(new ImageIcon(new ImageIcon("/resource/img/icone/piu.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        abbasa_musica.setText("+");
+        abbassa_musica.setText("+");
 
         musica.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
