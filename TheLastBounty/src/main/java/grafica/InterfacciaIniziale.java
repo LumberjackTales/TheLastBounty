@@ -6,7 +6,7 @@ package grafica;
 
 import java.io.InputStream;
 
-import javax.swing.BorderFactory;
+//import javax.swing.BorderFactory;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,9 +14,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-import componentiaggiuntivi.Musica;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
@@ -31,7 +28,6 @@ import javax.sound.sampled.LineUnavailableException;
  * @author sivoroberto
  */
 public class InterfacciaIniziale extends javax.swing.JFrame {
-    private final Musica musica = new Musica();
 
     /**
      * Creates new form InterfacciaIniziale
@@ -52,34 +48,34 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     }
 
     private void aggiungiIcona(javax.swing.JButton bottone, String pathIcona) {
-        java.net.URL imgUrl = getClass().getResource(pathIcona);
-        if (imgUrl != null) {
-            ImageIcon icon = new ImageIcon(imgUrl);
-            Image scaled = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-            bottone.setIcon(new ImageIcon(scaled));
-            bottone.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            bottone.setIconTextGap(10); // Spazio tra icona e testo
-        } else {
-            System.err.println("Icona non trovata: " + pathIcona);
-        }
+    java.net.URL imgUrl = getClass().getResource(pathIcona);
+    if (imgUrl != null) {
+        ImageIcon icon = new ImageIcon(imgUrl);
+        Image scaled = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        bottone.setIcon(new ImageIcon(scaled));
+        bottone.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        bottone.setIconTextGap(10); // Spazio tra icona e testo
+    } else {
+        System.err.println("Icona non trovata: " + pathIcona);
     }
+}
 
-    /*private void riproduciAudio(String pathAudio) {
-        try {
-            java.net.URL audioUrl = getClass().getResource(pathAudio);
-            if (audioUrl == null) {
-                System.err.println("Audio non trovato: " + pathAudio);
-                return;
-            }
-
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
-            e.printStackTrace();
+    private void riproduciAudio(String pathAudio) {
+    try {
+        java.net.URL audioUrl = getClass().getResource(pathAudio);
+        if (audioUrl == null) {
+            System.err.println("Audio non trovato: " + pathAudio);
+            return;
         }
-    }*/
+
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
+    } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,33 +84,9 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         
-        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        musica.playMusic("/resource/audio/musica_intro.wav");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                if (!musica.isPlaying())
-                    musica.playMusic("/resource/audio/musica_intro.wav");
-            }
-        });
-
-        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-            @Override
-            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                if (!musica.isPlaying())
-                    musica.playMusic("/resource/audio/musica_intro.wav");
-            }
-
-            @Override
-            public void windowLostFocus(java.awt.event.WindowEvent evt) {
-
-            }
-        });
-
-        //riproduciAudio("/resource/audio/musica_intro.wav"); 
-        
+             setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+    riproduciAudio("/resource/audio/musica_intro.wav"); 
         jPanel1 = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
@@ -239,7 +211,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         classifica.setBackground(new Color(100, 150, 150, 155));
         aggiungiIcona(classifica, "/resource/img/icone/icona_classifica.png");
         classifica.addActionListener (e-> {
-            //new Classifica();
+   //         new Classifica();
         });
 
         javax.swing.JButton impostazioni = new javax.swing.JButton("Impostazioni");
@@ -249,6 +221,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         impostazioni.setBackground(new Color(100, 150, 150, 155));
         impostazioni.addActionListener(e -> new InterfacciaImpostazioni(this).setVisible(true));
         aggiungiIcona(impostazioni, "/resource/img/icone/icona_opzioni.png");
+
 
         javax.swing.JButton esci = new javax.swing.JButton("Esci");
         buttonPanel.add(esci);
@@ -276,7 +249,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         riconoscimenti.setForeground(textColor);
         riconoscimenti.setBackground(new Color(100, 150, 150, 155));
         aggiungiIcona(riconoscimenti, "/resource/img/icone/icona_riconoscimenti.png");
-
+        riconoscimenti.addActionListener(e -> new interfacciaRiconoscimenti(this).setVisible(true));
             
         
 
@@ -339,6 +312,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     private javax.swing.JButton impostazioni;
     private javax.swing.JButton esci;
     private javax.swing.JButton riconoscimenti;
+    private javax.swing.JButton classifica;
     
     // End of variables declaration//GEN-END:variables
 }
