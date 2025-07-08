@@ -14,6 +14,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import componentiaggiuntivi.Musica;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
@@ -28,6 +29,7 @@ import javax.sound.sampled.LineUnavailableException;
  * @author sivoroberto
  */
 public class InterfacciaIniziale extends javax.swing.JFrame {
+    private final Musica musica = new Musica();
 
     /**
      * Creates new form InterfacciaIniziale
@@ -60,22 +62,22 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     }
 }
 
-    private void riproduciAudio(String pathAudio) {
-    try {
-        java.net.URL audioUrl = getClass().getResource(pathAudio);
-        if (audioUrl == null) {
-            System.err.println("Audio non trovato: " + pathAudio);
-            return;
-        }
+    /*private void riproduciAudio(String pathAudio) {
+        try {
+            java.net.URL audioUrl = getClass().getResource(pathAudio);
+            if (audioUrl == null) {
+                System.err.println("Audio non trovato: " + pathAudio);
+                return;
+            }
 
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioStream);
-        clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
-    } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
-        e.printStackTrace();
-    }
-}
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,9 +86,31 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        
-             setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-    riproduciAudio("/resource/audio/musica_intro.wav"); 
+
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        musica.playMusic("/resource/audio/musica_intro.wav");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                if (!musica.isPlaying())
+                    musica.playMusic("/resource/audio/musica_intro.wav");
+            }
+        });
+
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            @Override
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                if (!musica.isPlaying())
+                    musica.playMusic("/resource/audio/musica_intro.wav");
+            }
+
+            @Override
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+
+            }
+        });
+           
+        //riproduciAudio("/resource/audio/musica_intro.wav"); 
         jPanel1 = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
@@ -211,7 +235,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         classifica.setBackground(new Color(100, 150, 150, 155));
         aggiungiIcona(classifica, "/resource/img/icone/icona_classifica.png");
         classifica.addActionListener (e-> {
-   //         new Classifica();
+            //new Classifica();
         });
 
         javax.swing.JButton impostazioni = new javax.swing.JButton("Impostazioni");
