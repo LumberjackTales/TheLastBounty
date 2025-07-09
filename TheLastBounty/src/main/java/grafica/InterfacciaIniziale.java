@@ -149,15 +149,17 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
        
 
         gioca.addActionListener(e -> {
+            musica.stopMusica();
             InterfacciaGioco gioco = null;
             try {
-                gioco = new InterfacciaGioco(InterfacciaIniziale.this);
-            } catch (Exception e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
+                gioco = new InterfacciaGioco(this);
+                gioco.setVisible(true);
+                setVisible(false);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                musica.playMusic("/resource/audio/musica_gioco.wav");
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
             }
-            gioco.setVisible(true);
-            setVisible(false);
         });
 
        

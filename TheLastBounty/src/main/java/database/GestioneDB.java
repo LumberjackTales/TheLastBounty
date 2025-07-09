@@ -17,8 +17,8 @@ import java.util.Set;
 
 import org.h2.tools.RunScript;
 
-import tipi.Dialogo;
-import tipi.Item;
+import giocatore.Dialogo;
+import giocatore.Item;
 
 public class GestioneDB {
 

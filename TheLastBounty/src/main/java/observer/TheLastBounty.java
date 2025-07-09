@@ -3,15 +3,15 @@ package observer;
 import java.util.ArrayList;
 import java.util.List;
 
-//import mondo.Casella;
+import database.Casella;
 import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.GameObservable;
 import componentiaggiuntivi.GameObserver;
 import database.GestioneDB;
 import componentiaggiuntivi.StampaTesto;
-//import parser.ParserOutput;
-//import tipi.Command;
-//import tipi.CommandType;
+import parser.ParserOutput;
+import comandi.Command;
+import comandi.CommandType;
 
 public class TheLastBounty extends GameDescription implements GameObservable {
     private transient List<GameObserver> observer;
@@ -30,16 +30,16 @@ public class TheLastBounty extends GameDescription implements GameObservable {
         command = new Command(CommandType.LOOK_AT, "osserva");
         command.setAlias(new String[] { "guarda", "vedi" });
         getCommands().add(command);
-        command = new Command(CommandType.EAST, "est");
+        command = new Command(CommandType.EST, "est");
         command.setAlias(new String[] { "e", "east" , "destra" ,"est"});
         getCommands().add(command);
-        command = new Command(CommandType.WEST, "ovest");
+        command = new Command(CommandType.OVEST, "ovest");
         command.setAlias(new String[] { "o", "west", "w", "ovest", "sinistra" });
         getCommands().add(command);
-        command = new Command(CommandType.NORTH, "nord");
+        command = new Command(CommandType.NORD, "nord");
         command.setAlias(new String[] { "n", "north", "avanti", "nord" });
         getCommands().add(command);
-        command = new Command(CommandType.SOUTH, "sud");
+        command = new Command(CommandType.SUD, "sud");
         command.setAlias(new String[] { "s", "south", "indietro", "sud" });
         getCommands().add(command);
         command = new Command(CommandType.PICK_UP, "prendi");

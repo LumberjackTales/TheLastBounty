@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import mondo.Casella;
+import database.Casella;
 import parser.ParserOutput;
-import tipi.Command;
-import tipi.CommandType;
-import tipi.Dialogo;
-import tipi.Inventario;
-import tipi.Item;
+import comandi.Command;
+import comandi.CommandType;
+import giocatore.Dialogo;
+import giocatore.Inventario;
+import giocatore.Item;
 
 /**
  * Classe astratta che rappresenta la descrizione base del gioco.

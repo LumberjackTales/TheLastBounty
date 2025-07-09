@@ -167,10 +167,8 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             }
         });
 
+        panel = new javax.swing.JPanel();  
         confermaChiusura = new javax.swing.JFrame();
-        panel = new javax.swing.JPanel();
-        buttonPanelExit = new javax.swing.JPanel();
-        jTextArea2 = new javax.swing.JTextArea();
         macroPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         scrollPane.setViewportBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
@@ -203,21 +201,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         panel.setBackground(BACKGROUND_BLACK);
         panel.setLayout(new java.awt.BorderLayout());
 
-
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(FONT);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("\n\n\n\n\n                  Sei sicuro di voler abbandonare? \n\t                  ");
-        jTextArea2.setFocusable(false);
-        jTextArea2.setBorder(null);
-        panel.add(jTextArea2, java.awt.BorderLayout.CENTER);
-
         confermaChiusura.getContentPane().add(panel, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("The Last Bounty");
-        setIconImage(Toolkit.getDefaultToolkit().getImage("resource/img/logo_Arcadia.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("resource/img/schermata_principale.png"));
         setResizable(false);
 
         macroPanel.setBackground(BACKGROUND_BLACK);
@@ -286,7 +274,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         impostazioni.setBackground(BACKGROUND_BEIGE);
         impostazioni.setForeground(TEXT);
-        impostazioni.setIcon(new ImageIcon(new ImageIcon("resource/img/icons/options_icon.png").getImage()
+        impostazioni.setIcon(new ImageIcon(new ImageIcon("/resource/img/icone/icona_opzioni.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         impostazioni.setText("Impostazioni");
         impostazioni.setPreferredSize(new java.awt.Dimension(105, 30));
@@ -317,7 +305,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         setJMenuBar(menuBar);
 
         // Avvio musica
-        musica.playMusic("/resource/audio/background_music.wav");
+        musica.playMusic("/resource/audio/musica_gioco.wav");
         // Imposta il volume della musica
         musica.setVolume(0.5f);
         // Imposta il loop della musica
@@ -335,7 +323,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         esci.setBackground(BACKGROUND_BEIGE);
         esci.setForeground(TEXT);
         esci.setText("Esci");
-        esci.setIcon(new ImageIcon(new ImageIcon("resource/img/icone/icona_esci.png").getImage()
+        esci.setIcon(new ImageIcon(new ImageIcon("/resource/img/icone/icona_esci.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         esci.setPreferredSize(new java.awt.Dimension(90, 30));
         esci.addActionListener(e -> {
@@ -417,7 +405,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         }
     }
 
-    private void jButton1goToMenu(java.awt.event.MouseEvent evt) {
+    /*private void jButton1goToMenu(java.awt.event.MouseEvent evt) {
         parentFrame.setVisible(true);
         confermaChiusura.dispose();
         dispose();
@@ -433,13 +421,13 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         confermaChiusura.setLocationRelativeTo(null);
         confermaChiusura.setTitle("The Last Bounty - Uscita");
         confermaChiusura.setVisible(true);
-    }
+    }*/
 
-    public void endGame() {
+    /*public void endGame() {
         InterfacciaFinale interfacciaFinale = new InterfacciaFinale(parentFrame, game.getChrono().getElapsedTime());
         interfacciaFinale.setVisible(true);
         dispose();
-    }
+    }*/
 
     private ImageIcon getScaledImage(ImageIcon image) {
         return new ImageIcon(image.getImage().getScaledInstance(450, 700, Image.SCALE_DEFAULT));
