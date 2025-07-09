@@ -15,6 +15,7 @@ public class LookAtObserver implements GameObserver {
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.LOOK_AT) {
+            System.out.println("LookAtObserver osservazione in corso...");
             Object args = parserOutput.getParams();
             if (args == null){
                 msg = description.getCurrentCasella().getDescrizione();

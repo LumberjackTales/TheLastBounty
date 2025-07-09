@@ -15,7 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Musica {
 
     private Clip musicaGioco;
-    private boolean isPaused=false;
+    private static boolean isPaused=false;
 
     /**
      * Metodo che avvia la riproduzione della musica all'esecuzione del programma.
@@ -33,7 +33,8 @@ public class Musica {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioUrl);
             musicaGioco = AudioSystem.getClip();
             musicaGioco.open(audioStream);
-            musicaGioco.start(); // se vuoi loop continuo: clip.loop(Clip.LOOP_CONTINUOUSLY);
+            musicaGioco.loop(Clip.LOOP_CONTINUOUSLY); // Imposta il loop continuo
+            musicaGioco.start(); 
         } catch (UnsupportedAudioFileException | java.io.IOException | LineUnavailableException e) {
             e.printStackTrace();
         }

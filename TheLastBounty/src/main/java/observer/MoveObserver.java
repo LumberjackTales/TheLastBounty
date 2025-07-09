@@ -92,8 +92,10 @@ public class MoveObserver implements GameObserver {
             case 108 ->
                 imagePath = "/resource/img/Cartello1.png";
 
-            case 109,112,123 ->
+            case 109,112,123 ->{
+                description.getChrono().addMinute(5);
                 imagePath = "/resource/img/trappola.png";
+            }
 
             case 113 ->
                 imagePath = "/resource/img/Lago_Ninfa.png";

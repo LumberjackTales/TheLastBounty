@@ -51,7 +51,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private final Font FONT = new Font("Serif", Font.PLAIN, 20);
     private final String HUNTER = "/resource/img/cacciatore.png";
 
-    private final Color BACKGROUND_BEIGE = new Color(237, 232, 208);
+    private final Color BACKGROUND_BEIGE = new Color(100, 150, 150, 155);
     private final Color BACKGROUND_BLACK = new Color(54, 69, 79);
     private final Color TEXT = new Color(06, 06, 06);
     private final Color WHITE = new Color(250, 249, 246);
@@ -120,7 +120,8 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         try {
 
             try {
-                Set<String> stopwords = Utils.loadFileListInSet(new File("/resource/stopwords/stopwords"));
+                File file = new File("src/main/resources/resource/stopword/stopwords");
+                Set<String> stopwords = Utils.loadFileListInSet(file);
                 parser = new Parser(stopwords, game.getCommands());
             } catch (IOException ex) {
                 throw ex;
@@ -144,14 +145,14 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             textArea.append(
                     """
                             \t\t┌──────────────────────────────────┐
-                            \t\t│         "The Last Bounty"        │
+                            \t\t│                                 "The Last Bounty"                                │
                             \t\t└──────────────────────────────────┘\n\n
                                     """);
             stampa.stampa(game.getIntro());
         } catch (GameFileException ex) {
             musica.stopMusica();
             throw ex;
-        } catch (Exception ex) {
+        } catch (Exception ex) {          
             Logger.getLogger(InterfacciaGioco.class.getName()).log(Level.SEVERE, null, ex);
             musica.stopMusica();
             throw new GameNotAvailableException();
@@ -187,7 +188,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         cronometro = new javax.swing.JLabel();
         impostazioni = new javax.swing.JMenuItem();
 
-        confermaChiusura.setIconImage(
+        /*confermaChiusura.setIconImage(
                 Toolkit.getDefaultToolkit().getImage("/resource/img/schermata_principale.png"));
         confermaChiusura.setResizable(false);
         confermaChiusura.setSize(new java.awt.Dimension(700, 400));
@@ -196,7 +197,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
                 continueGame(evt);
             }
-        });
+        });*/
 
         panel.setBackground(BACKGROUND_BLACK);
         panel.setLayout(new java.awt.BorderLayout());
@@ -205,7 +206,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("The Last Bounty");
-        setIconImage(Toolkit.getDefaultToolkit().getImage("resource/img/schermata_principale.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("/resource/img/schermata_principale.png"));
         setResizable(false);
 
         macroPanel.setBackground(BACKGROUND_BLACK);
@@ -308,8 +309,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         musica.playMusic("/resource/audio/musica_gioco.wav");
         // Imposta il volume della musica
         musica.setVolume(0.5f);
-        // Imposta il loop della musica
-        //music.setLoop(true);
         
 
         addWindowListener(new java.awt.event.WindowAdapter() {

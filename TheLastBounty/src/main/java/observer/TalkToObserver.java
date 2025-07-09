@@ -23,7 +23,7 @@ public class TalkToObserver implements GameObserver {
                     .findAny()
                     .orElse(null);
             if (dialogo != null) {
-                if (description.getCurrentCasella().getId() == 410) {
+                if (description.getCurrentCasella().getId() == 130) {
                     dialogo = QuizAPI.getQuiz(dialogo);
                 }
                 msg = dialogo.getDialogo();
@@ -40,54 +40,42 @@ public class TalkToObserver implements GameObserver {
                 if (dialogo.valutaRisposta((String) parserOutput.getParams()) && !dialogo.getRisposta().isBlank()) {
                     msg = dialogo.getMessaggioRispCorretta();
                     switch (description.getCurrentCasella().getId()) {
-                        case 903 -> {
-                            Item moneta = new Item("moneta d'oro");
+                        case 113 -> {
+                            Item tomoe = new Item("tomoe");
                             Inventario inv = description.getInventario();
-                            if (inv.contains(moneta)) {
-                                inv.remove(moneta);
+                            if (inv.contains(tomoe)) {                              
                                 dialogo.changeDialogo();
                             } else {
-                                msg = "\"Ma non hai monete vigliacco! Mi hai mentito!\" (non hai monete d'oro, prova a tornare a casa)";
+                                dialogo.getDialogo();
                             }
                         }
 
-                        case 908 -> {
-                            dialogo.changeDialogo();
-                            description.getCurrentCasella().getNorth().setEnterable(true);
-                        }
-
-                        case 110 -> {
-                            Item moneta = new Item("moneta d'oro");
+                        case 333 -> {
+                            Item gemma = new Item("gemma");
                             Inventario inv = description.getInventario();
-                            if (inv.contains(moneta)) {
-                                inv.remove(moneta);
+                            if (inv.contains(gemma)) {                              
                                 dialogo.changeDialogo();
-                                msg += "\nHai speso 1 Moneta d'oro per ripare il tuo Liuto!";
-                            } else {
-                                msg = "\"Non hai abbastanza monete ragazzo, sarà per la prossima volta\" (non hai abbastanza monete d'oro per riparare il Liuto, prova a tornare a casa)";
+                                msg += "Complimenti, sei riuscito a svegliare Vangrath, misà che sei bello che spacciato!";
+                            } else if (description.getLastCommand().getType() == CommandType.USE){
+                                msg += "Questo paletto non ha sortito alvun effetto, misà che sei spacciato!"; 
+                                dialogo.changeDialogo();
+                            }else{
+                                dialogo.getDialogo();
                             }
                         }
 
-                        case 112 -> {
-                            Item moneta = new Item("moneta d'oro");
-                            Inventario inv = description.getInventario();
-                            if (inv.contains(moneta)) {
-                                dialogo.changeDialogo();
-                                inv.remove(moneta);
-                                Item item = description.getCurrentCasella().getOggetti()
-                                        .stream()
-                                        .filter(i -> i.getName().equals("coltello"))
-                                        .findFirst()
-                                        .orElse(null);
-
-                                item.setVisible(true);
-                                description.getCurrentCasella().clearOggetto(item);
-                                inv.addOggetto(item, 1);
-                                msg += "\nHai speso 1 Moneta d'oro per un coltello! Il Coltello è stato aggiunto al tuo inventario";
-                            } else {
-                                msg = "\"Non hai abbastanza soldi ragazzo, sarà per la prossima volta\" (non hai abbastanza monete d'oro per comprare il coltello, prova a tornare a casa)";
-                            }
+                        case 338 -> {
+                            dialogo.getDialogo();
                         }
+
+                        case 344 ->{
+                            dialogo.getDialogo();
+                        }
+
+                        case 356 -> {
+                            dialogo.getDialogo();
+                        }
+                    
 
                     }
                     description.setLastCommand(parserOutput.getCommand());

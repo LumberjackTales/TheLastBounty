@@ -24,8 +24,8 @@ public class SaveObserver implements GameObserver {
             String nameFile = (String) arg;
             try {
                 ObjectOutputStream out = new ObjectOutputStream(
-                        new FileOutputStream(System.getProperty("user.dir") + File.separator + "resource"
-                                + File.separator + "salvataggi" + File.separator + nameFile + ".dat"));
+                        new FileOutputStream(System.getProperty("user.dir") + File.separator + "src/main/resources/resource/salvataggi"
+                                + File.separator + nameFile + ".dat"));
                 description.getChrono().stop();
                 out.writeObject(description);
                 description.getChrono().startAgain(description.getChrono().getElapsedTime());

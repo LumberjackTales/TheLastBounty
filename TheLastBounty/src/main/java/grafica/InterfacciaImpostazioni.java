@@ -156,11 +156,11 @@ public class InterfacciaImpostazioni extends JFrame {
         styleButton(musicToggleButton, BROWN_WARM, RED_CUSTOM, 16f, new Dimension(150, 40));
 
         try {
-            ImageIcon musicIcon = new ImageIcon(new ImageIcon(getClass().getResource("/resource/img/icons/music_icon.png"))
+            ImageIcon musicIcon = new ImageIcon(new ImageIcon(getClass().getResource("/resource/img/icone/icona_volume.png"))
                     .getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
             musicToggleButton.setIcon(musicIcon);
         } catch (Exception e) {
-            System.err.println("Icona musica non trovata: /resource/img/icons/music_icon.png");
+            System.err.println("Icona musica non trovata: /resource/img/icone/icona_volume.png");
         }
 
         musicToggleButton.addActionListener(e -> {

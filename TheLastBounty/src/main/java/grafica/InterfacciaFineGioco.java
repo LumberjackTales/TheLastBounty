@@ -13,7 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.ws.rs.client.Client;
+import classifica.Client;
+import classifica.Record;
 
 import componentiaggiuntivi.Musica;
         

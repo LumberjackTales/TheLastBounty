@@ -25,6 +25,10 @@ public class Chrono implements Serializable {
         }
     }
 
+    public void addMinute(int tempo){
+        elapsedTime += Math.abs(tempo) * 60 * 1000; // Aggiunge il tempo in millisecondi
+    }
+
     /**
      * Riavvia il cronometro con un tempo già trascorso.
      * Utile per riprendere un cronometro da un salvataggio.

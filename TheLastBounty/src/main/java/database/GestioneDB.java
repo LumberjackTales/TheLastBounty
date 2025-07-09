@@ -125,7 +125,7 @@ public class GestioneDB {
                         casella.addOggetto(item, 1);
                     }
                     caselle.add(casella);
-                    if (casella.getId() == 901) {
+                    if (casella.getId() == 100) {
                         start = casella;
                     }
                 }
