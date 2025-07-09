@@ -118,15 +118,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         game.setChrono(chrono);
 
         try {
-
-            try {
-                File file = new File("src/main/resources/resource/stopword/stopwords");
-                Set<String> stopwords = Utils.loadFileListInSet(file);
-                parser = new Parser(stopwords, game.getCommands());
-            } catch (IOException ex) {
-                throw ex;
-            }
-
             if (!loadGame) {
                 game.init();
             } else {
@@ -141,6 +132,13 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     throw new GameFileException();
                 }
+            }
+            try {
+                File file = new File("src/main/resources/resource/stopword/stopwords");
+                Set<String> stopwords = Utils.loadFileListInSet(file);
+                parser = new Parser(stopwords, game.getCommands());
+            } catch (IOException ex) {
+                throw ex;
             }
             textArea.append(
                     """

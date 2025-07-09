@@ -1,3 +1,0 @@
-2025-07-09 20:31:22.044967+02:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CASELLA" not found (this database is empty); SQL statement:
-SELECT * FROM Casella [42104-224]
