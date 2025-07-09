@@ -18,20 +18,20 @@ public class SaveObserver implements GameObserver {
         if (parserOutput.getCommand().getType() == CommandType.SAVE) {
             Object arg = parserOutput.getParams();
             if (arg == null) {
-                msg = "Ehi, mi serve un nome per il file! Non posso mica salvare nel vuoto cosmico!";
+                msg = "Collega il tuo cervello, non hai specificato il nome del file di salvataggio! Usa il comando 'Salva' seguito dal nome del file.";
                 return msg;
             }
             String nameFile = (String) arg;
             try {
                 ObjectOutputStream out = new ObjectOutputStream(
                         new FileOutputStream(System.getProperty("user.dir") + File.separator + "resource"
-                                + File.separator + "save" + File.separator + nameFile + ".dat"));
+                                + File.separator + "salvataggi" + File.separator + nameFile + ".dat"));
                 description.getChrono().stop();
                 out.writeObject(description);
                 description.getChrono().startAgain(description.getChrono().getElapsedTime());
                 out.close();
                 msg = "Salvataggio effettuato in " + System.getProperty("user.dir") + File.separator + "resource"
-                        + File.separator + "save" + File.separator + nameFile + ".dat";
+                        + File.separator + "salvataggi" + File.separator + nameFile + ".dat";
             } catch (IOException e) {
                 msg = "[ERRORE] Salvataggio del gioco non riuscito!";
             }

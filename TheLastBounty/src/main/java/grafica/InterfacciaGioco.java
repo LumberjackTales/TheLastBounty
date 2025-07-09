@@ -423,11 +423,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         confermaChiusura.setVisible(true);
     }*/
 
-    /*public void endGame() {
-        InterfacciaFinale interfacciaFinale = new InterfacciaFinale(parentFrame, game.getChrono().getElapsedTime());
-        interfacciaFinale.setVisible(true);
+    public void fineGioco() {
+        InterfacciaFineGioco InterfacciaFineGioco = new InterfacciaFineGioco(parentFrame, game.getChrono().getElapsedTime());
+        InterfacciaFineGioco.setVisible(true);
         dispose();
-    }*/
+    }
 
     private ImageIcon getScaledImage(ImageIcon image) {
         return new ImageIcon(image.getImage().getScaledInstance(450, 700, Image.SCALE_DEFAULT));

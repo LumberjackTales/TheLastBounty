@@ -13,8 +13,6 @@ import giocatore.Item;
  * Ogni casella ha un identificatore, un nome, descrizioni, collegamenti con altre caselle
  * e può contenere oggetti. Gestisce anche lo stato di visibilità e accessibilità.
  * 
- * @author Kevin Saracino
- * @author Alessandro Pellegrino
  */
 public class Casella implements Serializable {
     private final int id;

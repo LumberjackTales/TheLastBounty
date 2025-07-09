@@ -16,8 +16,8 @@ public class PickUpObserver implements GameObserver {
         if (parserOutput.getCommand().getType() == CommandType.PICK_UP) {
             Object args = parserOutput.getParams();
             if (args == null) {
-                System.out.println("Non hai specificato l'oggetto da prendere");
-                msg = "Sii più specifico, svegliati... (usa il comando 'Prendi' seguito dal nome dell'oggetto)";
+                System.out.println("Scemo, Non hai specificato l'oggetto da prendere");
+                msg = "Non hai specificato l'oggetto da prendere, usa il comando 'Prendi' seguito dal nome dell'oggetto.";
                 return msg;
             }
             if (args instanceof String[]) {
@@ -32,32 +32,26 @@ public class PickUpObserver implements GameObserver {
                     if (pickUpItem != null && pickUpItem.isVisible()) {
                         int quantity = description.getCurrentCasella().removeOggetto(pickUpItem);
                         msg = "Hai raccolto ";
-                        if (quantity > 1) {
-                            msg += "x" + quantity + " ";
-                        }
                         msg += Pattern.compile("^.").matcher(pickUpItem.getName())
                                 .replaceFirst(m -> m.group().toUpperCase());
                         
                         description.getInventario().addOggetto(pickUpItem, quantity);
 
-                        if (description.getInventario().contains("liuto leggendario", "pentagramma armonico")) {
+                        if (description.getInventario().contains("Legno quercia bianca", "Coltellino svizzero")) {
                             description.getCaselle().stream()
-                                    .filter(c -> c.getId() == 106 || c.getId() == 107)
+                                    .filter(c -> c.getId() == 104)
                                     .forEach(c -> {
-                                        if (c.getId() == 106)
-                                            c.setUpdated(true);
-                                        else if (c.getId() == 107)
-                                            c.setEnterable(true);
+                                        c.setUpdated(true);
                                     });
                         }
                     } else {
-                        msg = "Non c'è nessun oggetto con quel nome qui!!!";
+                        msg = "Non c'è nessun oggetto con quel nome qui,secondo me sei pazzo! Prova a guardare meglio.";
                     }
                 } else {
-                    msg = "Puoi prendere solo un oggetto per volta!!!";
+                    msg = "Puoi prendere solo un oggetto per volta!";
                 }
             } else {
-                msg = "Sii più specifico, svegliati... (usa il comando 'Prendi' seguito dal nome dell'oggetto)";
+                msg = "Non hai specificato l'oggetto da prendere, usa il comando 'Prendi' seguito dal nome dell'oggetto.";
             }
         }
         return msg;

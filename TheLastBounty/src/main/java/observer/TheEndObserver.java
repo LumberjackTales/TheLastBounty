@@ -12,7 +12,7 @@ public class TheEndObserver implements GameObserver {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.THE_END) {
             description.getChrono().stop();
-            parserOutput.getInterfacciaGioco().endGame();
+            parserOutput.getInterfacciaGioco().fineGioco();
         }
 
         return msg;

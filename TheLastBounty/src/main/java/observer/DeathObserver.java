@@ -13,7 +13,7 @@ public class DeathObserver implements GameObserver {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.DEATH) {
             parserOutput.getInterfacciaGioco().getMusica().stopMusica();
-            parserOutput.getInterfacciaGioco().getMusica().riproduciClip("resource/other/death_effect.wav");
+            parserOutput.getInterfacciaGioco().getMusica().riproduciClip("/resource/audio/audio_morte.wav");
             InterfacciaMorte morte = new InterfacciaMorte(parserOutput.getInterfacciaGioco().getParentFrame());
             morte.setVisible(true);
             parserOutput.getInterfacciaGioco().dispose();

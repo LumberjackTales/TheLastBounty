@@ -16,7 +16,7 @@ public class TalkToObserver implements GameObserver {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.TALK_TO
                 && parserOutput.getParams() != null) {
-            msg = "Per parlare con qualcuno non devi aggiungere nulla alla parola 'Parla'! Formato: Parla (avvia dialogo) e successivamente Risposta.";
+            msg = "Non puoi parlare con un muro, prova a parlare con qualcuno di reale! Usa il comando 'Parla' senza mettere nulla dopo";
         } else if (parserOutput.getCommand().getType() == CommandType.TALK_TO) {
             Dialogo dialogo = description.getDialoghi().stream()
                     .filter(d -> description.getCurrentCasella().getId() == d.getIdCasella())
@@ -28,7 +28,7 @@ public class TalkToObserver implements GameObserver {
                 }
                 msg = dialogo.getDialogo();
             } else {
-                msg = "Il maniconimio è chiuso, basta parlare da solo...";
+                msg = "Non c'è nessuno con cui parlare qui, forse dovresti provare a tornare a casa o a cercare qualcuno di reale!";
             }
         } else if (description.getLastCommand().getType() == CommandType.TALK_TO
                 && parserOutput.getCommand().getType() == CommandType.NULL_COMMAND) {

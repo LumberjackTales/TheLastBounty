@@ -66,7 +66,7 @@ VALUES
 (101,"Uno strano albero","Tra gli alberi noti un albero molto particolare, il suo colore differisce da tutti gli altri, difatti noti che è di un colore bianco cenere.","Questo albero sembra essere molto antico,chissà da quanto tempo si trova in questo bosco.",""),
 (102,"Un albero caduto", "Tra gli alberi noti un albero caduto, sembra essere stato abbattuto da qualcosa oppure da qualcuno, m non riesci a capire cosa.","In lontananza verso ovest noti una casa, ma non riesci a capire se è abitata o meno.",""),
 (103,"Verso la casa","Ti trovi davanti ad una casa, da come è tenuta sembra essere abitata, ma non riesci a capire da chi.","Secondo me dovresti entrare, magari incontri qualcuno che ti può aiutare. (vai ad ovest per entrare)",""),
-(104,"Il falegname","Ti trovi all'interno della casa, la casa è tenuta con molta cura, con quadri appesi alle pareti e un camino acceso che riscalda l'ambiente. Noti un falegname molto anziano con una folta barba bianca, con un cappotto ricamato in pelle di orso ed un cappello dalla forma particolare, seduta su una sedia a dondolo che ti guarda con fare stupito. Sembra che ti voglia parlare.\nTUTORIAL\n- Per parlare con qualcuno usa il comando (PARLA), dopodichè il programma chiederà in input la risposta.","Hai già parlato con il falegname, cosa vuoi fare ora?",""),
+(104,"Il falegname","Ti trovi all'interno della casa, la casa è tenuta con molta cura, con quadri appesi alle pareti e un camino acceso che riscalda l'ambiente. Noti un falegname molto anziano con una folta barba bianca, con un cappotto ricamato in pelle di orso ed un cappello dalla forma particolare, seduta su una sedia a dondolo che ti guarda con fare stupito. Sembra che ti voglia parlare.\nTUTORIAL\n- Per parlare con qualcuno usa il comando (PARLA), dopodichè il programma chiederà in input la risposta.","Hai già parlato con il falegname, cosa vuoi fare ora?","Vedo che hai raccolto un tipo di legno particolare giovane hunter, sento che trabocca di potere magico, cosa vuoi che ci faccia?"),
 (105,"Un animale morto","Nel mentre prosegui nel bosco noti un orso squoiato a terra, sembra essere stato ucciso da qualcuno con un colpo di arma da fuoco.","Sembra che qualcuno abbia ucciso questo orso, forse dovresti cercare di capire chi è stato.",""),
 (106,"Verso la cripta","Ti trovi davanti ad una cripta, sembra essere molto antica, sembra essere molto profonda e buia, non riesci a vedere cosa c'è al suo interno.","La cripta sembra essere molto profonda,sembra ci sia qualcosa di interessante, forse dovresti entrare (vai ad est per entrare).",""),
 (107,"La cripta","Ti trovi all'interno della cripta, sembra essere molto antica, suddivisa in quattro stanze, ognuna di esse non presenta una porta ed al suo interno noti solo delle scritte sulle pareti. Doversti provare a visitare queste stanze.","Hai già visitato questa cripta, se hai letto tutte le scritte puoi uscire andando ad ovest.",""), 
@@ -76,6 +76,7 @@ VALUES
 (111,"Uno strano elfo","Noti a terra un elfo fatto di legno e foglie,chissà chi l'avrà creato","Sembra quasi vero, fa impressione",""),
 (112,"Una trappola pericolosa","Sei caduno in un burrone non molto profondo, per tua fortuna riesci a risalire dopo 5 minuti","Ma sei rincoglionito, il burrone sempre quello è, come hai fatto di nuovo a non vederlo?",""),
 (113,"Il lago magico","Sei davanti ad un misterioso lago, le sue acque sono di un colore blu intenso, ed al suo interno noti una bellissima ninfa che ti guarda con occhi curiosi, forse dovresti provare a parlarci.","Se non hai parlato con la ninfa,dovresti farlo, potrebbe dirti qualcosa di interessante.",""), 
+(114,"Uno strano cartello 2","Dopo aver circunavigato il lago dal lato destro, trovi un altro cartello con delle indicazioni.","Se ti sei perso segui le indicazioni del cartello.",""),
 (115,"Lo stato di perdizione","Ti sento perso nell'immensità del bosco che ti circonda,tutti questi alberi ti mettono suggestione,è meglio che ti sbrighi ad uscire da questo posto.","Se non sai dove andare puoi tornare indietro e rileggere il cartello con le indicazioni"),
 (116,"Uno strano cartello 3","Dopo aver circunavigato il lago dal lato sinistro, trovi un altro cartello con delle indicazioni.","Se ti sei perso segui le indicazioni del cartello.",""),
 (117,"Delle strane rocce","Più avanti ad ovest intravedi delle strane rocce con delle scritte sopra,forse dovresti provare ad avvicinarti.","Le pietre sono molto antiche,magari riesci a scoprire qualcosa di interessante.",""),
@@ -171,12 +172,13 @@ VALUES
 
 INSERT INTO Oggetto(id, nome, descrizione, quantita, pickable, visible)
 VALUES
-(1,"Paletto di legno","Un normale paletto di legno magico, usato per uccidere i mostri particolari.",5,1,1),
-(2,"Coltellino svizzero,","Un coltellino da viaggio molto comodo per ogni genere di situazione.",1,1,1),
+(1,"Paletto di legno","Un normale paletto di legno magico, usato per uccidere i mostri particolari.",5,0,1),
+(2,"Coltellino svizzero,","Un coltellino da viaggio molto comodo per ogni genere di situazione.",1,0,1),
 (3,"Tomoe","Libro antico trovato nella cripta dentro il bosco,grazie ad esso puoi tradurre anche le lingue più sconosciute.",1,1,1),
 (4,"Chiave Finale","Chiave utilizzabile per aprire la porta segreta ell'atrio principale del tempio.",1,0,0),
 (5,"Paletto di quercia bianca","Leggendario paletto intagliato con il legno di quercia bianca, si dica che il suo potere vada oltre le dimensioni e che possa uccidere qualsiasi mostro sulla terra,questo perchè la natura trova sempre una soluzione per mantenere l'equilibrio tra vivi e morti.",1,0,0),
 (6,"Gemma inutile","Una semlice gemma inutile,forse puoi usarla come soprammobile.",1,1,1);
+(7,"Legno di quercia bianca","Legno di quercia bianca, usato per creare il leggendario paletto di quercia bianca.",1,1,1);
 
 INSERT INTO Alias(id, alias)
 VALUES
@@ -195,9 +197,13 @@ VALUES
 (5,"Paletto magico"),
 (6,"Gemma"),
 (6,"Diamante");
+(7,"Legno"),
+(7,"Legno quercia bianca"),
+(7,"Legno bianco");
 
 INSERT INTO Casella_Oggetto(casella_id, oggetto_id, quantita)
 VALUES
+(101,7,1)
 (104,5,1),
 (129,3,1),
 (356,4,1),

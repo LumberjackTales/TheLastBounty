@@ -17,7 +17,7 @@ public class MoveObserver implements GameObserver {
         CommandType cmdt = parserOutput.getCommand().getType();
         if (cmdt == CommandType.EST || cmdt == CommandType.OVEST || cmdt == CommandType.SUD
                 || cmdt == CommandType.NORD) {
-            System.out.println("MoveObserver direction: " + cmdt);
+            System.out.println("MoveObserver spostamento verso: " + cmdt);
             Casella toMove;
             Object arg = parserOutput.getParams();
 
@@ -43,24 +43,20 @@ public class MoveObserver implements GameObserver {
                     default -> {
                     }
                 }
-
-                è//vedere bene questa parte!!!! 
+          
                 if (toMove == null && totalMoves == 0) {
                     // Controllo sulla zona per l'errore di direzione
                     String defaultDescrizione = Integer.toString(description.getCurrentCasella().getId());
                     msg = switch (defaultDescrizione.charAt(0)) {
-                        case '1' -> "Ci sono le case degli abitanti di Arcadia, eviterei di entrarci.";
-                        case '2' -> "La foresta è troppo fitta per andare oltre.";
-                        case '3' -> "La pietra della caverna è troppo scivolosa per andare oltre.";
-                        case '4' -> "Non ti conviene scavalcare il recinto del Cimitero.";
-                        case '5' -> "Non puoi andare oltre alle mura del Tempio.";
-                        case '9' -> "Gli alberi sono troppi per andare oltre.";
+                        case '1' -> "Il bosco è troppo fitto per andare oltre.";
+                        case '2' -> "Non puoi andare oltre le mura del Tempio.";
+                        case '3' -> "Non puoi andare oltre le mura della cripta.";
                         default -> "Non puoi andare in quella direzione.";
                     };
                     totalMoves = maxMoves;
                 } else if (toMove == null || !toMove.isEnterable()) {
                     if (msg.length() == 0) {
-                        msg = "Il passaggio in quella direzione al momento è bloccato, prova a fare altro.\n"
+                        msg = "La porta sembra essere chiusa, prova ad esplorare meglio il tempio..\n"
                                 + description.getCurrentCasella().getDescrizione();
                     }
                     if (totalMoves != 0) {
@@ -80,60 +76,110 @@ public class MoveObserver implements GameObserver {
             
             String imagePath;
         switch (description.getCurrentCasella().getId()) {
-            case 901, 902, 904, 905, 906, 907, 909, 911, 912, 913, 914, 916, 918, 919, 920, 922, 923 ->
-                imagePath = "resource/img/pg_Luca_pixeled.png";
 
-                case 903 ->
-                imagePath = "resource/img/mendicante_pixeled.png";
+            case 100 ->
+                imagePath = "/resource/img/Entrata_bosco.png";
 
-            case 908 ->
-                imagePath = "resource/img/guardia_pixeled.png";
+            case 101 ->
+                imagePath = "/resource/img/quercia_bianca.png";
 
-            case 101, 102, 103, 104, 105, 106, 108, 109, 111 ->
-            imagePath = "resource/img/Arcadia_kingdom_pixeled.png";
-            
+            case 104 ->
+                imagePath = "/resource/img/Falegname.png";
+
             case 107 ->
-            imagePath = "resource/img/scena_drago_pixeled.png";
+                imagePath = "/resource/img/entrata_cripta.png";
+
+            case 108 ->
+                imagePath = "/resource/img/Cartello1.png";
+
+            case 109,112,123 ->
+                imagePath = "/resource/img/trappola.png";
+
+            case 113 ->
+                imagePath = "/resource/img/Lago_Ninfa.png";
+
+            case 114 ->
+                imagePath = "/resource/img/Cartello2.png";
+
+            case 116 ->
+                imagePath = "/resource/img/Cartello3.png";
+
+            case 118 ->
+                imagePath = "/resource/img/Cripta2.png";
             
-            case 110 ->
-                imagePath = "resource/img/liuther_pixeled.png";
+            case 119 ->
+                imagePath = "/resource/img/Cartello4.png";
 
-            case 112 ->
-                imagePath = "resource/img/blacksmith_pixeled.png";
+            case 129 ->
+                imagePath = "/resource/img/Cripta_tomo.png";
 
-            case 201, 202, 203, 204, 205, 206, 207, 208 ->
-                imagePath = "resource/img/forest_pixeled.png";
+            case 130 ->
+                imagePath = "/resource/img/entrata_tempio.png";
 
-                case 209 -> {
+            case 102, 103, 105, 106, 110, 111, 115, 117, 120, 121, 122, 124, 125, 126, 127, 128 ->
+                imagePath = "/resource/img/sentiero_Bosco.png";
+
+            case 210,211,215 ->
+                imagePath = "/resource/img/Stanza_cripta.png";
+
+            case 214 ->
+                imagePath = "/resource/img/Cripta_triangolo.png";
+
+            case 208,209,212,213 ->
+                imagePath = "/resource/img/Corridoio_cripta.png";
+
+            case 330 ->
+                imagePath = "/resource/img/Stanza_Tempio.png";
+            
+            case 331 ->
+                imagePath = "/resource/img/porta_tempio.png";
+
+            case 332 ->{
+                imagePath = "/resource/img/stanza_boss.png";
+            }
+
+            case 333 ->
+                imagePath = "/resource/img/boss.png";
+
+            case 338 ->{
+
                 if (!description.getCurrentCasella().isUpdated()) {
-                    imagePath = "resource/img/bardo_pixeled.png";
+                    imagePath = "/resource/img/guardia_inutile.png";
                 } else {
-                    imagePath = "resource/img/forest_pixeled.png";
+                    imagePath = "/resource/img/Corridoio_tempio.png";
+                }
+                
+            }
+
+            case 344 -> {
+                if (!description.getCurrentCasella().isUpdated()) {
+                    imagePath = "/resource/img/guardia_stupida.png";
+                } else {
+                    imagePath = "/resource/img/Corridoio_tempio.png";
+                }
+            }
+            case 356 -> {
+                if (!description.getCurrentCasella().isUpdated()) {
+                    imagePath = "/resource/img/guardia_chiave.png";
+                } else {
+                    imagePath = "/resource/img/Corridoio_tempio.png";
                 }
             }
 
-            case 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318,
-                    319, 320, 321, 322, 323, 324, 325, 326, 327, 328 ->
-                imagePath = "resource/img/caverna_pixeled.png";
-                
-                case 329 ->
-                imagePath = "resource/img/liuto_pixeled.png";
-                
-                case 401, 402, 403, 404, 405, 406, 407, 408, 409, 411 ->
-                imagePath = "resource/img/cimitero_pixeled.png";
-                
-                case 410 ->
-                imagePath = "resource/img/scheletro_pixeled.png";
-                
-                case 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518,
-                    519, 520, 521, 522, 523, 524, 525, 526, 527, 528 ->
-                imagePath = "resource/img/tempio_pixeled.png";
+            case 348 -> 
+                imagePath = "/resource/img/quadro_tobia.png";
 
-            case 529 ->
-            imagePath = "resource/img/legendary_staff_pixeled.png";
+            case 350 -> 
+                imagePath = "/resource/img/quadro_sospetto.png";
+
+            case 352 -> 
+                imagePath = "/resource/img/lore_boss.png";
+
+            case 334,335,336,337,339,340,341,342,343,345,346,347,349,351,353,354,355 ->
+                imagePath = "/resource/img/Corridoio_tempio.png";
             
             default ->
-            imagePath = "resource/img/pg_Luca_pixeled.png";
+                imagePath = "/resource/img/Cacciatore.png";
         }
         parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
     }

@@ -13,22 +13,20 @@ public class HelpObserver implements GameObserver {
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.HELP) {
-            String imagePath = "resource/img/help_pixeled.png";
+            String imagePath = "/resource/img/help.png";
             msg = """
                     Comandi:
-                        - Aiuto | Help: mostra questo script;
-                        - Osserva: mostra una descrizione del luogo in cui ti trovi;
-                        - Prendi <oggetto>: prende un oggetto descritto nella stanza;
-                        - Usa <oggetto>: utilizza un oggetto in una stanza;
-                        - Parla: parla con l'unico personaggio presente nella stanza, se presente (verrà chiesto successivamente un input per la risposta);
-                        - Nord o N o North: ti muovi verso Nord;
-                        - Sud o S o South: ti muovi verso Sud;
-                        - Est o E o East: ti muovi verso Est;
-                        - Ovest o O o West o W: ti muovi verso Ovest;
-                        - Balla: balla, è divertente;
-                        - Muori: scoprilo :);
-                        - Prega: non credo che ti possa aiutare;
-                        - Salva <nomefile>: salva i dati attuali su un file (specificare il nome del file, l'estensione verrà aggiunta automaticamente);
+                        - Aiuto/Help: mostra tutta la lista dei comandi che puoi effettuare;
+                        - Osserva: mostra una descrizione del luogo in cui ti trovi, se non hai già visistato la stanza, altrimenti la descrizione mostrata sarà uguale ad essa;
+                        - Prendi/Raccogli [nome oggetto]: prende un oggetto che si trova nella stanza, occhio peroò che non tutti gli oggetti sono prendibili;
+                        - Usa/Utilizza <oggetto>: utilizza un oggetto in una stanza;
+                        - Parla: parla con il personaggio presente nella stanza, alcune volte potrebbe essere necessario avere un oggetto specifico per poter parlare con lui;;
+                        - Nord/N/North/avanti : ti muovi verso Nord;
+                        - Sud/S/South/indietro : ti muovi verso Sud;
+                        - Est/E/East/destra : ti muovi verso Est;
+                        - Ovest/O/West/W/sinistra : ti muovi verso Ovest;
+                        - Muori: non ti condiglio di farlo, ma se vuoi puoi farlo per vedere come funziona la schermata di morte;
+                        - Salva [nomefile]: salva i dati attuali su un file (specificare il nome del file, l'estensione verrà aggiunta automaticamente);
                     """;
             parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
         }

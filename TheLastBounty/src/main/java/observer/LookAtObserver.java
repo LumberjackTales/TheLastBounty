@@ -21,7 +21,7 @@ public class LookAtObserver implements GameObserver {
             } else if (args instanceof String[]){
                 String[] items = (String[]) args;
                 if (items.length != 1){
-                    msg = "Ehi calma! Hai solo due occhi, osserva un oggetto alla volta!";
+                    msg = "Mmh... non so cosa guardare, specifica un solo oggetto da osservare.";
                 } else {
                     String nameOBJ = items[0].toLowerCase();
                     Set<Item> allItems = new HashSet<>();
@@ -36,7 +36,7 @@ public class LookAtObserver implements GameObserver {
                     if (item != null) {
                         msg = item.getDescription();
                     } else {
-                        msg = "Mmh... ho guardato ovunque ma non trovo nulla che assomigli a " + nameOBJ + ". Forse mi serve un paio di occhiali?";
+                        msg = nameOBJ + " non è un oggetto che puoi osservare qui. Secondo me sei pazzo!";
                     }
                 }
             }
