@@ -78,110 +78,110 @@ public class MuoviObserver implements GameObserver {
         switch (description.getCurrentCasella().getId()) {
 
             case 100 ->
-                imagePath = "/resource/img/Entrata_bosco.png";
+                imagePath = "src/main/resources/resource/img/Entrata_bosco.png";
 
             case 101 ->
-                imagePath = "/resource/img/quercia_bianca.png";
+                imagePath = "src/main/resources/resource/img/quercia_bianca.png";
 
             case 104 ->
-                imagePath = "/resource/img/Falegname.png";
+                imagePath = "src/main/resources/resource/img/Falegname.png";
 
             case 107 ->
-                imagePath = "/resource/img/entrata_cripta.png";
+                imagePath = "src/main/resources/resource/img/entrata_cripta.png";
 
             case 108 ->
-                imagePath = "/resource/img/Cartello1.png";
+                imagePath = "src/main/resources/resource/img/Cartello1.png";
 
             case 109,112,123 ->{
                 description.getChrono().addMinute(5);
-                imagePath = "/resource/img/trappola.png";
+                imagePath = "src/main/resources/resource/img/trappola.png";
             }
 
             case 113 ->
-                imagePath = "/resource/img/Lago_Ninfa.png";
+                imagePath = "src/main/resources/resource/img/Lago_Ninfa.png";
 
             case 114 ->
-                imagePath = "/resource/img/Cartello2.png";
+                imagePath = "src/main/resources/resource/img/Cartello2.png";
 
             case 116 ->
-                imagePath = "/resource/img/Cartello3.png";
+                imagePath = "src/main/resources/resource/img/Cartello3.png";
 
             case 118 ->
-                imagePath = "/resource/img/Cripta2.png";
+                imagePath = "src/main/resources/resource/img/Cripta2.png";
             
             case 119 ->
-                imagePath = "/resource/img/Cartello4.png";
+                imagePath = "src/main/resources/resource/img/Cartello4.png";
 
             case 129 ->
-                imagePath = "/resource/img/Cripta_tomo.png";
+                imagePath = "src/main/resources/resource/img/Cripta_tomo.png";
 
             case 130 ->
-                imagePath = "/resource/img/entrata_tempio.png";
+                imagePath = "src/main/resources/resource/img/entrata_tempio.png";
 
             case 102, 103, 105, 106, 110, 111, 115, 117, 120, 121, 122, 124, 125, 126, 127, 128 ->
-                imagePath = "/resource/img/sentiero_Bosco.png";
+                imagePath = "src/main/resources/resource/img/sentiero_Bosco.png";
 
             case 210,211,215 ->
-                imagePath = "/resource/img/Stanza_cripta.png";
+                imagePath = "src/main/resources/resource/img/Stanza_cripta.png";
 
             case 214 ->
-                imagePath = "/resource/img/Cripta_triangolo.png";
+                imagePath = "src/main/resources/resource/img/Cripta_triangolo.png";
 
             case 208,209,212,213 ->
-                imagePath = "/resource/img/Corridoio_cripta.png";
+                imagePath = "src/main/resources/resource/img/Corridoio_cripta.png";
 
             case 330 ->
-                imagePath = "/resource/img/Stanza_Tempio.png";
+                imagePath = "src/main/resources/resource/img/Stanza_Tempio.png";
             
             case 331 ->
-                imagePath = "/resource/img/porta_tempio.png";
+                imagePath = "src/main/resources/resource/img/porta_tempio.png";
 
             case 332 ->{
-                imagePath = "/resource/img/stanza_boss.png";
+                imagePath = "src/main/resources/resource/img/stanza_boss.png";
             }
 
             case 333 ->
-                imagePath = "/resource/img/boss.png";
+                imagePath = "src/main/resources/resource/img/boss.png";
 
             case 338 ->{
 
                 if (!description.getCurrentCasella().isUpdated()) {
-                    imagePath = "/resource/img/guardia_inutile.png";
+                    imagePath = "src/main/resources/resource/img/guardia_inutile.png";
                 } else {
-                    imagePath = "/resource/img/Corridoio_tempio.png";
+                    imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
                 }
                 
             }
 
             case 344 -> {
                 if (!description.getCurrentCasella().isUpdated()) {
-                    imagePath = "/resource/img/guardia_stupida.png";
+                    imagePath = "src/main/resources/resource/img/guardia_stupida.png";
                 } else {
-                    imagePath = "/resource/img/Corridoio_tempio.png";
+                    imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
                 }
             }
             case 356 -> {
                 if (!description.getCurrentCasella().isUpdated()) {
-                    imagePath = "/resource/img/guardia_chiave.png";
+                    imagePath = "src/main/resources/resource/img/guardia_chiave.png";
                 } else {
-                    imagePath = "/resource/img/Corridoio_tempio.png";
+                    imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
                 }
             }
 
             case 348 -> 
-                imagePath = "/resource/img/quadro_tobia.png";
+                imagePath = "src/main/resources/resource/img/quadro_tobia.png";
 
             case 350 -> 
-                imagePath = "/resource/img/quadro_sospetto.png";
+                imagePath = "src/main/resources/resource/img/quadro_sospetto.png";
 
             case 352 -> 
-                imagePath = "/resource/img/lore_boss.png";
+                imagePath = "src/main/resources/resource/img/lore_boss.png";
 
             case 334,335,336,337,339,340,341,342,343,345,346,347,349,351,353,354,355 ->
-                imagePath = "/resource/img/Corridoio_tempio.png";
+                imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
             
             default ->
-                imagePath = "/resource/img/Cacciatore.png";
+                imagePath = "src/main/resources/resource/img/Cacciatore.png";
         }
         parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
     }
