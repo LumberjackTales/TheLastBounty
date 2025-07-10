@@ -9,15 +9,15 @@ import giocatore.Dialogo;
 import giocatore.Inventario;
 import giocatore.Item;
 
-public class TalkToObserver implements GameObserver {
+public class ParlaObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
-        if (parserOutput.getCommand().getType() == CommandType.TALK_TO
+        if (parserOutput.getCommand().getType() == CommandType.PARLA
                 && parserOutput.getParams() != null) {
             msg = "Non puoi parlare con un muro, prova a parlare con qualcuno di reale! Usa il comando 'Parla' senza mettere nulla dopo";
-        } else if (parserOutput.getCommand().getType() == CommandType.TALK_TO) {
+        } else if (parserOutput.getCommand().getType() == CommandType.PARLA) {
             Dialogo dialogo = description.getDialoghi().stream()
                     .filter(d -> description.getCurrentCasella().getId() == d.getIdCasella())
                     .findAny()
@@ -30,7 +30,7 @@ public class TalkToObserver implements GameObserver {
             } else {
                 msg = "Non c'è nessuno con cui parlare qui, forse dovresti provare a tornare a casa o a cercare qualcuno di reale!";
             }
-        } else if (description.getLastCommand().getType() == CommandType.TALK_TO
+        } else if (description.getLastCommand().getType() == CommandType.PARLA
                 && parserOutput.getCommand().getType() == CommandType.NULL_COMMAND) {
             Dialogo dialogo = description.getDialoghi().stream()
                     .filter(d -> description.getCurrentCasella().getId() == d.getIdCasella())

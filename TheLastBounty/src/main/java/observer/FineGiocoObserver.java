@@ -5,7 +5,7 @@ import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
 
-public class TheEndObserver implements GameObserver {
+public class FineGiocoObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {

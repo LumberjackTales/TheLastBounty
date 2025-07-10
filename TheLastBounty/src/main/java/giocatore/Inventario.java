@@ -2,8 +2,10 @@ package giocatore;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+import database.GestioneDB;
 
 /**
  * Classe che rappresenta l'inventario del giocatore.
@@ -21,6 +23,15 @@ public class Inventario implements Serializable {
      */
     public Inventario() {
         inventario = new HashMap<>();
+        try {
+            GestioneDB db = GestioneDB.getInstance();
+            HashMap<Item, Integer> items = db.loadStaringItems();
+            for (Map.Entry<Item, Integer> entry : items.entrySet()) {
+                this.addOggetto(entry.getKey(), entry.getValue());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -121,29 +132,8 @@ public class Inventario implements Serializable {
         return inventario.get(oggetto);
     }
 
-    /**
-     * Metodo per svuotare l'inventario.
-     * (metodo non utilizzato per questa release)
-    public void clear() {
-        inventario.clear();
-    }
 
-    /**
-     * Metodo per controllare se l'inventario è vuoto.
-     * (metodo non utilizzato per questa release)
-     * @return true se l'inventario è vuoto, false altrimenti.
-     *
-    public boolean isEmpty() {
-        return inventario.isEmpty();
-    }
-
-    /**
-     * Metodo per stampare l'inventario.
-     * Stampa l'inventario con il formato "NomeOggetto xQuantità" (utile per il
-     * debug).
-     * (metodo non utilizzato per questa release)
-     *
-    public void printInventario() {
+    /*public void printInventario() {
         if (inventario.isEmpty()) {
             System.out.println("Inventario vuoto");
         } else {

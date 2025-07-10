@@ -8,7 +8,7 @@ import comandi.CommandType;
 import giocatore.Dialogo;
 import giocatore.Item;
 
-public class UseObserver implements GameObserver {
+public class UsaObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
@@ -34,6 +34,8 @@ public class UseObserver implements GameObserver {
                         case 101 ->{
                             if(nameOBJ.equals("coltellino svizzero") || nameOBJ.equals("coltellino")|| nameOBJ.equals("coltello")) {
                                 msg = "Hai ottenuto un ramo di legno di quercia bianca!";
+                                Item palettoItem = new Item("legno di quercia bianca");
+                                description.getInventario().addOggetto(palettoItem, 1);
                             } else {
                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                             }
@@ -82,8 +84,14 @@ public class UseObserver implements GameObserver {
                             if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
                                 description.getCurrentCasella().setUpdated(true);
                                 description.getInventario().remove(itemToUse);
-                                msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!\nSembra anche che abbia lasciato cadere una chuave, forse può esserti utile.";
-                                Item chiave = new Item("chiave finale");
+                                msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!\nSembra anche che abbia lasciato cadere una chiave, forse può esserti utile.";
+                        
+
+                                Item chiave = description.getCurrentCasella().getOggetti().stream()
+                                .filter(i -> i.getName().equalsIgnoreCase("chiave finale"))
+                                .findFirst()
+                                .orElse(null);
+
                                 chiave.setVisible(true);
                                 chiave.setPickable(true);
                             } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
@@ -125,7 +133,7 @@ public class UseObserver implements GameObserver {
                             } else if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))) {
                                 description.getInventario().remove(itemToUse);
                                 msg = "Il paletto di legno non è abbastanza potente per sconfiggere il mostro, devi trovare un'arma più potente!, ma misà che sei bello che morto!";
-                                parserOutput.setCommand(new Command(CommandType.DEATH, null));
+                                parserOutput.setCommand(new Command(CommandType.MORTE, null));
                             }else{
                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui, sbrigati!";
                             }

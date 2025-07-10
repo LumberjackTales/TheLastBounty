@@ -8,7 +8,7 @@ import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
 
-public class MoveObserver implements GameObserver {
+public class MuoviObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {

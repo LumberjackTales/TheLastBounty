@@ -9,17 +9,18 @@ public enum CommandType {
 
     NULL_COMMAND,
     THE_END,
-    DEATH,
+    MORTE,
     NORD,
     SUD,
     EST,   
     OVEST,   
     HELP,
     LOAD,
-    LOOK_AT,
-    PICK_UP,
+    OSSERVA,
+    PRENDI,
     SAVE,
-    TALK_TO,
+    PARLA,
     USE,
+    CREA,
 }
 

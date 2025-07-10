@@ -9,12 +9,12 @@ import parser.ParserOutput;
 import comandi.CommandType;
 import giocatore.Item;
 
-public class LookAtObserver implements GameObserver {
+public class OsservaObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
-        if (parserOutput.getCommand().getType() == CommandType.LOOK_AT) {
+        if (parserOutput.getCommand().getType() == CommandType.OSSERVA) {
             System.out.println("LookAtObserver osservazione in corso...");
             Object args = parserOutput.getParams();
             if (args == null){

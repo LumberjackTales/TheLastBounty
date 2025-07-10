@@ -6,12 +6,12 @@ import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
 
-public class DeathObserver implements GameObserver {
+public class MorteObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
-        if (parserOutput.getCommand().getType() == CommandType.DEATH) {
+        if (parserOutput.getCommand().getType() == CommandType.MORTE) {
             parserOutput.getInterfacciaGioco().getMusica().stopMusica();
             parserOutput.getInterfacciaGioco().getMusica().riproduciClip("/resource/audio/audio_morte.wav");
             InterfacciaMorte morte = new InterfacciaMorte(parserOutput.getInterfacciaGioco().getParentFrame());

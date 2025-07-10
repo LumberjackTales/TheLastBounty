@@ -10,7 +10,7 @@ import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
 
-public class SaveObserver implements GameObserver {
+public class SalvaObserver implements GameObserver {
 
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {

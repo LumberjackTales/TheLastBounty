@@ -242,6 +242,23 @@ public class GestioneDB {
         });
     }
 
+    public HashMap<Item, Integer> loadStaringItems() throws FileNotFoundException, SQLException {
+        return executeWithRetry(() -> {
+            HashMap<Item, Integer> items = new HashMap<>();
+            String query = "SELECT o.*, oi.quantita FROM Oggetti_Iniziali oi JOIN Oggetto o ON oi.id = o.id";
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(query)) {
+                    while (rs.next()) {
+                        Item item = creaItemDaResultSet(rs);
+                        int quantity = rs.getInt("quantita");
+                        items.put(item, quantity);
+                    }
+                }            
+            }
+            return items;
+        });
+    }
+
     /**
      * Recupera tutti gli oggetti associati a una casella specifica.
      * 

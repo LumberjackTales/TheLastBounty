@@ -163,13 +163,9 @@ public class QuizAPI {
 		do {
 			r = getResponseAPI();
 			if (r.getResponse_code() == 0) {
-				/*
-				 * Formatter
-				 * &quot; -> "
-				 * &#039; -> '
-				 */
-				String s = "\"Sono il guardiano del tempio, per proseguire oltre devi rispondere ad una mia domanda fatta in una lingua sconosciuta, se riuscirai a rispondere ti darò l'accesso al tempio.\",\"Complimenti la tua risposta è corretta, adesso potrai accedere al tempio.\""
-						+ "\n"
+				
+				String s = "\"Sono il guardiano del tempio, per proseguire oltre devi rispondere ad una mia domanda fatta in una lingua sconosciuta, se riuscirai a rispondere ti darò l'accesso al tempio."
+						+ "\n" + Tutorial() 
 						+ r.getResults().get(0).getQuestion().replaceAll("&quot;", "\"").replaceAll("&#039;", "'");
 				s += "\n";
 				List<String> allAnswer = new ArrayList<>();
@@ -194,5 +190,11 @@ public class QuizAPI {
 		} while (r.getResponse_code() != 0 && totalRequest < maxRequest);
 
 		return dialogo;
+	}
+
+	public static String Tutorial(){
+
+		String tutorial = " \n \t \t TUTORIAL SUL QUIZ \n \n Ti verra proposta una domanda a tema fantasy,con 4 risposte possibili, di cui una sola è corretta. \n Essendo che la domanda vieni generata casualmente da un sito esterno di API, la domanda verrà posta in inglese, se non sai l'inglese faresti bene ad impararlo dato che siamo nel 2025 e non nel 1940!! \n Ma non preoccuparti, basta rispondere con il numero della risposta corretta, ad esempio se la risposta corretta è la numero 2, basta rispondere con il numero 2 e il gioco proseguirà come se avessi risposto correttamente. Se sbagli a rispondere alla domanda, puoi sempre riprovare rifacendo il comando [PARLA], oppure puoi trovare un altra soluzione.... \n \n Buona fortuna!!. \n \n";
+		return tutorial;
 	}
 }

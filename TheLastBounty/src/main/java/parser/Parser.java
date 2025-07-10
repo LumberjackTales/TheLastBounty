@@ -162,9 +162,9 @@ public class Parser implements Serializable {
         }
 
         switch (command.getType()) {
-            case PICK_UP, USE, LOOK_AT -> {
+            case PRENDI, USE, OSSERVA -> {
                 Set<Item> items = new java.util.HashSet<>();
-                if (!command.getType().equals(CommandType.PICK_UP)) {
+                if (!command.getType().equals(CommandType.PRENDI)) {
                     items.addAll(inventory);
                 }
                 items.addAll(roomItems);
