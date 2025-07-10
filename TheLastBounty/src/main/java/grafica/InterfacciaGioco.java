@@ -188,7 +188,22 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         });
 
         panel = new javax.swing.JPanel();  
-        macroPanel = new javax.swing.JPanel();
+        macroPanel = new javax.swing.JPanel(){
+            private java.awt.Image backgroundImage = null;
+            {
+                java.net.URL imgUrl = getClass().getResource("/resource/img/libro_sfondo.png");
+                if (imgUrl != null) {
+                    backgroundImage = new javax.swing.ImageIcon(imgUrl).getImage();
+                }
+            }
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
         scrollPane = new javax.swing.JScrollPane();
         scrollPane.setViewportBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
         textArea = new javax.swing.JTextArea();
@@ -208,8 +223,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         impostazioni = new javax.swing.JButton("Impostazioni");
 
         // Impostazioni del pannello principale
-        panel.setBackground(BACKGROUND_BLACK);
+        //panel.setBackground(BACKGROUND_BLACK);
         //panel.setBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
+        panel.setOpaque(false);
         panel.setSize(new java.awt.Dimension(1920, 1500));
         panel.setLayout(new java.awt.BorderLayout());
 
@@ -219,7 +235,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage("/resource/img/schermata_principale.png"));
         setResizable(false);
 
-        macroPanel.setBackground(BACKGROUND_BLACK);
+        //macroPanel.setBackground(BACKGROUND_BLACK);
 
         DefaultCaret caret = (DefaultCaret) textArea.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -231,7 +247,8 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         textArea.setEditable(false);
         textArea.setFocusable(false);
-        textArea.setBackground(BACKGROUND_PULSANTI);
+        //textArea.setBackground(BACKGROUND_PULSANTI);
+        //textArea.setOpaque(false);
         textArea.setColumns(20);
         textArea.setForeground(TEXT);
         textArea.setLineWrap(true);
@@ -240,6 +257,14 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         textArea.setBorder(null);
         textArea.setCaretPosition(textArea.getDocument().getLength());
         textArea.setFont(FONT);
+
+        textArea.setOpaque(false);
+        textArea.setBorder(null);
+        // Non impostare setBackground() oppure lascialo commentato
+
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        
         //textArea.setBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
         scrollPane.setViewportView(textArea);
 
@@ -254,7 +279,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         textBox.setPreferredSize(new java.awt.Dimension(650, 30));
         textBox.addActionListener(this::elaborateInput);
-        
         
 
 

@@ -120,7 +120,7 @@ VALUES
 INSERT INTO Casella(id, nome, descrizioneIniziale, descrizioneAggiuntiva, descrizioneAggiornata)
 VALUES
 (330,'L''atrio','Una volta entrato mel tempo ti trovi in un atrio molto grande, al suo interno noti tante statue di pietra che sembrano raffigurare dei mostri mitologici e sui muri puoi notare tanti quadri molto particolari. Davanti a te noti un portone molto grande, forse dovresti dare un occhiata.','Sei ancora nell''atrio principale, se non hai trovato ancora la chiave puoi esplorare il tempio andando ad [EST] oppure ad [OVEST].',''),
-(332,'Il corridoio finale','Dopo aver oltrepassato la porta, stai percorrendo un lungo corridoio pieno di quadri e statue di ferro, vedi in lontananza una strana stanza aperta, forse dovresti indagare.','Senti che l''aria si sta facendo pesante, fai attenzione!',''),
+(331,'La porta misteriosa','Sei finalmente giunto dinnanzi alla grande porta,essa sembra essere molto antica, con delle incisioni runiche sopra di essa, provi ad aprirla ma sembra essere chiusa, noti però una strana serratura,chissà forse con la giusta chiave la porta si potrebbe aprire.','se non hai ancora trovato la chiave, torna indietro ed esplora meglio il tmepio!',''),
 (333,'La stanza di Vangrath','Entri nella stanza finale del tempio, noti davanti a te un trono e sopra di esso c''è il leggendario Vangrath,sembra però che stia dormendo, guardandoti in torno nella stanza vedi un diamante sopra ad un piedistallo, esso brilla molto e senti un forte richiamo provenire da esso. Cosa vuoi fare?','Vangrath ancora dorme beato, cerca di non fare mosse stupide, la tua vita dipende da questo.','Hai ucciso il leggendario Vangrath,complimenti giovane hunter,però purtroppo non sei riuscito a recuperare la sua testa,sarà difficile ottenere la ricompesa finale.Guarda il lato positivo, almeno hai ottenuto la gloria.'),
 (334,'Il percorso ad est','Hai scelto di esplorare la parte est del tempio, chissà dove ti porterà','Se vai ad [OVEST] puoi ritornare nell''atrio principale',''),
 (335,'Le scale','Se davanti a delle scale, che sembrano portare al piano superiore.','Vai a [NORD] per salire al piano superiore',''),
@@ -147,7 +147,7 @@ VALUES
 
 INSERT INTO Casella(id, nome, descrizioneIniziale, descrizioneAggiuntiva, descrizioneAggiornata,enterable)
 VALUES
-(331,'La porta misteriosa','Sei finalmente giunto dinnanzi alla grande porta,essa sembra essere molto antica, con delle incisioni runiche sopra di essa, provi ad aprirla ma sembra essere chiusa, noti però una strana serratura,chissà forse con la giusta chiave la porta si potrebbe aprire.','se non hai ancora trovato la chiave, torna indietro ed esplora meglio il tmepio!','',0),
+(332,'Il corridoio finale','Dopo aver oltrepassato la porta, stai percorrendo un lungo corridoio pieno di quadri e statue di ferro, vedi in lontananza una strana stanza aperta, forse dovresti indagare.','Senti che l''aria si sta facendo pesante, fai attenzione!','',0),
 (351,'Verso la stanza misteriosa','Dopo aver oltrepassato il quadro noti che davanti a te c''è una strana stanza senza una porta, forse dovresti entrarci.','Vai a [NORD] per entrare nella stanza, maagri puoi scoprire qualcosa di fondamnetale per proseguire la tua missione.','',0);
 
 

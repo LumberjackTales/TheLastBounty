@@ -70,8 +70,8 @@ public class InterfacciaFineGioco extends JFrame {
 
     private void FineGiocoFrame() {
         setTitle("Fine del gioco");
-        setIconImage(Toolkit.getDefaultToolkit().getImage("resource/img/icone/icona_fineGioco.png"));
-        setSize(400, 300);
+        setIconImage(Toolkit.getDefaultToolkit().getImage("/resource/img/schermata_principale.png"));
+        setSize(900, 900);
         setLocationRelativeTo(null); 
         setResizable(false);
         setBackground(BLACK_CUSTOM);

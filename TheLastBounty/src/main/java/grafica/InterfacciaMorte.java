@@ -35,7 +35,7 @@ public class InterfacciaMorte extends JFrame {
     private void MorteFrame() {
         setTitle("Sei morto!");
         setIconImage(Toolkit.getDefaultToolkit().getImage("resource/img/icone/icona_morte.png"));
-        setSize(400, 300);
+        setSize(900, 900);
         setLocationRelativeTo(null); 
         setResizable(false);
         setBackground(BLACK_CUSTOM);

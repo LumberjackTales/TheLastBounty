@@ -15,6 +15,10 @@ public class PrendiObserver implements GameObserver {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.PRENDI) {
             if (description.getCurrentCasella().getId() != 104) {
+                if (description.getCurrentCasella().getId() == 333){
+                    description.getCurrentCasella().setUpdated(true);
+                    msg = "Ma sei scemo, grazie a questa tua mossa geniale Vangrath si è svegliato";
+                }
                 Object args = parserOutput.getParams();
                 if (args == null) {
                     System.out.println("Scemo, Non hai specificato l'oggetto da prendere");

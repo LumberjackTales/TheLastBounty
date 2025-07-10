@@ -4,7 +4,6 @@ import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
-import giocatore.Dialogo;
 import giocatore.Inventario;
 import giocatore.Item;
 

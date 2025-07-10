@@ -61,6 +61,7 @@ public class UsaObserver implements GameObserver {
                                 msg = "Hai ucciso il guardiano del tempio, hai fatto bene, faceva troppe domande!";
                             } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
                                 description.getInventario().remove(itemToUse);
+                                description.getCurrentCasella().getNorth().setEnterable(true);
                                 msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
                             }else{
                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
@@ -95,6 +96,7 @@ public class UsaObserver implements GameObserver {
                                 chiave.setVisible(true);
                                 chiave.setPickable(true);
                             } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                description.getCurrentCasella().setUpdated(true);
                                 description.getInventario().remove(itemToUse);
                                 msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
                             }else{
@@ -132,10 +134,29 @@ public class UsaObserver implements GameObserver {
                                 parserOutput.setCommand(new Command(CommandType.THE_END, null));
                             } else if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))) {
                                 description.getInventario().remove(itemToUse);
-                                msg = "Il paletto di legno non è abbastanza potente per sconfiggere il mostro, devi trovare un'arma più potente!, ma misà che sei bello che morto!";
+                                msg = "Il paletto di legno non è abbastanza potente per sconfiggere Vangrath, devi trovare un'arma più potente, ma misà che sei bello che morto...";
                                 parserOutput.setCommand(new Command(CommandType.MORTE, null));
                             }else{
                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui, sbrigati!";
+                            }
+                        }
+
+                        case 350 ->{
+                            if(nameOBJ.equals("coltellino svizzero") || nameOBJ.equals("coltellino")|| nameOBJ.equals("coltello")) {
+                                description.getCurrentCasella().setUpdated(true);
+                                description.getCurrentCasella().getNorth().setEnterable(true);
+                                msg = "Dietro il quadro trovi un passaggio segreto, forse ti porterà da qualche parte interessante!";
+                            }else{
+                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                            }
+                        }
+
+                        case 348 ->{
+                            if(nameOBJ.equals("coltellino svizzero") || nameOBJ.equals("coltellino")|| nameOBJ.equals("coltello")) {
+                                description.getCurrentCasella().setUpdated(true);
+                                msg = "\n Come hai osato vandalizzare il quadro del mio cane, razza di mongoloide testa di cazzo, merda umana, rincoglionito e pure handicappato. \n ";
+                            }else{
+                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
                     }
