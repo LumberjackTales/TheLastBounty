@@ -4,15 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,13 +18,8 @@ public class interfacciaRiconoscimenti extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
     private static final Color WHITE_CUSTOM = new Color(250, 249, 246);
-    private static final Color TEXT_COLOR = new Color(06, 06, 06);
     private static final Color RED_CUSTOM = new Color(238, 75, 43);
-    private static final Color GREEN_CUSTOM = new Color(9, 121, 105);
-    private static final Color BROWN_WARM= new Color(139,69,19);
  
-    private final JFrame parentFrame;
-    
     private JPanel mainPanel;
     private JPanel bottomPanel;
     private JButton closeButton;
@@ -36,7 +27,6 @@ public class interfacciaRiconoscimenti extends JFrame {
 
    
     public interfacciaRiconoscimenti(InterfacciaIniziale parentFrame) {
-        this.parentFrame = parentFrame;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         RiconoscimentiFrame();
@@ -64,7 +54,7 @@ public class interfacciaRiconoscimenti extends JFrame {
         mainPanel = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
-                java.net.URL imgUrl = getClass().getResource("/resource/img/Lago_Ninfa.png");
+                java.net.URL imgUrl = getClass().getResource("/resource/img/riconoscimenti.png");
                 if (imgUrl != null) {
                     backgroundImage = new javax.swing.ImageIcon(imgUrl).getImage();
                 }
@@ -94,16 +84,19 @@ public class interfacciaRiconoscimenti extends JFrame {
         mainPanel.add(headerLabel, BorderLayout.NORTH);
   
  
-        JLabel contentLabel = new JLabel("<html><body style='text-align: center; color: " + String.format("#%02x%02x%02x", TEXT_COLOR.getRed(), TEXT_COLOR.getGreen(), TEXT_COLOR.getBlue()) + ";'>"
-                + "<p>Grazie per aver giocato a The Last Bounty!</p>"
-                + "<p>Un ringraziamento speciale va a:  PippoKill </p>"
-                + "<ul>"
-                + "<li>Il nostro team di sviluppo : Francesco Miccoli Cattivissimo , Dino Marzulli , Roberto Sivo </li>"
-                + "</ul>"
-                + "</body></html>");
+        JLabel contentLabel = new JLabel("<html>"
+                + "<div style='display: inline-block; text-align: center; color: yellow; "
+                + "padding: 30px; font-family: sans-serif; font-size: 14px;'>"
+                + "<h2 style='margin: 0;'>\n\nGrazie per aver giocato a <span style='color: orange;'>The Last Bounty</span>!</h2>"
+                + "<p style='margin: 10px 0;'>Un ringraziamento speciale va a: <b style='color: #cc0000;'>PippoKill</b></p>"
+                + "<p style='margin: 10px 0;'>Il nostro team di sviluppo:</p>"
+                + "<p style='margin: 4px 0;'>• Francesco Miccoli <i>(Cattivissimo)</i></p>"
+                + "<p style='margin: 4px 0;'>• Dino Marzulli</p>"
+                + "<p style='margin: 4px 0;'>• Roberto Sivo</p>"
+                + "</div></html>");
         contentLabel.setHorizontalAlignment(JLabel.CENTER);
-        contentLabel.setFont(caricaFontUncial(30f));
-        contentLabel.setForeground(BLACK_CUSTOM);
+        contentLabel.setFont(caricaFontUncial(20f));
+        contentLabel.setForeground(Color.yellow);
 
         mainPanel.add(contentLabel, BorderLayout.CENTER);
 

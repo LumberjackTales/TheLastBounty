@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultCaret;
@@ -161,12 +159,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             } catch (IOException ex) {
                 throw ex;
             }
-            textArea.append(
-                    """
-                            \t\t┌──────────────────────────────────┐
-                            \t\t│                                 "The Last Bounty"                                │
-                            \t\t└──────────────────────────────────┘\n\n
-                                    """);
+            
             stampa.stampa(game.getIntro());
         } catch (GameFileException ex) {
             musica.stopMusica();
@@ -205,7 +198,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             }
         };
         scrollPane = new javax.swing.JScrollPane();
-        scrollPane.setViewportBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
+        scrollPane.setViewportBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 0));
         textArea = new javax.swing.JTextArea();
         scrollPane.scrollRectToVisible(textArea.getVisibleRect());
         imageViewer = new javax.swing.JPanel();
@@ -243,7 +236,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         scrollPane.setBorder(null);
         scrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setAutoscrolls(true);
-        scrollPane.setPreferredSize(new java.awt.Dimension(700, 500));
+        scrollPane.setPreferredSize(new java.awt.Dimension(900, 700));
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setViewportView(textArea);
 
         textArea.setEditable(false);
         textArea.setFocusable(false);
@@ -258,15 +253,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         textArea.setCaretPosition(textArea.getDocument().getLength());
         textArea.setFont(FONT);
 
-        textArea.setPreferredSize(new java.awt.Dimension(20, 50));
+        textArea.setPreferredSize(null);
 
         // Non impostare setBackground() oppure lascialo commentato
 
-        scrollPane.setBackground(new Color(0,0,0,0));
-        scrollPane.getViewport().setOpaque(false);
         
-        //textArea.setBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
-        scrollPane.setViewportView(textArea);
 
         imageViewer.setBackground(new Color(0,0,0,0));
 
@@ -360,7 +351,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         menuBar.add(cronometroPanel);
 
 
-
+        
         setJMenuBar(menuBar);
 
         // Avvio musica
@@ -407,7 +398,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                                         .addComponent(underPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(macroPanelLayout.createSequentialGroup()
-                                                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, //guarda qua
+                                                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 700, //guarda qua
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(imageViewer, javax.swing.GroupLayout.DEFAULT_SIZE,

@@ -13,7 +13,7 @@ public class HelpObserver implements GameObserver {
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
         if (parserOutput.getCommand().getType() == CommandType.HELP) {
-            String imagePath = "/resource/img/help.png";
+            String imagePath = "src/main/resources/resource/img/help.png";
             msg = """
                     Comandi:
                         - Aiuto/Help: mostra tutta la lista dei comandi che puoi effettuare;

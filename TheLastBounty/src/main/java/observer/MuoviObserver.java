@@ -3,6 +3,7 @@ package observer;
 import javax.swing.ImageIcon;
 
 import database.Casella;
+import giocatore.Inventario;
 import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
@@ -13,6 +14,7 @@ public class MuoviObserver implements GameObserver {
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
+        Inventario inv = description.getInventario();
         Integer totalMoves = 0, maxMoves;
         CommandType cmdt = parserOutput.getCommand().getType();
         if (cmdt == CommandType.EST || cmdt == CommandType.OVEST || cmdt == CommandType.SUD
@@ -154,18 +156,23 @@ public class MuoviObserver implements GameObserver {
                 imagePath = "src/main/resources/resource/img/porta_tempio.png";
 
             case 332 ->{
-                imagePath = "src/main/resources/resource/img/stanza_boss.png";
+                imagePath = "src/main/resources/resource/img/corridoio_lore_boss.png";
             }
 
-            case 333 ->
-                imagePath = "src/main/resources/resource/img/boss.png";
+            case 333 ->{
+                if (inv.contains("gemma")){
+                    imagePath = "src/main/resources/resource/img/boss.png";
+                }else {
+                    imagePath = "src/main/resources/resource/img/stanza_boss.png";
+                }
+            }
 
             case 338 ->{
 
                 if (!description.getCurrentCasella().isUpdated()) {
                     imagePath = "src/main/resources/resource/img/guardia_inutile.png";
                 } else {
-                    imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
+                    imagePath = "src/main/resources/resource/img/stanza_vuota_tempio.png";
                 }
                 
             }
@@ -194,9 +201,13 @@ public class MuoviObserver implements GameObserver {
             case 352 -> 
                 imagePath = "src/main/resources/resource/img/lore_boss.png";
 
-            case 334,335,336,337,339,340,341,342,343,345,346,347,349,351,353,354,355 ->
+            case 334,335,336,337,339,340,342,343,345,346,347,349,353,354,355 ->
                 imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
             
+            case 341 ->
+                imagePath = "src/main/resources/resource/img/condotto_tempio.png";
+            case 351 ->
+                imagePath = "src/main/resources/resource/img/corridoio_lore_boss.png";
             default ->
                 imagePath = "src/main/resources/resource/img/Cacciatore.png";
         }

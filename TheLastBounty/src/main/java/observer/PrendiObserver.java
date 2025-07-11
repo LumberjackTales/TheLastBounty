@@ -2,6 +2,8 @@ package observer;
 
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
+
 import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
@@ -14,6 +16,7 @@ public class PrendiObserver implements GameObserver {
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
+        String imagePath;
         if (parserOutput.getCommand().getType() == CommandType.PRENDI) {
             if (description.getCurrentCasella().getId() != 104) {
                 if (description.getCurrentCasella().getId() == 333){
@@ -23,7 +26,9 @@ public class PrendiObserver implements GameObserver {
                             .findAny()
                             .orElse(null);
                     dialogo.changeDialogo();
-                    msg = "Ma sei scemo, grazie a questa tua mossa geniale Vangrath si è svegliato";
+                    msg = "Ma sei scemo, grazie a questa tua mossa geniale Vangrath si è svegliato \n";
+                    imagePath= "src/main/resources/resource/img/boss.png";
+                    parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
                 }
                 Object args = parserOutput.getParams();
                 if (args == null) {

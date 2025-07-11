@@ -3,6 +3,9 @@ package observer;
 import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
+
+import javax.swing.ImageIcon;
+
 import comandi.Command;
 import comandi.CommandType;
 import giocatore.Dialogo;
@@ -13,6 +16,7 @@ public class UsaObserver implements GameObserver {
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
+        String imagePath;
         if (parserOutput.getCommand().getType() == CommandType.USE) {
             Object args = parserOutput.getParams();
             if (args == null) {
@@ -68,6 +72,8 @@ public class UsaObserver implements GameObserver {
                                 }else{
                                     msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                                 }
+                                imagePath= "src/main/resources/resource/img/no_guardiano.png";
+                                parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
                             }else{
                                 msg = "Hai già ucciso il guardiano, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
@@ -86,6 +92,8 @@ public class UsaObserver implements GameObserver {
                                 }else{
                                     msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                                 }
+                                imagePath= "src/main/resources/resource/img/stanza_vuota_tempio.png";
+                                parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
                             }else{
                                 msg = "Hai già ucciso la guardia, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
@@ -114,6 +122,8 @@ public class UsaObserver implements GameObserver {
                                 }else{
                                     msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                                 }
+                                imagePath= "src/main/resources/resource/img/stanza_vuota_tempio.png";
+                                parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
                             }else{
                                 msg = "Hai già ucciso la guardia, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
@@ -133,6 +143,8 @@ public class UsaObserver implements GameObserver {
                                 }else{
                                     msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                                 }
+                                imagePath= "src/main/resources/resource/img/stanza_vuota_tempio.png";
+                                parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
                             }else{
                                 msg = "Hai già ucciso la guardia, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
@@ -157,6 +169,8 @@ public class UsaObserver implements GameObserver {
                             } else if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))) {
                                 description.getInventario().remove(itemToUse);
                                 msg = "Il paletto di legno non è abbastanza potente per sconfiggere Vangrath, devi trovare un'arma più potente, ma misà che sei bello che morto...";
+                                imagePath= "src/main/resources/resource/img/boss.png";
+                                parserOutput.getInterfacciaGioco().changeImageViewer(new ImageIcon(imagePath));
                                 parserOutput.setCommand(new Command(CommandType.MORTE, null));
                             }else{
                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui, sbrigati!";

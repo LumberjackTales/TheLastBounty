@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import componentiaggiuntivi.Musica;
+import eccezioni.GetClassificaException;
 /**
  *
  * @author francescomiccoli
@@ -203,7 +204,14 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         classifica.setBackground(new Color(100, 150, 150, 155));
         aggiungiIcona(classifica, "/resource/img/icone/icona_classifica.png");
         classifica.addActionListener (e-> {
-            //new Classifica();
+            try {
+                InterfacciaClassifica classificaFrame = new InterfacciaClassifica();
+                classificaFrame.setVisible(true);
+            } catch (GetClassificaException ex) {
+                JOptionPane.showMessageDialog(this, "Errore durante il caricamento della classifica: " + ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         });
         impostazioni = new javax.swing.JButton("Impostazioni");
         buttonPanel.add(impostazioni);
