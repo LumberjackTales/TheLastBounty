@@ -89,7 +89,6 @@ public class TheLastBounty extends GameDescription implements GameObservable {
         attach(new UsaObserver());
         attach(new SalvaObserver());
         attach(new CreaObserver());
-        attach(new FineGiocoObserver());
     }
 
     @Override

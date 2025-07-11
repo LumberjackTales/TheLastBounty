@@ -23,10 +23,13 @@ public class ParlaObserver implements GameObserver {
                     .findAny()
                     .orElse(null);
             if (dialogo != null) {
-                if (description.getCurrentCasella().getId() == 130) {
+                if ((description.getCurrentCasella().getId() == 130)&& !description.getCurrentCasella().isUpdated()) {
                     dialogo = QuizAPI.getQuiz(dialogo);
                 }
                 msg = dialogo.getDialogo();
+                if (((description.getCurrentCasella().getId() == 338)||(description.getCurrentCasella().getId() == 344)||(description.getCurrentCasella().getId() == 356))&& description.getCurrentCasella().isUpdated()) {
+                    msg = "Con chi vuoi parlare che hai già ucciso la guardia, scemo! \n";
+                }
             } else {
                 msg = "Non c'è nessuno con cui parlare qui, forse dovresti provare a tornare a casa o a cercare qualcuno di reale!";
             }
@@ -54,7 +57,6 @@ public class ParlaObserver implements GameObserver {
                             Item gemma = new Item("gemma");
                             Inventario inv = description.getInventario();
                             if (inv.contains(gemma)) {                              
-                                dialogo.changeDialogo();
                                 msg += "Complimenti, sei riuscito a svegliare Vangrath, misà che sei bello che spacciato!";
                             } else if (description.getLastCommand().getType() == CommandType.USE){
                                 msg += "Questo paletto non ha sortito alvun effetto, misà che sei spacciato!"; 
@@ -64,16 +66,10 @@ public class ParlaObserver implements GameObserver {
                             }
                         }
 
-                        case 338 -> {
-                            dialogo.getDialogo();
-                        }
 
-                        case 344 ->{
-                            dialogo.getDialogo();
-                        }
-
-                        case 356 -> {
-                            dialogo.getDialogo();
+                        case 130 ->{             
+                                description.getCurrentCasella().getNorth().setEnterable(true);
+                                description.getCurrentCasella().setUpdated(true);
                         }
                     
 

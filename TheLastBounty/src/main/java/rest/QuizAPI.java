@@ -142,7 +142,7 @@ public class QuizAPI {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target("https://opentdb.com/api.php");
 		Response resp = target.queryParam("amount", 1)
-				.queryParam("category", 18)
+				.queryParam("category", 20)
 				.queryParam("type", "multiple")
 				.request(MediaType.APPLICATION_JSON).get();
 		String jsonString = resp.readEntity(String.class);
@@ -194,7 +194,7 @@ public class QuizAPI {
 
 	public static String Tutorial(){
 
-		String tutorial = " \n \t \t TUTORIAL SUL QUIZ \n \n Ti verra proposta una domanda a tema fantasy,con 4 risposte possibili, di cui una sola è corretta. \n Essendo che la domanda vieni generata casualmente da un sito esterno di API, la domanda verrà posta in inglese, se non sai l'inglese faresti bene ad impararlo dato che siamo nel 2025 e non nel 1940!! \n Ma non preoccuparti, basta rispondere con il numero della risposta corretta, ad esempio se la risposta corretta è la numero 2, basta rispondere con il numero 2 e il gioco proseguirà come se avessi risposto correttamente. Se sbagli a rispondere alla domanda, puoi sempre riprovare rifacendo il comando [PARLA], oppure puoi trovare un altra soluzione.... \n \n Buona fortuna!!. \n \n";
+		String tutorial = " \n \t \t TUTORIAL SUL QUIZ \n \n Ti verra proposta una domanda a tema fantasy,con 4 risposte possibili, di cui una sola è corretta. \n Essendo che la domanda vieni generata casualmente da un sito esterno di API, la domanda verrà posta in inglese, se non sai l'inglese faresti bene ad impararlo dato che siamo nel 2025 e non nel 1940!! \n Ma non preoccuparti, basta rispondere con il nome della risposta che secondo te è corretta, ad esempio se la risposta corretta è [Cerbero] tra le 4 opzioni , basta rispondere con il nome [Cerbero] e il gioco proseguirà con il dialogo del guardiano. Se sbagli a rispondere alla domanda, puoi sempre riprovare rifacendo il comando [PARLA], oppure puoi trovare un altra soluzione.... \n \n Buona fortuna!!. \n \n";
 		return tutorial;
 	}
 }

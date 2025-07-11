@@ -55,65 +55,86 @@ public class UsaObserver implements GameObserver {
                             }
                         }
                         case 130 -> {
-                            if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
-                                description.getCurrentCasella().getNorth().setEnterable(true);
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai ucciso il guardiano del tempio, hai fatto bene, faceva troppe domande!";
-                            } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
-                                description.getInventario().remove(itemToUse);
-                                description.getCurrentCasella().getNorth().setEnterable(true);
-                                msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                            boolean kill = description.getCurrentCasella().isUpdated();
+                            if (!kill){
+                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                    description.getCurrentCasella().getNorth().setEnterable(true);
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai ucciso il guardiano del tempio, hai fatto bene, faceva troppe domande!";
+                                } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                    description.getInventario().remove(itemToUse);
+                                    description.getCurrentCasella().getNorth().setEnterable(true);
+                                    msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                                }else{
+                                    msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                }
                             }else{
-                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                msg = "Hai già ucciso il guardiano, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
 
                         case 344 -> {
-                            if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
-                                description.getCurrentCasella().setUpdated(true);
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!";
-                            } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                            boolean kill = description.getCurrentCasella().isUpdated();
+                            if (!kill){
+                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                    description.getCurrentCasella().setUpdated(true);
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!";
+                                } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                                }else{
+                                    msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                }
                             }else{
-                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                msg = "Hai già ucciso la guardia, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
 
                         case 356 -> {
-                            if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
-                                description.getCurrentCasella().setUpdated(true);
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!\nSembra anche che abbia lasciato cadere una chiave, forse può esserti utile.";
-                        
+                            boolean kill = description.getCurrentCasella().isUpdated();
+                            if (!kill){
+                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                    description.getCurrentCasella().setUpdated(true);
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!\nSembra anche che abbia lasciato cadere una chiave, forse può esserti utile.";
+                            
 
-                                Item chiave = description.getCurrentCasella().getOggetti().stream()
-                                .filter(i -> i.getName().equalsIgnoreCase("chiave finale"))
-                                .findFirst()
-                                .orElse(null);
+                                    Item chiave = description.getCurrentCasella().getOggetti().stream()
+                                    .filter(i -> i.getName().equalsIgnoreCase("chiave finale"))
+                                    .findFirst()
+                                    .orElse(null);
 
-                                chiave.setVisible(true);
-                                chiave.setPickable(true);
-                            } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
-                                description.getCurrentCasella().setUpdated(true);
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                                    chiave.setVisible(true);
+                                    chiave.setPickable(true);
+                                } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                    description.getCurrentCasella().setUpdated(true);
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                                }else{
+                                    msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                }
                             }else{
-                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                msg = "Hai già ucciso la guardia, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
 
                         case 338 -> {
-                            if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
-                                description.getCurrentCasella().setUpdated(true);
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!";
-                            } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
-                                description.getInventario().remove(itemToUse);
-                                msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                            boolean kill = description.getCurrentCasella().isUpdated();
+                            if (!kill){ 
+                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                    description.getCurrentCasella().setUpdated(true);
+                                    description.getCurrentCasella().getNorth().setEnterable(true);
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!";
+                                } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                    description.getInventario().remove(itemToUse);
+                                    msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
+                                }else{
+                                    msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                }
                             }else{
-                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                msg = "Hai già ucciso la guardia, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
 
@@ -131,6 +152,7 @@ public class UsaObserver implements GameObserver {
                         case 333 -> {
                             if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))) {
                                 description.getInventario().remove(itemToUse);
+                                msg = "Hai ucciso il leggendario Vangrath,complimenti giovane hunter,però purtroppo non sei riuscito a recuperare la sua testa,sarà difficile ottenere la ricompesa finale.Guarda il lato positivo, almeno hai ottenuto la gloria e sei riuscito a liberare il bosco dalla sua malediazione, quindi adesso il falegname potrà uscire anche se non troverà più il suo villaggio.";
                                 parserOutput.setCommand(new Command(CommandType.THE_END, null));
                             } else if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))) {
                                 description.getInventario().remove(itemToUse);
@@ -142,12 +164,17 @@ public class UsaObserver implements GameObserver {
                         }
 
                         case 350 ->{
-                            if(nameOBJ.equals("coltellino svizzero") || nameOBJ.equals("coltellino")|| nameOBJ.equals("coltello")) {
-                                description.getCurrentCasella().setUpdated(true);
-                                description.getCurrentCasella().getNorth().setEnterable(true);
-                                msg = "Dietro il quadro trovi un passaggio segreto, forse ti porterà da qualche parte interessante!";
+                            boolean kill = description.getCurrentCasella().isUpdated();
+                            if (!kill){
+                                if(nameOBJ.equals("coltellino svizzero") || nameOBJ.equals("coltellino")|| nameOBJ.equals("coltello")) {
+                                    description.getCurrentCasella().setUpdated(true);
+                                    description.getCurrentCasella().getNorth().setEnterable(true);
+                                    msg = "Dietro il quadro trovi un passaggio segreto, forse ti porterà da qualche parte interessante!";
+                                }else{
+                                    msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                }
                             }else{
-                                msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                                msg = "Hai già distrutto il quadro, non serve usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
 

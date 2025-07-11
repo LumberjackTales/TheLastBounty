@@ -27,6 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultCaret;
 
+import comandi.CommandType;
 import eccezioni.GameFileException;
 import eccezioni.GameNotAvailableException;
 import componentiaggiuntivi.Chrono;
@@ -52,9 +53,8 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private final String HUNTER = "src/main/resources/resource/img/cacciatore.png";
 
     private final Color BACKGROUND_PULSANTI = new Color(100, 150, 150, 155);
-    private final Color BACKGROUND_BLACK = new Color(54, 69, 79);
-    private final Color TEXT = new Color(06, 06, 06);
     private final Color WHITE = new Color(250, 249, 246);
+    private final Color BLACK = new Color(32, 32, 35);
     private javax.swing.JButton esci;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel imageViewer;
@@ -247,28 +247,28 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         textArea.setEditable(false);
         textArea.setFocusable(false);
-        //textArea.setBackground(BACKGROUND_PULSANTI);
-        //textArea.setOpaque(false);
+
+        textArea.setBackground(new Color(0,0,0,0));
+  
         textArea.setColumns(20);
-        textArea.setForeground(TEXT);
+        textArea.setForeground(WHITE);
         textArea.setLineWrap(true);
         textArea.setRows(5);
         textArea.setWrapStyleWord(true);
-        textArea.setBorder(null);
         textArea.setCaretPosition(textArea.getDocument().getLength());
         textArea.setFont(FONT);
 
-        textArea.setOpaque(false);
-        textArea.setBorder(null);
+        textArea.setPreferredSize(new java.awt.Dimension(20, 50));
+
         // Non impostare setBackground() oppure lascialo commentato
 
-        scrollPane.setOpaque(false);
+        scrollPane.setBackground(new Color(0,0,0,0));
         scrollPane.getViewport().setOpaque(false);
         
         //textArea.setBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
         scrollPane.setViewportView(textArea);
 
-        imageViewer.setBackground(BACKGROUND_BLACK);
+        imageViewer.setBackground(new Color(0,0,0,0));
 
         imageLabel.setIcon(getScaledImage(new ImageIcon(HUNTER)));
         imageViewer.add(imageLabel);
@@ -285,7 +285,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         skip.setFont(caricaFontUncial(13f));
         skip.setPreferredSize(new java.awt.Dimension(90, 30));
         skip.setBackground(BACKGROUND_PULSANTI);
-        skip.setForeground(TEXT);
+        skip.setForeground(BLACK);
    
         aggiungiIcona(esci, "/resource/img/icone/icona_skip.png");
 
@@ -304,7 +304,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         inventario.setFont(caricaFontUncial(13f));
         inventario.setPreferredSize(new java.awt.Dimension(175, 30));
-        inventario.setForeground(TEXT);
+        inventario.setForeground(BLACK);
         inventario.setBackground(BACKGROUND_PULSANTI);
 
         inventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -320,7 +320,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         
         
         impostazioni.setFont(caricaFontUncial(13f));
-        impostazioni.setForeground(TEXT);
+        impostazioni.setForeground(BLACK);
         impostazioni.setBackground(BACKGROUND_PULSANTI);
 
         impostazioni.setPreferredSize(new java.awt.Dimension(175, 30));
@@ -330,7 +330,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         // JLabel cronometro = new JLabel(chrono.getTimeFormatted());
         cronometro.setText(chrono.getTimeFormatted());
-        cronometro.setForeground(TEXT);
+        cronometro.setForeground(WHITE);
         cronometro.setBackground(WHITE);
         cronometro.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         cronometro.setVerticalAlignment(javax.swing.JLabel.CENTER);
@@ -344,7 +344,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         // Impostazioni stile menuBar
         menuBar.setBackground(WHITE);
-        menuBar.setForeground(TEXT);
+        menuBar.setForeground(WHITE);
 
         // Aggiungi impostazioni a sinistra
         menuBar.add(impostazioni);
@@ -378,10 +378,10 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
 
         esci.setBackground(BACKGROUND_PULSANTI);
-        esci.setForeground(TEXT);
+        esci.setForeground(BLACK);
         aggiungiIcona(esci, "/resource/img/icone/icona_esci.png");
         esci.setFont(caricaFontUncial(13f));
-        esci.setPreferredSize(new java.awt.Dimension(90, 30));
+        esci.setPreferredSize(new java.awt.Dimension(150, 30));
         esci.addActionListener(e -> {
             int scelta = JOptionPane.showConfirmDialog(
                     null,
@@ -407,7 +407,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                                         .addComponent(underPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(macroPanelLayout.createSequentialGroup()
-                                                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 900,
+                                                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, //guarda qua
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(imageViewer, javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -445,6 +445,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             textBox.setText("");
             ParserOutput p = parser.parse(input.toLowerCase(), game.getInventario().getOggetti(), game.getCurrentCasella().getOggetti(), this);
             game.nextMove(p, stampa);
+            if (p.getCommand().getType() == CommandType.MORTE){
+                stampa.join(()->morte());          
+            } else if(p.getCommand().getType() == CommandType.THE_END){
+                stampa.join(()->fineGioco());            
+            }
         }
     }
 
@@ -460,6 +465,12 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     public void fineGioco() {
         InterfacciaFineGioco InterfacciaFineGioco = new InterfacciaFineGioco(parentFrame, game.getChrono().getElapsedTime());
         InterfacciaFineGioco.setVisible(true);
+        dispose();
+    }
+
+    public void morte(){
+        InterfacciaMorte InterfacciaMorte = new InterfacciaMorte(parentFrame);
+        InterfacciaMorte.setVisible(true);
         dispose();
     }
 

@@ -6,6 +6,7 @@ import componentiaggiuntivi.GameDescription;
 import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
+import giocatore.Dialogo;
 import giocatore.Item;
 
 public class PrendiObserver implements GameObserver {
@@ -17,12 +18,17 @@ public class PrendiObserver implements GameObserver {
             if (description.getCurrentCasella().getId() != 104) {
                 if (description.getCurrentCasella().getId() == 333){
                     description.getCurrentCasella().setUpdated(true);
+                    Dialogo dialogo = description.getDialoghi().stream()
+                            .filter(d -> description.getCurrentCasella().getId() == d.getIdCasella())
+                            .findAny()
+                            .orElse(null);
+                    dialogo.changeDialogo();
                     msg = "Ma sei scemo, grazie a questa tua mossa geniale Vangrath si è svegliato";
                 }
                 Object args = parserOutput.getParams();
                 if (args == null) {
                     System.out.println("Scemo, Non hai specificato l'oggetto da prendere");
-                    msg = "Non hai specificato l'oggetto da prendere, usa il comando 'Prendi' seguito dal nome dell'oggetto.";
+                    msg = "Non hai specificato l'oggetto da prendere, usa il comando 'Prendi' seguito dal nome dell'oggetto. \n";
                     return msg;
                 }
                 if (args instanceof String[]) {
@@ -36,7 +42,7 @@ public class PrendiObserver implements GameObserver {
                         
                         if (pickUpItem != null && pickUpItem.isVisible()) {
                             int quantity = description.getCurrentCasella().removeOggetto(pickUpItem);
-                            msg = "Hai raccolto ";
+                            msg += "Hai raccolto ";
                             msg += Pattern.compile("^.").matcher(pickUpItem.getName())
                                     .replaceFirst(m -> m.group().toUpperCase());
                             

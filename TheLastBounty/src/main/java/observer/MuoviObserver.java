@@ -49,15 +49,23 @@ public class MuoviObserver implements GameObserver {
                     String defaultDescrizione = Integer.toString(description.getCurrentCasella().getId());
                     msg = switch (defaultDescrizione.charAt(0)) {
                         case '1' -> "Il bosco è troppo fitto per andare oltre.";
-                        case '2' -> "Non puoi andare oltre le mura del Tempio.";
-                        case '3' -> "Non puoi andare oltre le mura della cripta.";
+                        case '2' -> "Non puoi andare oltre le mura della cripta.";
+                        case '3' -> "Non puoi andare oltre le mura del Tempio.";
                         default -> "Non puoi andare in quella direzione.";
                     };
                     totalMoves = maxMoves;
                 } else if (toMove == null || !toMove.isEnterable()) {
                     if (msg.length() == 0) {
-                        msg = "La porta sembra essere chiusa, prova ad esplorare meglio il tempio..\n"
-                                + description.getCurrentCasella().getDescrizione();
+                        switch(description.getCurrentCasella().getId()){
+                            case 130 ->
+                                msg = "\n Eiii non puoi entrare nel tempio se prima non rispondi alla domanda del guardiano. \n " ;
+
+                            case 338 ->
+                                msg = "\n Ma ci vedi? Hai proprio la guardia davanti a te, non puoi andare oltre senza prima averla uccisa! \n ";
+                            
+                            case 350,348 ->
+                                msg = "\n Non puoi andare oltre, il quadro ti è di intralcio. \n ";
+                        }
                     }
                     if (totalMoves != 0) {
                         msg += "\nSei riuscito a muoverti verso "
@@ -70,6 +78,13 @@ public class MuoviObserver implements GameObserver {
                     totalMoves++;
                     description.setCurrentCasella(toMove);
                     msg = toMove.getDescrizione();
+                    if (toMove.getId() == 109 || toMove.getId() == 112){
+                        msg += "\nAttenzione, sei stato colpito da una trappola!";
+                        description.getChrono().addMinute(5);
+                    }else if (toMove.getId() == 123) {
+                        msg += "\nAttenzione, sei stato colpito da una trappola!";
+                        description.getChrono().addMinute(10);
+                    }
                 }
             }
 
@@ -86,14 +101,16 @@ public class MuoviObserver implements GameObserver {
             case 104 ->
                 imagePath = "src/main/resources/resource/img/Falegname.png";
 
-            case 107 ->
+            case 106 ->
                 imagePath = "src/main/resources/resource/img/entrata_cripta.png";
 
             case 108 ->
                 imagePath = "src/main/resources/resource/img/Cartello1.png";
 
-            case 109,112,123 ->{
-                description.getChrono().addMinute(5);
+            case 109,112 ->{
+                imagePath = "src/main/resources/resource/img/trappola.png";
+            }
+            case 123 ->{
                 imagePath = "src/main/resources/resource/img/trappola.png";
             }
 
@@ -118,7 +135,7 @@ public class MuoviObserver implements GameObserver {
             case 130 ->
                 imagePath = "src/main/resources/resource/img/entrata_tempio.png";
 
-            case 102, 103, 105, 106, 110, 111, 115, 117, 120, 121, 122, 124, 125, 126, 127, 128 ->
+            case 102, 103, 105, 110, 111, 115, 117, 120, 121, 122, 124, 125, 126, 127, 128 ->
                 imagePath = "src/main/resources/resource/img/sentiero_Bosco.png";
 
             case 210,211,215 ->
@@ -127,8 +144,8 @@ public class MuoviObserver implements GameObserver {
             case 214 ->
                 imagePath = "src/main/resources/resource/img/Cripta_triangolo.png";
 
-            case 208,209,212,213 ->
-                imagePath = "src/main/resources/resource/img/Corridoio_cripta.png";
+            case 107,208,209,212,213 ->
+                imagePath = "src/main/resources/resource/img/Corridoio_cripta3.png";
 
             case 330 ->
                 imagePath = "src/main/resources/resource/img/Stanza_Tempio.png";

@@ -15,7 +15,7 @@ import thelastbounty.TheLastBounty;
 
 public class Server {
 
-    private static final String FILE_NAME = System.getProperty("user.dir") + "/resource/classifica/classifica.dat";
+    private static final String FILE_NAME = System.getProperty("user.dir") + "/src/main/resources/resource/classifica/classifica.dat";
     private final Classifica classifica;
     private final ServerSocket serverSocket;
     private final int port = 6666;
