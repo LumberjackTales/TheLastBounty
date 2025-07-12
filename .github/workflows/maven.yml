@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TheLastBounty
-          path: target/TheLastBounty-1.0-SNAPSHOT.jar
+          path: TheLastBounty/target/TheLastBounty-1.0-SNAPSHOT.jar
