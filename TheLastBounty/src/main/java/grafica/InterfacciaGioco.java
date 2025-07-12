@@ -33,15 +33,7 @@ import parser.Parser;
 import parser.ParserOutput;
 import observer.TheLastBounty;
 
-/**
- * Classe che implementa l'interfaccia grafica del gioco.
- * Gestisce la visualizzazione del testo, l'input del giocatore, la musica,
- * il cronometro e tutti i vari observer del gioco.
- *
- * @author francescomiccoli
- * @author marzullidino
- * @author sivoroberto
- */
+
 public class InterfacciaGioco extends javax.swing.JFrame {
     private final Font FONT = new Font("Serif", Font.PLAIN, 20);
     private final String HUNTER = "src/main/resources/resource/img/cacciatore.png";
@@ -314,17 +306,17 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             cronometro.setText(chrono.getTimeFormatted());
         }, 0, 1, TimeUnit.SECONDS);
 
-        // Impostazioni stile menuBar
+    
         menuBar.setBackground(WHITE);
         menuBar.setForeground(WHITE);
 
-        // Aggiungi impostazioni a sinistra
+       
         menuBar.add(impostazioni);
 
-        // Spazio flessibile al centro
+      
         menuBar.add(javax.swing.Box.createHorizontalGlue());
 
-        // Cronometro a destra con padding
+     
         javax.swing.JPanel cronometroPanel = new javax.swing.JPanel();
         cronometroPanel.setOpaque(false);
         cronometroPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 2));
@@ -335,9 +327,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         
         setJMenuBar(menuBar);
 
-        // Avvio musica
+        
         musica.playMusic("/resource/audio/musica_gioco.wav");
-        // Imposta il volume della musica
+        
         musica.setVolume(0.3f);
         
 
@@ -363,7 +355,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE
             );
             if (scelta == JOptionPane.YES_OPTION) {
-                System.exit(0); // chiude il programma
+                System.exit(0); 
             }
         });
         underPanel.add(esci);
@@ -396,20 +388,20 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             macroPanelLayout.setHorizontalGroup(
                 macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, macroPanelLayout.createSequentialGroup()
-                        .addGap(120) // margine sinistro
+                        .addGap(120) 
                         .addGroup(macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(underPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(macroPanelLayout.createSequentialGroup()
                                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(200) // distanza centrale (rilegatura)
+                                .addGap(200) 
                                 .addComponent(imageViewer, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30)) // margine destro simmetrico
+                        .addGap(30)) 
             );
 
             macroPanelLayout.setVerticalGroup(
                 macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(macroPanelLayout.createSequentialGroup()
-                        .addGap(60) // margine superiore
+                        .addGap(60) 
                         .addGroup(macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(imageViewer, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
