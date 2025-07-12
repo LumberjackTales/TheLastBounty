@@ -388,37 +388,34 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         underPanel.add(esci);
 
         javax.swing.GroupLayout macroPanelLayout = new javax.swing.GroupLayout(macroPanel);
-        macroPanel.setLayout(macroPanelLayout);
-        macroPanelLayout.setHorizontalGroup(
+            macroPanel.setLayout(macroPanelLayout);
+
+            macroPanelLayout.setHorizontalGroup(
                 macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, macroPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(macroPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(underPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(macroPanelLayout.createSequentialGroup()
-                                                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 700, //guarda qua
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(imageViewer, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap()));
-        macroPanelLayout.setVerticalGroup(
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, macroPanelLayout.createSequentialGroup()
+                        .addGap(120) // margine sinistro
+                        .addGroup(macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(underPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(macroPanelLayout.createSequentialGroup()
+                                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(200) // distanza centrale (rilegatura)
+                                .addComponent(imageViewer, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30)) // margine destro simmetrico
+            );
+
+            macroPanelLayout.setVerticalGroup(
                 macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(macroPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(macroPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(imageViewer, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(underPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-        getContentPane().add(macroPanel, java.awt.BorderLayout.CENTER);
+                    .addGroup(macroPanelLayout.createSequentialGroup()
+                        .addGap(60) // margine superiore
+                        .addGroup(macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imageViewer, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(130)
+                        .addComponent(underPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0))
+            );
+
+            getContentPane().add(macroPanel, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
