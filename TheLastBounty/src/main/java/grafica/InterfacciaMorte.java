@@ -8,7 +8,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import componentiaggiuntivi.Musica;
         
 public class InterfacciaMorte extends JFrame {
 
@@ -22,11 +25,28 @@ public class InterfacciaMorte extends JFrame {
     private JPanel mainPanel;
     private JPanel bottomPanel;
     private JButton tornaMenu;
+    private Musica musica = new Musica();
     
 
    
     public InterfacciaMorte(JFrame parentFrame) {
         this.parentFrame = parentFrame;
+        try {
+            musica.playMusic("/resource/audio/audio_morte.wav");
+        } catch (Exception e) {
+            JButton okButton = new JButton("Ok");
+            okButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseReleased(java.awt.event.MouseEvent evt) {
+                    dispose();
+                    musica.playMusic("/resource/audio/audio_morte.wav");
+                }
+            });
+            JOptionPane info = new JOptionPane(e.getMessage(), JOptionPane.INFORMATION_MESSAGE,
+                    JOptionPane.DEFAULT_OPTION, null, new Object[] { okButton });
+            info.createDialog(InterfacciaMorte.this, "Info").setVisible(true);
+
+        }
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         MorteFrame();
@@ -79,7 +99,6 @@ public class InterfacciaMorte extends JFrame {
         tornaMenu = new JButton("Torna al menu");
         tornaMenu.setBackground(RED_CUSTOM);
         tornaMenu.setForeground(WHITE_CUSTOM);
-        tornaMenu.addActionListener(e -> dispose());
 
         bottomPanel.add(tornaMenu);
 
@@ -89,8 +108,10 @@ public class InterfacciaMorte extends JFrame {
 
         setVisible(true);
         tornaMenu.addActionListener(e -> {
+            musica.stopMusica();
             parentFrame.setVisible(true);
             dispose();
+            
         });
 
     }

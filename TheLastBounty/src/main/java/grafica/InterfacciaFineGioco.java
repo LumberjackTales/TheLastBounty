@@ -115,7 +115,6 @@ public class InterfacciaFineGioco extends JFrame {
         tornaMenu = new JButton("Torna al menu");
         tornaMenu.setBackground(RED_CUSTOM);
         tornaMenu.setForeground(WHITE_CUSTOM);
-        tornaMenu.addActionListener(e -> dispose());
 
         bottomPanel.add(tornaMenu);
 
@@ -125,6 +124,7 @@ public class InterfacciaFineGioco extends JFrame {
 
         setVisible(true);
         tornaMenu.addActionListener(e -> {
+            musica.stopMusica();
             parentFrame.setVisible(true);
             dispose();
         });
