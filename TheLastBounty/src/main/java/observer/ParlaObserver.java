@@ -14,6 +14,7 @@ public class ParlaObserver implements GameObserver {
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {
         String msg = "";
+        Inventario inv = description.getInventario();
         if (parserOutput.getCommand().getType() == CommandType.PARLA
                 && parserOutput.getParams() != null) {
             msg = "Non puoi parlare con un muro, prova a parlare con qualcuno di reale! Usa il comando 'Parla' senza mettere nulla dopo";
@@ -29,6 +30,23 @@ public class ParlaObserver implements GameObserver {
                 msg = dialogo.getDialogo();
                 if (((description.getCurrentCasella().getId() == 338)||(description.getCurrentCasella().getId() == 344)||(description.getCurrentCasella().getId() == 356))&& description.getCurrentCasella().isUpdated()) {
                     msg = "Con chi vuoi parlare che hai già ucciso la guardia, scemo! \n";
+                }else if ((description.getCurrentCasella().getId() == 130)&& description.getCurrentCasella().isUpdated()){
+                    msg = "Dopo quello che gli hai fatto, vuoi provare pure a parlarci? sei proprio un mostro.";
+                }
+
+                if ((description.getCurrentCasella().getId() == 104)){
+                    boolean stato = description.getCurrentCasella().isUpdated();
+                    if (!stato){
+                        msg = dialogo.getDialogo(); 
+                        description.getCurrentCasella().setUpdated(true);
+                    }else{
+                        if (inv.contains("legno di quercia bianca")){ 
+                            msg = "Vedo che hai raccolto un tipo di legno particolare giovane hunter, sento che trabocca di potere magico, cosa vuoi che ci faccia?";
+                        }else{
+                            msg = "Dimmi tutto giovane hunter";
+                        }
+                    }
+                     
                 }
             } else {
                 msg = "Non c'è nessuno con cui parlare qui, forse dovresti provare a tornare a casa o a cercare qualcuno di reale!";
@@ -45,7 +63,6 @@ public class ParlaObserver implements GameObserver {
                     switch (description.getCurrentCasella().getId()) {
                         case 113 -> {
                             Item tomoe = new Item("tomoe");
-                            Inventario inv = description.getInventario();
                             if (inv.contains(tomoe)) {                              
                                 dialogo.changeDialogo();
                             } else {
@@ -55,7 +72,6 @@ public class ParlaObserver implements GameObserver {
 
                         case 333 -> {
                             Item gemma = new Item("gemma");
-                            Inventario inv = description.getInventario();
                             if (inv.contains(gemma)) {                              
                                 msg += "Complimenti, sei riuscito a svegliare Vangrath, misà che sei bello che spacciato!";
                             } else if (description.getLastCommand().getType() == CommandType.USE){
@@ -66,13 +82,8 @@ public class ParlaObserver implements GameObserver {
                             }
                         }
 
-
-                        case 130 ->{             
-                                description.getCurrentCasella().getNorth().setEnterable(true);
-                                description.getCurrentCasella().setUpdated(true);
-                        }
-                    
-
+                        case 130 -> 
+                            description.getCurrentCasella().getNorth().setEnterable(true);               
                     }
                     description.setLastCommand(parserOutput.getCommand());
                 } else {

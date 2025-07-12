@@ -52,15 +52,7 @@ public class PrendiObserver implements GameObserver {
                                     .replaceFirst(m -> m.group().toUpperCase());
                             
                             description.getInventario().addOggetto(pickUpItem, quantity);
-
-                            //forse da spostare in muoviObserver
-                            if (description.getInventario().contains("Legno quercia bianca", "Coltellino svizzero")) {
-                                description.getCaselle().stream()
-                                        .filter(c -> c.getId() == 104)
-                                        .forEach(c -> {
-                                            c.setUpdated(true);
-                                        });
-                            }
+                           
                         } else {
                             msg = "Non c'è nessun oggetto con quel nome qui,secondo me sei pazzo! Prova a guardare meglio.";
                         }

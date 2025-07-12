@@ -100,8 +100,18 @@ public class MuoviObserver implements GameObserver {
             case 101 ->
                 imagePath = "src/main/resources/resource/img/quercia_bianca.png";
 
-            case 104 ->
+            case 104 ->{
                 imagePath = "src/main/resources/resource/img/Falegname.png";
+                 if (description.getInventario().contains("Legno quercia bianca", "Coltellino svizzero")) {
+                                description.getCaselle().stream()
+                                        .filter(c -> c.getId() == 104)
+                                        .forEach(c -> {
+                                            c.setUpdated(true);
+                                        });
+                }else{
+                    System.out.println("Prova");
+                }
+            }
 
             case 106 ->
                 imagePath = "src/main/resources/resource/img/entrata_cripta.png";
@@ -134,8 +144,14 @@ public class MuoviObserver implements GameObserver {
             case 129 ->
                 imagePath = "src/main/resources/resource/img/Cripta_tomo.png";
 
-            case 130 ->
-                imagePath = "src/main/resources/resource/img/entrata_tempio.png";
+            case 130 ->{
+                if (description.getCurrentCasella().isUpdated()){
+                    imagePath = "src/main/resources/resource/img/no_guardiano.png";
+                }else{
+                    imagePath = "src/main/resources/resource/img/entrata_tempio.png";
+                }
+                
+            }
 
             case 102, 103, 105, 110, 111, 115, 117, 120, 121, 122, 124, 125, 126, 127, 128 ->
                 imagePath = "src/main/resources/resource/img/sentiero_Bosco.png";

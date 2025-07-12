@@ -194,7 +194,7 @@ public class QuizAPI {
 
 	public static String Tutorial(){
 
-		String tutorial = " \n \t \t TUTORIAL SUL QUIZ \n \n Ti verra proposta una domanda a tema fantasy,con 4 risposte possibili, di cui una sola è corretta. \n Essendo che la domanda vieni generata casualmente da un sito esterno di API, la domanda verrà posta in inglese, se non sai l'inglese faresti bene ad impararlo dato che siamo nel 2025 e non nel 1940!! \n Ma non preoccuparti, basta rispondere con il nome della risposta che secondo te è corretta, ad esempio se la risposta corretta è [Cerbero] tra le 4 opzioni , basta rispondere con il nome [Cerbero] e il gioco proseguirà con il dialogo del guardiano. Se sbagli a rispondere alla domanda, puoi sempre riprovare rifacendo il comando [PARLA], oppure puoi trovare un altra soluzione.... \n \n Buona fortuna!!. \n \n";
+		String tutorial = " \n \t \t TUTORIAL SUL QUIZ \n \n Ti verra proposta una domanda a tema mitologia antica ,con 4 risposte possibili, di cui una sola è corretta. \n Essendo che la domanda vieni generata casualmente da un sito esterno di API, la domanda verrà posta in inglese, se non sai l'inglese faresti bene ad impararlo dato che siamo nel 2025 e non nel 1940!! \n Ma non preoccuparti, basta rispondere con il nome della risposta che secondo te è corretta, ad esempio se la risposta corretta è [Cerbero] tra le 4 opzioni , basta rispondere con il nome [Cerbero] e il gioco proseguirà con il dialogo del guardiano. Se sbagli a rispondere alla domanda, puoi sempre riprovare rifacendo il comando [PARLA], oppure puoi trovare un altra soluzione.... \n \n Buona fortuna!!. \n \n";
 		return tutorial;
 	}
 }

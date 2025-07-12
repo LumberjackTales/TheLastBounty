@@ -63,11 +63,13 @@ public class UsaObserver implements GameObserver {
                             if (!kill){
                                 if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
                                     description.getCurrentCasella().getNorth().setEnterable(true);
+                                    description.getCurrentCasella().setUpdated(true);
                                     description.getInventario().remove(itemToUse);
                                     msg = "Hai ucciso il guardiano del tempio, hai fatto bene, faceva troppe domande!";
                                 } else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
                                     description.getInventario().remove(itemToUse);
                                     description.getCurrentCasella().getNorth().setEnterable(true);
+                                    description.getCurrentCasella().setUpdated(true);
                                     msg = "Hai sprecato la tua unica possibilità di vittoria, complimenti!";
                                 }else{
                                     msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";

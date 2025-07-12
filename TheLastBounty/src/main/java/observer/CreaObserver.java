@@ -36,7 +36,8 @@ public class CreaObserver implements GameObserver{
                                 .findFirst()
                                 .orElse(null);
                             if(inv.contains("legno di quercia bianca")) {
-                                msg = "Hai creato un " + nameOBJ + "!";
+                                msg = "Vuoi che fabbrichi un paletto usando questo strano legno?? \n Va bene,se ti può essere utile per proseguire la tua avventura, lo farò. \n \n";
+                                msg += "Il falegname ha creato per te un Paletto di Quercia Bianca!";
                                 description.getInventario().remove(inv.getOggetti().stream()
                                     .filter(i -> i.getName().equalsIgnoreCase("legno di quercia bianca"))
                                     .findFirst()
