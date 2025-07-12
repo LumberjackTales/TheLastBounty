@@ -175,7 +175,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         JFileChooser fileChooser = new javax.swing.JFileChooser();
 
         fileChooser.setDialogTitle("Caricamento Salvataggio");
-        fileChooser.setCurrentDirectory(new java.io.File("."));
+        fileChooser.setCurrentDirectory(new java.io.File("src/main/resources/resource/salvataggi"));
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Files .dat", "dat"));
         fileChooser.setAcceptAllFileFilterUsed(false);
 
@@ -188,6 +188,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
                         java.io.File file = fileChooser.getSelectedFile();
                         InterfacciaGioco gioco = new InterfacciaGioco(InterfacciaIniziale.this, file);
                         gioco.setVisible(true);
+                        musica.stopMusica();
                         setVisible(false);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(InterfacciaIniziale.this, e.getMessage(), "Errore",

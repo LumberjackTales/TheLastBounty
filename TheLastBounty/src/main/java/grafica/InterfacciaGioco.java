@@ -61,6 +61,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private javax.swing.JPanel panel;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JButton skip;
+    private javax.swing.JButton torna_menu;
     private javax.swing.JTextArea textArea;
     private javax.swing.JTextField textBox;
     private javax.swing.JPanel underPanel;
@@ -214,14 +215,12 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         skip = new javax.swing.JButton("Skip");
         inventario = new javax.swing.JButton("Inventario");
         esci = new javax.swing.JButton("Esci");
+        torna_menu = new javax.swing.JButton("Torna al menù");
 
         cronometro = new javax.swing.JLabel();
         
         impostazioni = new javax.swing.JButton("Impostazioni");
 
-        // Impostazioni del pannello principale
-        //panel.setBackground(BACKGROUND_BLACK);
-        //panel.setBorder(javax.swing.BorderFactory.createLineBorder(WHITE, 4));
         panel.setOpaque(false);
         panel.setSize(new java.awt.Dimension(1920, 1500));
         panel.setLayout(new java.awt.BorderLayout());
@@ -232,7 +231,6 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage("/resource/img/schermata_principale.png"));
         setResizable(false);
 
-        //macroPanel.setBackground(BACKGROUND_BLACK);
 
         DefaultCaret caret = (DefaultCaret) textArea.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -250,7 +248,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         textArea.setBackground(new Color(0,0,0,0));
   
         textArea.setColumns(20);
-        textArea.setForeground(WHITE);
+        textArea.setForeground(Color.BLACK);
         textArea.setLineWrap(true);
         textArea.setRows(5);
         textArea.setWrapStyleWord(true);
@@ -258,18 +256,14 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         textArea.setFont(FONT);
 
         textArea.setPreferredSize(null);
-
-        // Non impostare setBackground() oppure lascialo commentato
-
         
-
         imageViewer.setBackground(new Color(0,0,0,0));
 
         imageLabel.setIcon(getScaledImage(new ImageIcon(HUNTER)));
         imageViewer.add(imageLabel);
 
 
-        underPanel.setBackground(WHITE);
+        underPanel.setBackground(new Color(0,0,0,0));
         underPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 10));
 
         textBox.setPreferredSize(new java.awt.Dimension(650, 30));
@@ -323,15 +317,13 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
         chrono.start();
 
-        // JLabel cronometro = new JLabel(chrono.getTimeFormatted());
         cronometro.setText(chrono.getTimeFormatted());
-        cronometro.setForeground(WHITE);
+        cronometro.setForeground(BLACK);
         cronometro.setBackground(WHITE);
         cronometro.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         cronometro.setVerticalAlignment(javax.swing.JLabel.CENTER);
         cronometro.setPreferredSize(new java.awt.Dimension(175, 30));
 
-        // Ogni secondo, aggiorna il cronometro con il tempo trascorso
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
             cronometro.setText(chrono.getTimeFormatted());
@@ -376,7 +368,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         esci.setForeground(BLACK);
         aggiungiIcona(esci, "/resource/img/icone/icona_esci.png");
         esci.setFont(caricaFontUncial(13f));
-        esci.setPreferredSize(new java.awt.Dimension(150, 30));
+        esci.setPreferredSize(new java.awt.Dimension(150, 35));
         esci.addActionListener(e -> {
             int scelta = JOptionPane.showConfirmDialog(
                     null,
@@ -390,6 +382,28 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             }
         });
         underPanel.add(esci);
+
+
+        torna_menu.setBackground(BACKGROUND_PULSANTI);
+        torna_menu.setForeground(BLACK);
+        torna_menu.setFont(caricaFontUncial(13f));
+        torna_menu.setPreferredSize(new java.awt.Dimension(150, 35));
+
+        torna_menu.addActionListener(e -> {
+            int scelta = JOptionPane.showConfirmDialog(
+                    null,
+                    "Sei sicuro di voler tornare al menù principale? \nHai almeno salvato?",
+                    "Conferma Uscita",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (scelta == JOptionPane.YES_OPTION) {
+                parentFrame.setVisible(true);
+                dispose();
+            }
+        });
+
+        underPanel.add(torna_menu);
 
         javax.swing.GroupLayout macroPanelLayout = new javax.swing.GroupLayout(macroPanel);
             macroPanel.setLayout(macroPanelLayout);
@@ -414,7 +428,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
                         .addGroup(macroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(imageViewer, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(130)
+                        .addGap(140)
                         .addComponent(underPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0))
             );
