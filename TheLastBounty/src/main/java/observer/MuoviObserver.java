@@ -47,7 +47,7 @@ public class MuoviObserver implements GameObserver {
                 }
           
                 if (toMove == null && totalMoves == 0) {
-                    // Controllo sulla zona per l'errore di direzione
+               
                     String defaultDescrizione = Integer.toString(description.getCurrentCasella().getId());
                     msg = switch (defaultDescrizione.charAt(0)) {
                         case '1' -> "Il bosco è troppo fitto per andare oltre.";

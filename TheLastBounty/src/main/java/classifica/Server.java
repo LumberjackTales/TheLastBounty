@@ -20,23 +20,13 @@ public class Server {
     private final ServerSocket serverSocket;
     private final int port = 6666;
 
-    /**
-     * Costruttore che inizializza il server caricando la classifica esistente
-     * e creando un socket server sulla porta specificata.
-     * 
-     * @throws IOException Se si verifica un errore durante la creazione del socket server
-     */
+   
     public Server() throws IOException {
         classifica = loadClassifica();
         serverSocket = new ServerSocket(port);
     }
 
-    /**
-     * Carica la classifica dal file di salvataggio.
-     * Se il file non esiste o si verifica un errore, crea una nuova classifica vuota.
-     * 
-     * @return La classifica caricata o una nuova classifica se il caricamento fallisce
-     */
+  
     private Classifica loadClassifica() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             return (Classifica) ois.readObject();
@@ -45,12 +35,7 @@ public class Server {
         }
     }
 
-    /**
-     * Salva la classifica corrente nel file di salvataggio.
-     * Se il file non esiste, tenta di crearlo.
-     * 
-     * @throws Exception Se non è possibile salvare la classifica
-     */
+  
     private void saveClassifica() throws Exception {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(classifica);
@@ -63,12 +48,7 @@ public class Server {
         }
     }
 
-    /**
-     * Avvia il server e gestisce le richieste dei client in un ciclo infinito.
-     * Supporta i comandi: ADD_RECORD, GET_CLASSIFICA e END.
-     * 
-     * @throws Exception Se si verifica un errore durante l'avvio del server
-     */
+  
     public void start() throws Exception {
         System.out.println("Server in ascolto...");
         while (true) {
@@ -97,13 +77,7 @@ public class Server {
         }
     }
 
-    /**
-     * Metodo main per avviare il server come applicazione standalone.
-     * Tenta di avviare il server fino a 5 volte in caso di fallimento.
-     * 
-     * @param args Argomenti della linea di comando (non utilizzati)
-     * @throws Exception Se si verifica un errore durante l'avvio del server
-     */
+ 
     public static void main(String[] args) throws Exception {
         try {
             Server server = new Server();

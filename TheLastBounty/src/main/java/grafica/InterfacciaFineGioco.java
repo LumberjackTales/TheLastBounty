@@ -111,7 +111,7 @@ public class InterfacciaFineGioco extends JFrame {
         bottomPanel.setBackground(BLACK_CUSTOM);
               
 
-        // Torna al menu Button
+       
         tornaMenu = new JButton("Torna al menu");
         tornaMenu.setBackground(RED_CUSTOM);
         tornaMenu.setForeground(WHITE_CUSTOM);

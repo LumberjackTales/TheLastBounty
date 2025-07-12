@@ -23,7 +23,7 @@ public class CreaObserver implements GameObserver{
                     .findFirst()
                     .orElse(null);
             
-                // Logica per creare un nuovo oggetto
+           
                 switch (description.getCurrentCasella().getId()) {
                     case 104 -> {
                         if (itemToCreate != null) {

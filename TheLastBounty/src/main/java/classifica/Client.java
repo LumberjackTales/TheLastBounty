@@ -13,12 +13,7 @@ public class Client {
     private static final String SERVER_ADDRESS = "localhost";
     private final int serverPort = 6666;
 
-    /**
-     * Invia un record al server per aggiungerlo alla classifica.
-     * 
-     * @param record Il record da inviare al server
-     * @throws Exception Se si verifica un errore durante l'invio del record
-     */
+    
     public void sendRecord(Record record) throws Exception {
         try (Socket socket = new Socket(SERVER_ADDRESS, serverPort);
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -34,12 +29,7 @@ public class Client {
         }
     }
 
-    /**
-     * Richiede la classifica completa dal server.
-     * 
-     * @return La classifica ricevuta dal server
-     * @throws Exception Se si verifica un errore durante la richiesta della classifica
-     */
+    
     public Classifica requestClassifica() throws Exception {
         Classifica recordTracker = new Classifica();
         try (Socket socket = new Socket(SERVER_ADDRESS, serverPort);
@@ -58,12 +48,7 @@ public class Client {
         return recordTracker;
     }
 
-    /**
-     * Invia un comando di terminazione al server.
-     * 
-     * @throws IOException Se si verifica un errore di I/O durante la comunicazione
-     * @throws ClassNotFoundException Se la classe dell'oggetto ricevuto non è trovata
-     */
+    
     public void end() throws IOException, ClassNotFoundException {
         try (Socket socket = new Socket(SERVER_ADDRESS, serverPort);
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());

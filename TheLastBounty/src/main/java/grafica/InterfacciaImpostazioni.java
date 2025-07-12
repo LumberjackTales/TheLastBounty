@@ -53,12 +53,10 @@ public class InterfacciaImpostazioni extends JFrame {
 
 
     public InterfacciaImpostazioni(Musica musica) {
-        //this.parentFrame = parentFrame;
         this.musica = musica;
         initializeFrameSettings();
         initComponents();
         cambiaStatoPulsante();
-        // updateMusicToggleButtonState(); // attivare se serve
     }
 
     private void initializeFrameSettings() {
@@ -129,7 +127,7 @@ public class InterfacciaImpostazioni extends JFrame {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             return font.deriveFont(size);
         } catch (Exception e) {
-            return new Font("Serif", Font.PLAIN, (int) size); // fallback
+            return new Font("Serif", Font.PLAIN, (int) size); 
         }
     }
 

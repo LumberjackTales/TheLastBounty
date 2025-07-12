@@ -49,8 +49,7 @@ public class interfacciaRiconoscimenti extends JFrame {
     }
     
     private void initComponents() {
-        //mainPanel = new JPanel(new BorderLayout());
-       // mainPanel.setBackground(BLACK_CUSTOM); 
+        
         mainPanel = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
@@ -68,9 +67,9 @@ public class interfacciaRiconoscimenti extends JFrame {
             }
         };
 
-      //  mainPanel = new JPanel();
+      
        mainPanel.setLayout(new BorderLayout());
-        //mainPanel.setBackground(BLACK_CUSTOM);
+     
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -100,7 +99,7 @@ public class interfacciaRiconoscimenti extends JFrame {
 
         mainPanel.add(contentLabel, BorderLayout.CENTER);
 
-        // Close Button
+        
         closeButton = new JButton("Chiudi");
         closeButton.setBackground(RED_CUSTOM);
         closeButton.setForeground(WHITE_CUSTOM);
@@ -119,7 +118,7 @@ public class interfacciaRiconoscimenti extends JFrame {
                 Font font = Font.createFont(Font.TRUETYPE_FONT, is);
                 return font.deriveFont(size);
             } catch (Exception e) {
-                return new Font("Serif", Font.PLAIN, (int) size); // fallback
+                return new Font("Serif", Font.PLAIN, (int) size); 
             }
     }
          

@@ -76,36 +76,36 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         };
         oggetti = new javax.swing.JTable(nonEditableModel);
 
-        // Rendi la tabella trasparente
+   
         oggetti.setOpaque(false);
         oggetti.setForeground(WHITE_CUSTOM);
-        oggetti.setBackground(new Color(0,0,0,0)); // trasparente
-        oggetti.setSelectionBackground(new Color(0,0,0,0)); // trasparente
+        oggetti.setBackground(new Color(0,0,0,0)); 
+        oggetti.setSelectionBackground(new Color(0,0,0,0)); 
         
-        //oggetti.getTableHeader().setOpaque(false);
+
         oggetti.getTableHeader().setBackground(HEADER_BROWN);
-        oggetti.getTableHeader().setForeground(Color.BLACK); // colore del testo dell'header
+        oggetti.getTableHeader().setForeground(Color.BLACK); 
         oggetti.setGridColor(new Color(0,0,0,0));
         oggetti.setIntercellSpacing(new java.awt.Dimension(0, 0)); 
 
         oggetti.setFont(caricaFontUncial(15f));
         oggetti.getTableHeader().setFont(caricaFontUncial(15f));
 
-        // ...existing code...
-        oggetti.setIntercellSpacing(new java.awt.Dimension(0, 0)); // Nessuno spazio tra le celle
-        oggetti.setBorder(null); // Nessun bordo per la tabella
-        oggetti.setFocusable(false); // Nessun focus border
+     
+        oggetti.setIntercellSpacing(new java.awt.Dimension(0, 0)); 
+        oggetti.setBorder(null); 
+        oggetti.setFocusable(false); 
 
-        // Header senza bordo
+        
         oggetti.getTableHeader().setBorder(null);
 
-        // Crea uno JScrollPane trasparente
+      
         JScrollPane scrollPane = new JScrollPane(oggetti);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
         scrollPane.setPreferredSize(
-            new Dimension(450, 200) // Dimensione preferita dello scroll pane
+            new Dimension(450, 200) 
         );
        
         underPanel = new JPanel();
@@ -135,7 +135,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         underPanel.add(close);
 
         JPanel centerPanel = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 110));
-        centerPanel.setOpaque(false); // Trasparente per vedere lo sfondo
+        centerPanel.setOpaque(false); 
         centerPanel.add(scrollPane);
 
         mainPanel.setLayout(new BorderLayout());

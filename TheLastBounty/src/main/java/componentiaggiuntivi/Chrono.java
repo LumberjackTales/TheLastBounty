@@ -8,16 +8,12 @@ public class Chrono implements Serializable {
     private Long elapsedTime;
     private boolean isRunning;
 
-    /**
-     * Costruttore che inizializza un nuovo cronometro resettato.
-     */
+    
     public Chrono() {
         reset();
     }
 
-    /**
-     * Avvia il cronometro se non è già in esecuzione.
-     */
+    
     public void start() {
         if (!isRunning) {
             startTime = System.currentTimeMillis();
@@ -26,15 +22,10 @@ public class Chrono implements Serializable {
     }
 
     public void addMinute(int tempo){
-        elapsedTime += Math.abs(tempo) * 60 * 1000; // Aggiunge il tempo in millisecondi
+        elapsedTime += Math.abs(tempo) * 60 * 1000;
     }
 
-    /**
-     * Riavvia il cronometro con un tempo già trascorso.
-     * Utile per riprendere un cronometro da un salvataggio.
-     * 
-     * @param elapsedTime Tempo già trascorso in millisecondi
-     */
+    
     public void startAgain(long elapsedTime) {
         if (!isRunning) {
             startTime = System.currentTimeMillis();
@@ -43,9 +34,7 @@ public class Chrono implements Serializable {
         }
     }
 
-    /**
-     * Ferma il cronometro se è in esecuzione.
-     */
+    
     public void stop() {
         if (isRunning) {
             endTime = System.currentTimeMillis();
@@ -54,9 +43,7 @@ public class Chrono implements Serializable {
         }
     }
 
-    /**
-     * Resetta il cronometro a zero.
-     */
+   
     public void reset() {
         startTime = 0L;
         endTime = 0L;
@@ -64,11 +51,7 @@ public class Chrono implements Serializable {
         isRunning = false;
     }
 
-    /**
-     * Restituisce il tempo trascorso in millisecondi.
-     * 
-     * @return Tempo trascorso in millisecondi
-     */
+  
     public long getElapsedTime() {
         if (isRunning) {
             return System.currentTimeMillis() - startTime + elapsedTime;
@@ -76,39 +59,23 @@ public class Chrono implements Serializable {
         return elapsedTime;
     }
 
-    /**
-     * Imposta il tempo trascorso.
-     * 
-     * @param elapsedTime tempo trascorso in millisecondi
-     */
+    
     public void setElapsedTime(long elapsedTime) {
         this.elapsedTime = elapsedTime;
     }
 
-    /**
-     * Restituisce true se il cronometro è in esecuzione.
-     * 
-     * @return true se il cronometro è in esecuzione, false altrimenti
-     */
+   
 
     public boolean isRunning() {
         return isRunning;
     }
 
-    /**
-     * Restituisce il tempo di inizio.
-     * 
-     * @return tempo di inizio del cronometro
-     */
+ 
     public long getStartTime() {
         return startTime;
     }
 
-    /**
-     * Restituisce il tempo formattato in maniera leggibile nel formato hh:mm:ss.
-     * 
-     * @return tempo formattato
-     */
+    
     public String getTimeFormatted() {
         try {
             Thread.sleep(1000);

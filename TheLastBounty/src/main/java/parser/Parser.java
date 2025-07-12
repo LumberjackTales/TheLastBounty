@@ -14,39 +14,18 @@ import comandi.Command;
 import comandi.CommandType;
 import giocatore.Item;
 
-/**
- * Classe Parser che gestisce l'interpretazione dei comandi inseriti
- * dall'utente.
- * Si occupa di analizzare l'input testuale, identificare i comandi e gli
- * oggetti
- * menzionati, e produrre un output strutturato per il gioco.
- *
- * @author francescomiccoli
- * @author marzullidino
- * @author sivoroberto
- */
+
 public class Parser implements Serializable {
     private final Set<String> stopwords;
     private final List<Command> commands;
     private final Command nullCommand = new Command(CommandType.NULL_COMMAND, null);
 
-    /**
-     * Costruttore del Parser
-     * 
-     * @param stopwords Set di parole da ignorare durante l'analisi
-     * @param commands  Lista dei comandi disponibili nel gioco
-     */
+  
     public Parser(Set<String> stopwords, List<Command> commands) {
         this.stopwords = stopwords;
         this.commands = commands;
     }
 
-    /**
-     * Cerca un comando corrispondente al token fornito
-     * 
-     * @param token Stringa da cercare tra i comandi
-     * @return Il comando trovato o null se non esiste
-     */
     private Command findCommand(final String token) {
         return commands.stream()
                 .filter(cmd -> cmd.getName().equals(token) || cmd.getAlias().contains(token))
@@ -54,13 +33,7 @@ public class Parser implements Serializable {
                 .orElse(null);
     }
 
-    /**
-     * Cerca gli oggetti menzionati nell'input dell'utente
-     * 
-     * @param tokens Array di parole da analizzare
-     * @param items  Set di oggetti in cui cercare
-     * @return Array di stringhe contenenti gli oggetti trovati
-     */
+    
     private String[] findItems(final String[] tokens, final Set<Item> items) {
         List<String> itemsFound = new ArrayList<>();
         Map<Pattern, Item> patternMap = new HashMap<>();
@@ -81,8 +54,7 @@ public class Parser implements Serializable {
             currentInput.append(token).append(" ");
             String string = currentInput.toString().trim();
 
-            // verifica se parole successive possono essere aggiunte l'ultimo a quelle
-            // precedenti per identificare lo stesso item
+            
             if (lastMatchedPattern != null) {
                 lastItemFound.append(token).append(" ");
                 if (lastMatchedPattern.matcher(lastItemFound.toString()).find()) {
@@ -91,8 +63,7 @@ public class Parser implements Serializable {
                 }
             }
 
-            // Se non è possibile identificare lo stesso item, cerca di trovare un altro
-            // item
+           
             if (!found) {
                 found = false;
                 for (Pattern pattern : patternMap.keySet()) {
@@ -103,7 +74,7 @@ public class Parser implements Serializable {
                     }
                 }
 
-                // Se è stato trovato un item, aggiungilo alla lista degli item trovati
+               
                 if (found) {
                     itemsFound.add(currentInput.toString().trim());
                     lastItemFound = new StringBuilder(currentInput.toString());
@@ -119,12 +90,7 @@ public class Parser implements Serializable {
         return itemsFound.toArray(new String[0]);
     }
 
-    /**
-     * Crea un pattern regex per la ricerca di prefissi
-     * 
-     * @param prefixes Lista di prefissi da includere nel pattern
-     * @return Pattern compilato per la ricerca
-     */
+ 
     private Pattern createPrefixRegexItem(List<String> prefixes) {
         if (prefixes == null || prefixes.isEmpty()) {
             return Pattern.compile("^$");
@@ -134,15 +100,7 @@ public class Parser implements Serializable {
         return Pattern.compile("^(?:" + String.join("|", prefixes) + ")");
     }
 
-    /**
-     * Analizza l'input dell'utente e produce un output strutturato
-     * 
-     * @param input       Stringa contenente il comando dell'utente
-     * @param inventory   Set di oggetti nell'inventario del giocatore
-     * @param roomItems   Set di oggetti presenti nella stanza
-     * @param interfaccia Riferimento all'interfaccia grafica del gioco
-     * @return ParserOutput contenente il comando interpretato e i suoi parametri
-     */
+ 
     public ParserOutput parse(String input, Set<Item> inventory, Set<Item> roomItems,
             InterfacciaGioco interfaccia) {
         List<String> tokens = Utils.parseString(input, stopwords);
@@ -151,7 +109,7 @@ public class Parser implements Serializable {
             return new ParserOutput(nullCommand, null, interfaccia);
         }
 
-        // Supponendo che i comandi siano formati da una sola parola
+ 
         Command command = findCommand(tokens.get(0));
         if (command == null) {
             return new ParserOutput(nullCommand, input, interfaccia);

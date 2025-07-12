@@ -21,7 +21,7 @@ public class TheLastBounty extends GameDescription implements GameObservable {
 
     @Override
     public void init() throws Exception {
-        // Aggiunta comandi
+
         Command command = new Command(CommandType.MORTE, "muori");
         getCommands().add(command);
 
@@ -67,7 +67,7 @@ public class TheLastBounty extends GameDescription implements GameObservable {
         command.setAlias(new String[] { "crafta", "costruisci" });
         getCommands().add(command);
 
-        // load caselle gioco
+     
         GestioneDB db = GestioneDB.getInstance();
         currentCasella = db.loadMappa(getCaselle());
         setCurrentCasella(currentCasella);
@@ -79,7 +79,7 @@ public class TheLastBounty extends GameDescription implements GameObservable {
     public void attachObeservers() {
         observer = new ArrayList<>();
         messages = new ArrayList<>();
-        // aggiunta observer
+
         attach(new MorteObserver());
         attach(new HelpObserver());
         attach(new OsservaObserver());

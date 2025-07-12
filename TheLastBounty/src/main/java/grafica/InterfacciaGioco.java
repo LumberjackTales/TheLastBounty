@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package grafica;
 
 import java.awt.Color;
@@ -81,33 +77,22 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
     private final JFrame parentFrame;
 
-    /**
-     * Costruttore per una nuova partita.
-     * 
-     * @param parentFrame Il frame genitore (menu principale)
-     * @throws Exception Se si verifica un errore durante l'inizializzazione del gioco
-     */
+  
     public InterfacciaGioco(JFrame parentFrame) throws Exception {
         initComponents();
         this.parentFrame = parentFrame;
-        //setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+
         setSize(1440,900);
         setLocationRelativeTo(null);
         stampa = StampaTesto.getInstance(textBox, textArea, skip);
         mainComponents(false, null);
     }
 
-    /**
-     * Costruttore per caricare una partita salvata.
-     * 
-     * @param parentFrame Il frame genitore (menu principale)
-     * @param f Il file di salvataggio da caricare
-     * @throws Exception Se si verifica un errore durante il caricamento del gioco
-     */
+  
     public InterfacciaGioco(JFrame parentFrame, File f) throws Exception {
         initComponents();
         this.parentFrame = parentFrame;
-        //setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        
         setSize(1440,900);
         setLocationRelativeTo(null);
         stampa = StampaTesto.getInstance(textBox, textArea, skip);
@@ -121,7 +106,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             Image scaled = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             bottone.setIcon(new ImageIcon(scaled));
             bottone.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            bottone.setIconTextGap(10); // Spazio tra icona e testo
+            bottone.setIconTextGap(10); 
         } else {
             System.err.println("Icona non trovata: " + pathIcona);
         }

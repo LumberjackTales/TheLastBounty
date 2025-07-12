@@ -10,12 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import componentiaggiuntivi.Musica;
 import eccezioni.GetClassificaException;
-/**
- *
- * @author francescomiccoli
- * @author marzullidino
- * @author sivoroberto
- */
+
 public class InterfacciaIniziale extends javax.swing.JFrame {
     private final Musica musica = new Musica();
     private javax.swing.JPanel jPanel1;
@@ -26,9 +21,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     private javax.swing.JButton riconoscimenti;
     private javax.swing.JButton classifica;
 
-    /**
-     * Creates new form InterfacciaIniziale
-     */
+   
     public InterfacciaIniziale() {
         initComponents();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -51,7 +44,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
             Image scaled = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             bottone.setIcon(new ImageIcon(scaled));
             bottone.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            bottone.setIconTextGap(10); // Spazio tra icona e testo
+            bottone.setIconTextGap(10); 
         } else {
             System.err.println("Icona non trovata: " + pathIcona);
         }
@@ -130,11 +123,11 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     
 
         jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.GridBagLayout()); // Layout per centrare i componenti
+        jPanel1.setLayout(new java.awt.GridBagLayout()); 
 
-        // Crea un pannello orizzontale per i pulsanti
+       
         javax.swing.JPanel buttonPanel = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 30, 30));
-        buttonPanel.setOpaque(false); // Sfondo trasparente
+        buttonPanel.setOpaque(false); 
 
         
         java.awt.Color textColor = java.awt.Color.BLACK;
@@ -146,7 +139,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         gioca.setForeground(textColor);
         aggiungiIcona(gioca, "/resource/img/icone/icona_gioca.png");
 
-        gioca.setBackground(new Color(100, 150, 150, 155)); // Sfondo semi-trasparente
+        gioca.setBackground(new Color(100, 150, 150, 155)); 
        
 
         gioca.addActionListener(e -> {
@@ -239,7 +232,7 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE
             );
             if (scelta == JOptionPane.YES_OPTION) {
-                System.exit(0); // chiude il programma
+                System.exit(0); 
             }
         });
 
@@ -253,14 +246,14 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
             
         
 
-        // Centra il pannello dei pulsanti usando GridBagConstraints
+        
         java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = java.awt.GridBagConstraints.CENTER;
         jPanel1.add(buttonPanel, gbc);
 
-        // ...continua con il resto del tuo codice per layout e pack...
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
 

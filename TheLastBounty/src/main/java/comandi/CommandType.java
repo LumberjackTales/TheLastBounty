@@ -1,10 +1,6 @@
 package comandi;
 
-/**
- * @author francescomiccoli
- * @author marzullidino
- * @author sivoroberto
- */
+
 public enum CommandType {
 
     NULL_COMMAND,

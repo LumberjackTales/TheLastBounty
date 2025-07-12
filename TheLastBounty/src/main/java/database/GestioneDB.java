@@ -26,23 +26,12 @@ public class GestioneDB {
     private Properties proprietaDB;
     private static GestioneDB instance = null;
 
-    /**
-     * Costruttore privato della classe GestioneDB.
-     * Inizializza la connessione al database.
-     * 
-     * @throws SQLException se si verifica un errore durante la connessione al database
-     */
+    
     private GestioneDB() throws SQLException {
         connect();
     }
 
-    /**
-     * Restituisce l'istanza singleton della classe GestioneDB.
-     * Se l'istanza non esiste, ne crea una nuova.
-     * 
-     * @return l'istanza singleton di GestioneDB
-     * @throws SQLException se si verifica un errore durante la creazione dell'istanza
-     */
+   
     public static GestioneDB getInstance() throws SQLException {
         if (instance == null) {
             instance = new GestioneDB();
@@ -50,12 +39,7 @@ public class GestioneDB {
         return instance;
     }
 
-    /**
-     * Stabilisce una connessione al database H2.
-     * Configura le proprietà di connessione con username e password.
-     * 
-     * @throws SQLException se si verifica un errore durante la connessione
-     */
+ 
     public void connect() throws SQLException {
         proprietaDB = new Properties();
         proprietaDB.setProperty("user", "francesco");
@@ -63,14 +47,7 @@ public class GestioneDB {
         conn = DriverManager.getConnection("jdbc:h2:./database", proprietaDB);
     }
 
-    /**
-     * Esegue una funzione SQL con meccanismo di retry in caso di errori.
-     * Gestisce automaticamente la riconnessione e la ricreazione del database se necessario.
-     * 
-     * @param function La funzione SQL da eseguire
-     * @return Il risultato della funzione
-     * @throws SQLException Se si verifica un errore persistente dopo tutti i tentativi
-     */
+
     private <T> T executeWithRetry(SqlFunction<T> function) throws SQLException {
         int retryCount = 0, max_retries = 5;
         while (retryCount < max_retries) {
@@ -94,24 +71,12 @@ public class GestioneDB {
         throw new SQLException("Operation failed after " + max_retries + " attempts");
     }
 
-    /**
-     * Crea la struttura del database eseguendo uno script SQL.
-     * 
-     * @throws SQLException se si verifica un errore durante l'esecuzione dello script
-     * @throws FileNotFoundException se il file dello script SQL non viene trovato
-     */
+  
     public void crea() throws SQLException, FileNotFoundException {
         RunScript.execute(conn, new FileReader("src/main/java/database/mondoDB.sql"));
     }
 
-    /**
-     * Carica la mappa di gioco dal database.
-     * Crea e connette tutte le caselle con i loro oggetti.
-     * 
-     * @param caselle Lista dove verranno memorizzate tutte le caselle caricate
-     * @return La casella iniziale (ID 901)
-     * @throws SQLException se si verifica un errore durante il caricamento
-     */
+
     public Casella loadMappa(final List<Casella> caselle) throws SQLException {
         return executeWithRetry(() -> {
             Casella start = null;
@@ -136,13 +101,7 @@ public class GestioneDB {
         });
     }
 
-    /**
-     * Crea un oggetto Casella dai dati del ResultSet.
-     * 
-     * @param rs ResultSet contenente i dati della casella
-     * @return Nuova istanza di Casella
-     * @throws SQLException se si verifica un errore durante la lettura dei dati
-     */
+
     private Casella creaCasellaDaResultSet(ResultSet rs) throws SQLException {
         Casella casella = new Casella(rs.getInt(1));
         casella.setNome(rs.getString(2));
@@ -153,12 +112,7 @@ public class GestioneDB {
         return casella;
     }
 
-    /**
-     * Stabilisce le connessioni tra le caselle secondo le direzioni specificate nel database.
-     * 
-     * @param caselle Lista delle caselle da connettere
-     * @throws SQLException se si verifica un errore durante la lettura delle connessioni
-     */
+
     private void connectCaselle(List<Casella> caselle) throws SQLException {
         executeWithRetry(() -> {
             Map<Integer, Casella> MapCaselle = new HashMap<>();
@@ -199,13 +153,7 @@ public class GestioneDB {
         });
     }
 
-    /**
-     * Carica i dialoghi dal database in base alla priorità specificata.
-     * 
-     * @param priority true per dialoghi prioritari, false per quelli non prioritari
-     * @return Lista dei dialoghi caricati
-     * @throws SQLException se si verifica un errore durante il caricamento
-     */
+
     public List<Dialogo> loadDialoghi(boolean priority) throws SQLException {
         return executeWithRetry(() -> {
             List<Dialogo> dialoghi = new ArrayList<>();
@@ -222,12 +170,7 @@ public class GestioneDB {
         });
     }
 
-    /**
-     * Aggiorna le informazioni di un dialogo con quelle presenti nel database.
-     * 
-     * @param dialogo Il dialogo da aggiornare
-     * @throws SQLException se si verifica un errore durante l'aggiornamento
-     */
+
     public void changeDialogo(Dialogo dialogo) throws SQLException {
         executeWithRetry(() -> {
             String query = "SELECT * FROM Dialoghi WHERE priorita = " + true + " AND id = " + dialogo.getIdCasella()
@@ -259,13 +202,8 @@ public class GestioneDB {
         });
     }
 
-    /**
-     * Recupera tutti gli oggetti associati a una casella specifica.
-     * 
-     * @param id ID della casella
-     * @return Lista degli oggetti presenti nella casella
-     * @throws SQLException se si verifica un errore durante il recupero
-     */
+
+    
     private List<Item> getItems(int id) throws SQLException {
         return executeWithRetry(() -> {
             List<Item> items = new ArrayList<>();
@@ -285,13 +223,7 @@ public class GestioneDB {
         });
     }
 
-    /**
-     * Crea un oggetto Item dai dati del ResultSet.
-     * 
-     * @param rs ResultSet contenente i dati dell'oggetto
-     * @return Nuovo oggetto Item
-     * @throws SQLException se si verifica un errore durante la lettura dei dati
-     */
+
     private Item creaItemDaResultSet(ResultSet rs) throws SQLException {
         Item item = new Item(rs.getString("nome"));
         item.setDescription(rs.getString("descrizione"));
@@ -301,13 +233,7 @@ public class GestioneDB {
         return item;
     }
 
-    /**
-     * Recupera tutti gli alias associati a un oggetto.
-     * 
-     * @param id ID dell'oggetto
-     * @return Set di stringhe contenente gli alias dell'oggetto
-     * @throws SQLException se si verifica un errore durante il recupero
-     */
+
     private Set<String> getAlias(int id) throws SQLException {
         return executeWithRetry(() -> {
             String getAlias = "SELECT * FROM Alias WHERE id = " + id + ";";
@@ -322,29 +248,14 @@ public class GestioneDB {
         });
     }
 
-    /**
-     * Chiude la connessione al database.
-     * 
-     * @throws SQLException se si verifica un errore durante la chiusura
-     */
+ 
     public void close() throws SQLException {
         conn.close();
     }
 
-    @FunctionalInterface
-    /**
-     * Interfaccia funzionale per operazioni SQL.
-     * Permette di eseguire operazioni sul database in modo generico.
-     *
-     * @param <T> il tipo del valore restituito dall'operazione
-     */
+
     private interface SqlFunction<T> {
-        /**
-         * Esegue l'operazione SQL e restituisce un risultato.
-         *
-         * @return il risultato dell'operazione SQL
-         * @throws SQLException se si verifica un errore durante l'esecuzione
-         */
+ 
         T apply() throws SQLException;
     }
 }
