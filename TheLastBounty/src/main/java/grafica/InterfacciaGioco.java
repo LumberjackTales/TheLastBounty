@@ -89,7 +89,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     public InterfacciaGioco(JFrame parentFrame) throws Exception {
         initComponents();
         this.parentFrame = parentFrame;
-        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        setSize(1440,900);
+        setLocationRelativeTo(null);
         stampa = StampaTesto.getInstance(textBox, textArea, skip);
         mainComponents(false, null);
     }
@@ -104,7 +106,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     public InterfacciaGioco(JFrame parentFrame, File f) throws Exception {
         initComponents();
         this.parentFrame = parentFrame;
-        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        setSize(1440,900);
+        setLocationRelativeTo(null);
         stampa = StampaTesto.getInstance(textBox, textArea, skip);
         mainComponents(true, f);
     }
