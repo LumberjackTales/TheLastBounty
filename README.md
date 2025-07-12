@@ -94,6 +94,119 @@ thelastbounty
 
 
 Specifica algebrica
+
+
+## 4 - Specifiche Algebriche
+Due delle strutture dati più utilizzate nel nostro progetto sono la **Mappa** e la **Lista**, in questa sezione verranno presentate le specifiche algebriche di entrambe.
+
+### 4.1 - Specifica algebrica della Lista
+La lista è una struttura dati che permette di memorizzare e recuperare informazioni sfruttando l'indice di posizione degli elementi contenuti.
+### Specifica sintattica
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">Tipi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2"><code>List</code>, <code>Item</code>, <code>Integer</code>, <code>Boolean</code></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><strong>Operatori</strong></td>
+        </tr>
+        <tr>
+            <td><code>newList() -> List</code></td>
+            <td>Crea una nuova lista vuota</td>
+        </tr>
+        <tr>
+            <td><code>add(List, Item, Integer) -> List</code></td>
+            <td>Aggiunge un elemento alla lista nella posizione specificata</td>
+        </tr>
+        <tr>
+            <td><code>isEmpty(List) -> Boolean</code></td>
+            <td>Restituisce <code>true</code> se la lista è vuota altrimenti <code>false</code></td>
+          </tr>
+            <tr>
+                <td><code>getLastIndex(List) -> Integer</code></td>
+                <td>Restituisce l'ultima posizione occupata da un elemento</td>
+            </tr> 
+            <tr>
+                <td><code>getIndex(List, Item) -> Integer</code></td>
+                <td>Restituisce la posizione dell'elemento specificato</td>
+            </tr> 
+            <tr>
+                <td><code>getItem(List, Integer) -> Item</code></td>
+                <td>Restituisce l'elemento nella posizione specificata</td> 
+            </tr> 
+            <tr>
+                <td><code>remove(List, Integer) -> List</code></td>
+                <td>Rimuove dalla lista l'elemento nella posizione specificata</td>  
+            </tr>
+            <tr>
+                <td><code>contains(List, Item) -> Boolean</code></td>
+                <td>Restituisce <code>true</code> se l'elemento specificato è contenuto nella lista</td>
+            </tr>
+    </tbody>
+</table>
+Si noti come <code>Item</code> è un tipo generico, che può essere sostituito con qualsiasi altro tipo di dato.
+
+<code>Interger</code> e <code>Boolean</code> invece, sono tipi ausiliari alla definizione della specifica algebrica della lista.
+
+### Osservazioni e Costruttori
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2">Costruttori di l'</th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <tr>
+      <td><strong>Osservazioni</strong></td>
+      <td><code>newList</code></td>
+      <td><code>add(l, it, id)</code></td>
+    </tr>
+    <tr>
+      <td><code>isEmpty(l')</code></td>
+      <td><code>true</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>getLastIndex(l')</code></td>
+      <td><code>error</code></td>
+      <td>if <code>isEmpty(l)</code> then <code>1</code> else <code>getLastIndex(l) + 1</code></td>
+    </tr>
+    <tr>
+      <td><code>getIndex(l', it')</code></td>
+      <td><code>error</code></td>
+      <td>if <code>it = it'</code> then <code>id</code> else <code>getIndex(l, it')</code></td>
+    </tr>
+    <tr>
+      <td><code>getItem(l', id')</code></td>
+      <td><code>error</code></td>
+      <td>if <code>id = id'</code> then <code>it</code> else <code>getItem(l, id')</code></td>
+    </tr>
+    <tr>
+      <td><code>remove(l', id')</code></td>
+      <td><code>error</code></td>
+      <td>if <code>id = id'</code> then <code>l</code> else <code>add(remove(l, id'), it)</code></td>
+    </tr>
+    <tr>
+      <td><code>contains(l', it')</code></td>
+      <td><code>false</code></td>
+      <td>if <code>it = it'</code> then <code>true</code> else <code>contains(l, it')</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Specifica semantica
+- **DECLARE**
+  - <code>l</code>, <code>l'</code>: <code>List</code>
+  - <code>it</code>, <code>it'</code>: <code>Item</code>
+  - <code>id</code>, <code>id'</code>: <code>Integer</code>
+
 Fornire una specifica algebrica di una struttura dati a scelta tra quelle utilizzate nel progetto. Deve essere fornita una specifica algebrica non assiomatica!
 
 Dettagli implementativi

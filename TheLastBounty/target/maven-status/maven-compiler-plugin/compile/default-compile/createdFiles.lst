@@ -1,7 +1,8 @@
-grafica/InterfacciaImpostazioni.class
-grafica/jPanel1.class
-grafica/InterfacciaIniziale$1.class
+parser/Parser$1.class
+grafica/InterfacciaIniziale.class
 grafica/InterfacciaImpostazioni$1.class
+observer/MuoviObserver$1.class
 grafica/InterfacciaIniziale$2.class
 thelastbounty/TheLastBounty.class
-grafica/InterfacciaIniziale.class
+grafica/InterfacciaImpostazioni.class
+grafica/InterfacciaIniziale$1.class
