@@ -14,6 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
         
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class interfacciaRiconoscimenti extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
@@ -24,8 +29,10 @@ public class interfacciaRiconoscimenti extends JFrame {
     private JPanel bottomPanel;
     private JButton closeButton;
     
-
-   
+    /**
+     *
+     * @param parentFrame
+     */
     public interfacciaRiconoscimenti(InterfacciaIniziale parentFrame) {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

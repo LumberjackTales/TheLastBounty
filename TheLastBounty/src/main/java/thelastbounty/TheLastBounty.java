@@ -7,7 +7,17 @@ import java.util.logging.Logger;
 import classifica.Server;
 import grafica.InterfacciaIniziale;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class TheLastBounty {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             try {

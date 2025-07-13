@@ -12,12 +12,20 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class Musica {
 
     private Clip musicaGioco;
     private static boolean isPaused=false;
 
-    
+    /**
+     *
+     * @param pathAudio
+     */
     public void playMusic(String pathAudio) {
         try {
             java.net.URL audioUrl = getClass().getResource(pathAudio);
@@ -36,7 +44,9 @@ public class Musica {
         }
     }
 
-    
+    /**
+     *
+     */
     public void stopMusica() {
         if (musicaGioco != null && musicaGioco.isRunning()) {
             musicaGioco.stop();
@@ -44,7 +54,9 @@ public class Musica {
         }
     }
 
-    
+    /**
+     *
+     */
     public void pausaMusica() {
         if (musicaGioco != null && musicaGioco.isRunning()) {
             musicaGioco.stop();
@@ -52,22 +64,34 @@ public class Musica {
         }
     }
 
-    
+    /**
+     *
+     */
     public void riprendiMusica() {
         musicaGioco.start();
         isPaused = false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isInPaused(){
         return isPaused;
     }
 
-  
+    /**
+     *
+     * @return
+     */
     public boolean isPlaying() {
         return musicaGioco.isRunning();
     }
 
-  
+    /**
+     *
+     * @param volume
+     */
     public void setVolume(float volume) {
         volume = (float) Math.floor(volume * 100);
         if (volume % 10 != 0)
@@ -80,7 +104,10 @@ public class Musica {
         }
     }
 
-  
+    /**
+     *
+     * @return
+     */
     public float getVolume() {
         FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);        
         float volume = (float) Math.floor((float) Math.pow(10f, gainControl.getValue() / 20f) * 100);
@@ -90,6 +117,10 @@ public class Musica {
         return volume;
     }
 
+    /**
+     *
+     * @param filePath
+     */
     public void riproduciClip(String filePath) {
         try {
             Clip clip = AudioSystem.getClip();

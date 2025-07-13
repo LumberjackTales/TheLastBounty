@@ -18,6 +18,11 @@ import classifica.Record;
 
 import componentiaggiuntivi.Musica;
         
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaFineGioco extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
@@ -32,8 +37,11 @@ public class InterfacciaFineGioco extends JFrame {
     private JPanel bottomPanel;
     private JButton tornaMenu;
     
-
-   
+    /**
+     *
+     * @param parentFrame
+     * @param tempo
+     */
     public InterfacciaFineGioco(JFrame parentFrame, long tempo) {
         this.parentFrame = parentFrame;
         

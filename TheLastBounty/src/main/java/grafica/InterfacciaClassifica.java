@@ -19,7 +19,11 @@ import classifica.Classifica;
 import classifica.Client;
 import eccezioni.GetClassificaException;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaClassifica extends javax.swing.JFrame {
     private final Color BACKGROUND = new Color(100, 150, 150, 155);
     private final Color BACKGROUND_BLACK = new Color(54, 69, 79);
@@ -29,6 +33,10 @@ public class InterfacciaClassifica extends javax.swing.JFrame {
     private JTable classifica;
     private DefaultTableModel nonEditableModel;
 
+    /**
+     *
+     * @throws Exception
+     */
     public InterfacciaClassifica() throws Exception {
         initComponents();
         setExtendedState(javax.swing.JFrame.NORMAL);

@@ -11,6 +11,11 @@ import comandi.CommandType;
 import giocatore.Dialogo;
 import giocatore.Item;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class UsaObserver implements GameObserver {
 
     @Override

@@ -9,6 +9,11 @@ import giocatore.Dialogo;
 import giocatore.Inventario;
 import giocatore.Item;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class ParlaObserver implements GameObserver {
 
     @Override

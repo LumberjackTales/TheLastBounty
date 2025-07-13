@@ -7,11 +7,17 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import database.GestioneDB;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class Inventario implements Serializable {
     private final HashMap<Item, Integer> inventario;
 
-    
+    /**
+     *
+     */
     public Inventario() {
         inventario = new HashMap<>();
         try {
@@ -25,7 +31,11 @@ public class Inventario implements Serializable {
         }
     }
 
-    
+    /**
+     *
+     * @param oggetto
+     * @param quantity
+     */
     public void addOggetto(Item oggetto, int quantity) {
         if (inventario.containsKey(oggetto)) {
             inventario.put(oggetto, inventario.get(oggetto) + quantity);
@@ -34,7 +44,10 @@ public class Inventario implements Serializable {
         }
     }
 
-    
+    /**
+     *
+     * @param oggetto
+     */
     public void remove(Item oggetto) {
         if (inventario.containsKey(oggetto)) {
             if (inventario.get(oggetto) > 1) {
@@ -45,22 +58,36 @@ public class Inventario implements Serializable {
         }
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public int getSize() {
         return inventario.size();
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public Set<Item> getOggetti() {
         return inventario.keySet();
     }
 
-    
+    /**
+     *
+     * @param oggetto
+     * @return
+     */
     public boolean contains(Item oggetto) {
         return inventario.containsKey(oggetto);
     }
 
-   
+    /**
+     *
+     * @param oggetto
+     * @return
+     */
     public boolean contains(String... oggetto) {
         for (String nameItem : oggetto) {
             boolean found = false;
@@ -77,7 +104,11 @@ public class Inventario implements Serializable {
         return true;
     }
 
-
+    /**
+     *
+     * @param oggetto
+     * @return
+     */
     public int getQuantity(Item oggetto) {
         if (!inventario.containsKey(oggetto)) {
             return 0;
@@ -85,8 +116,10 @@ public class Inventario implements Serializable {
         return inventario.get(oggetto);
     }
 
-
-  
+    /**
+     *
+     * @return
+     */
     public String[][] getInventarioToJTableData() {
         String[][] invS = new String[inventario.size()][2];
         int i = 0;
@@ -99,7 +132,10 @@ public class Inventario implements Serializable {
         return invS;
     }
 
- 
+    /**
+     *
+     * @return
+     */
     public HashMap<Item, Integer> getInventario() {
         return inventario;
     }

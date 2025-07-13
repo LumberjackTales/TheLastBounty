@@ -7,6 +7,11 @@ import comandi.CommandType;
 import giocatore.Inventario;
 import giocatore.Item;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class CreaObserver implements GameObserver{
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {

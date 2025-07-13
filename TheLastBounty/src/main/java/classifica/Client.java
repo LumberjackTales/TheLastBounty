@@ -8,12 +8,21 @@ import java.net.Socket;
 import eccezioni.GetClassificaException;
 import eccezioni.SendRecordException;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class Client {
 
     private static final String SERVER_ADDRESS = "localhost";
     private final int serverPort = 6666;
 
-    
+    /**
+     *
+     * @param record
+     * @throws Exception
+     */
     public void sendRecord(Record record) throws Exception {
         try (Socket socket = new Socket(SERVER_ADDRESS, serverPort);
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -29,7 +38,11 @@ public class Client {
         }
     }
 
-    
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public Classifica requestClassifica() throws Exception {
         Classifica recordTracker = new Classifica();
         try (Socket socket = new Socket(SERVER_ADDRESS, serverPort);
@@ -48,7 +61,11 @@ public class Client {
         return recordTracker;
     }
 
-    
+    /**
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void end() throws IOException, ClassNotFoundException {
         try (Socket socket = new Socket(SERVER_ADDRESS, serverPort);
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());

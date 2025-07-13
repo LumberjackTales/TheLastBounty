@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 
 import thelastbounty.TheLastBounty;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class Server {
 
     private static final String FILE_NAME = System.getProperty("user.dir") + "/src/main/resources/resource/classifica/classifica.dat";
@@ -20,7 +25,10 @@ public class Server {
     private final ServerSocket serverSocket;
     private final int port = 6666;
 
-   
+    /**
+     *
+     * @throws IOException
+     */
     public Server() throws IOException {
         classifica = loadClassifica();
         serverSocket = new ServerSocket(port);
@@ -48,7 +56,10 @@ public class Server {
         }
     }
 
-  
+    /**
+     *
+     * @throws Exception
+     */
     public void start() throws Exception {
         System.out.println("Server in ascolto...");
         while (true) {
@@ -77,7 +88,11 @@ public class Server {
         }
     }
 
- 
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         try {
             Server server = new Server();

@@ -7,6 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivos
+ */
 public class StampaTesto implements Runnable {
 
     private String[] paroleDaStampare;
@@ -26,18 +31,30 @@ public class StampaTesto implements Runnable {
         this.isFinal = false;
     }
 
-
+    /**
+     *
+     * @param textFieldInput
+     * @param textAreaOutput
+     * @param skip
+     * @return
+     */
     public static StampaTesto getInstance(JTextField textFieldInput, JTextArea textAreaOutput, JButton skip) {
         instance = new StampaTesto(textFieldInput, textAreaOutput, skip);
         return instance;
     }
 
-   
+    /**
+     *
+     * @return
+     */
     public static StampaTesto getInstance() {
         return instance;
     }
 
-   
+    /**
+     *
+     * @param testo
+     */
     public void stampa(String testo) {
         this.paroleDaStampare = testo.split(" ");
         if (thread != null && thread.isAlive()) {
@@ -48,6 +65,10 @@ public class StampaTesto implements Runnable {
         thread.start();
     }
 
+    /**
+     *
+     * @param r
+     */
     public void join(Runnable r){
         new Thread(() -> {
             if (thread != null && thread.isAlive()) {
@@ -64,23 +85,33 @@ public class StampaTesto implements Runnable {
         
     }
 
-    
+    /**
+     *
+     * @param testo
+     */
     public void stampaFinale(String testo) {
         isFinal = true;
         stampa(testo);
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public boolean isAlive() {
         return thread != null && thread.isAlive();
     }
 
-
+    /**
+     *
+     */
     public void interrupt() {
         thread.interrupt();
     }
 
-    
+    /**
+     *
+     */
     public void printRemaining() {
         for (; parolaCorrente < paroleDaStampare.length; parolaCorrente++) {
             if (paroleDaStampare[parolaCorrente].equals("\\n"))
@@ -90,12 +121,17 @@ public class StampaTesto implements Runnable {
         }
     }
 
-    
+    /**
+     *
+     * @param attesa
+     */
     public static void setAttesa(int attesa) {
         ATTESA = attesa;
     }
 
-  
+    /**
+     *
+     */
     public void run() {
         textFieldInput.setEnabled(false);
         skip.setEnabled(true);

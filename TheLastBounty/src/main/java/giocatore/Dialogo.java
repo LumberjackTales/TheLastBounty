@@ -6,7 +6,11 @@ import java.util.logging.Logger;
 
 import database.GestioneDB;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class Dialogo implements Serializable {
     private final int idCasella;
     private String dialogo;
@@ -14,7 +18,10 @@ public class Dialogo implements Serializable {
     private String messaggioRispCorretta;
     private String messaggioRispErrata;
 
-  
+    /**
+     *
+     * @param idCasella
+     */
     public Dialogo(int idCasella) {
         this.idCasella = idCasella;
         this.dialogo = "";
@@ -23,7 +30,13 @@ public class Dialogo implements Serializable {
         this.messaggioRispErrata = "";
     }
 
-   
+    /**
+     *
+     * @param dialogo
+     * @param risposta
+     * @param messaggioRispCorretta
+     * @param messaggioRispErrata
+     */
     public void setInfoDialogo(String dialogo, String risposta, String messaggioRispCorretta,
             String messaggioRispErrata) {
         this.dialogo = dialogo;
@@ -32,51 +45,74 @@ public class Dialogo implements Serializable {
         this.messaggioRispErrata = messaggioRispErrata;
     }
 
-  
+    /**
+     *
+     * @return
+     */
     public String getDialogo() {
         return dialogo;
     }
 
-
+    /**
+     *
+     * @param risposta
+     * @return
+     */
     public boolean valutaRisposta(String risposta) {
         return this.risposta.toLowerCase().replaceAll(" ", "").equals(risposta.toLowerCase().replaceAll(" ", ""));
     }
 
- 
+    /**
+     *
+     * @return
+     */
     public int getIdCasella() {
         return idCasella;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getMessaggioRispCorretta() {
         return messaggioRispCorretta;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getMessaggioRispErrata() {
         return messaggioRispErrata;
     }
 
-
-    
+    /**
+     *
+     * @param risposta
+     */
     public void setRisposta(String risposta) {
         this.risposta = risposta;
     }
 
-
-    
+    /**
+     *
+     * @return
+     */
     public String getRisposta() {
         return risposta;
     }
 
-
-    
+    /**
+     *
+     * @param testo
+     */
     public void setTestoDialogo(String testo) {
         dialogo = testo;
     }
 
-  
-    
+    /**
+     *
+     */
     public void changeDialogo() {
         try {
             GestioneDB.getInstance().changeDialogo(Dialogo.this);

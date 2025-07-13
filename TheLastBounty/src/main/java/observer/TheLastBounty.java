@@ -13,6 +13,11 @@ import parser.ParserOutput;
 import comandi.Command;
 import comandi.CommandType;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class TheLastBounty extends GameDescription implements GameObservable {
     private transient List<GameObserver> observer;
     private transient ParserOutput parserOutput;
@@ -76,6 +81,9 @@ public class TheLastBounty extends GameDescription implements GameObservable {
         attachObeservers();
     }
 
+    /**
+     *
+     */
     public void attachObeservers() {
         observer = new ArrayList<>();
         messages = new ArrayList<>();

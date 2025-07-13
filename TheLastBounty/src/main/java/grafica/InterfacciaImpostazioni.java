@@ -19,7 +19,11 @@ import javax.swing.SwingConstants;
 import componentiaggiuntivi.Musica;
 import componentiaggiuntivi.StampaTesto;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaImpostazioni extends JFrame {
 
     private Musica musica;
@@ -49,9 +53,10 @@ public class InterfacciaImpostazioni extends JFrame {
     private JButton closeButton;
     private JLabel currentVolumeLevel;
 
-    
-
-
+    /**
+     *
+     * @param musica
+     */
     public InterfacciaImpostazioni(Musica musica) {
         this.musica = musica;
         initializeFrameSettings();
@@ -261,6 +266,9 @@ public class InterfacciaImpostazioni extends JFrame {
         }
     }
 
+    /**
+     *
+     */
     public void percentualeToIntero(){
         int volume = (int) ((musica.getVolume()) * 100);
         currentVolumeLevel.setText(volume + "%");       

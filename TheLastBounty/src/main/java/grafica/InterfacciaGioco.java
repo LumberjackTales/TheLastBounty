@@ -33,7 +33,11 @@ import parser.Parser;
 import parser.ParserOutput;
 import observer.TheLastBounty;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaGioco extends javax.swing.JFrame {
     private final Font FONT = new Font("Serif", Font.PLAIN, 20);
     private final String HUNTER = "src/main/resources/resource/img/cacciatore.png";
@@ -69,7 +73,11 @@ public class InterfacciaGioco extends javax.swing.JFrame {
 
     private final JFrame parentFrame;
 
-  
+    /**
+     *
+     * @param parentFrame
+     * @throws Exception
+     */
     public InterfacciaGioco(JFrame parentFrame) throws Exception {
         initComponents();
         this.parentFrame = parentFrame;
@@ -80,7 +88,12 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         mainComponents(false, null);
     }
 
-  
+    /**
+     *
+     * @param parentFrame
+     * @param f
+     * @throws Exception
+     */
     public InterfacciaGioco(JFrame parentFrame, File f) throws Exception {
         initComponents();
         this.parentFrame = parentFrame;
@@ -114,6 +127,12 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param loadGame
+     * @param f
+     * @throws Exception
+     */
     public void mainComponents(boolean loadGame, File f) throws Exception {
         game = new TheLastBounty();
         game.setChrono(chrono);
@@ -444,13 +463,18 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         }
     }
 
-
+    /**
+     *
+     */
     public void fineGioco() {
         InterfacciaFineGioco InterfacciaFineGioco = new InterfacciaFineGioco(parentFrame, game.getChrono().getElapsedTime());
         InterfacciaFineGioco.setVisible(true);
         dispose();
     }
 
+    /**
+     *
+     */
     public void morte(){
         InterfacciaMorte InterfacciaMorte = new InterfacciaMorte(parentFrame);
         InterfacciaMorte.setVisible(true);
@@ -461,19 +485,34 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         return new ImageIcon(image.getImage().getScaledInstance(450, 600, Image.SCALE_DEFAULT));
     }
 
-
+    /**
+     *
+     * @param image
+     */
     public void changeImageViewer(ImageIcon image) {
         imageLabel.setIcon(getScaledImage(image));
     }
 
+    /**
+     *
+     * @return
+     */
     public final Musica getMusica() {
         return musica;
     }
 
+    /**
+     *
+     * @return
+     */
     public Chrono getChrono() {
         return chrono;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFrame getParentFrame() {
         return parentFrame;
     }

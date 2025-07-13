@@ -10,6 +10,11 @@ import componentiaggiuntivi.GameObserver;
 import parser.ParserOutput;
 import comandi.CommandType;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class SalvaObserver implements GameObserver {
 
     @Override

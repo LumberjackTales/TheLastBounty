@@ -13,6 +13,11 @@ import javax.swing.JPanel;
 
 import componentiaggiuntivi.Musica;
         
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaMorte extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
@@ -27,8 +32,10 @@ public class InterfacciaMorte extends JFrame {
     private JButton tornaMenu;
     private Musica musica = new Musica();
     
-
-   
+    /**
+     *
+     * @param parentFrame
+     */
     public InterfacciaMorte(JFrame parentFrame) {
         this.parentFrame = parentFrame;
         try {

@@ -9,6 +9,11 @@ import parser.ParserOutput;
 import comandi.CommandType;
 import giocatore.Item;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class OsservaObserver implements GameObserver {
 
     @Override

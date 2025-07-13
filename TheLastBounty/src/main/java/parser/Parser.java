@@ -14,13 +14,21 @@ import comandi.Command;
 import comandi.CommandType;
 import giocatore.Item;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class Parser implements Serializable {
     private final Set<String> stopwords;
     private final List<Command> commands;
     private final Command nullCommand = new Command(CommandType.NULL_COMMAND, null);
 
-  
+    /**
+     *
+     * @param stopwords
+     * @param commands
+     */
     public Parser(Set<String> stopwords, List<Command> commands) {
         this.stopwords = stopwords;
         this.commands = commands;
@@ -100,7 +108,14 @@ public class Parser implements Serializable {
         return Pattern.compile("^(?:" + String.join("|", prefixes) + ")");
     }
 
- 
+    /**
+     *
+     * @param input
+     * @param inventory
+     * @param roomItems
+     * @param interfaccia
+     * @return
+     */
     public ParserOutput parse(String input, Set<Item> inventory, Set<Item> roomItems,
             InterfacciaGioco interfaccia) {
         List<String> tokens = Utils.parseString(input, stopwords);

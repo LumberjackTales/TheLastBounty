@@ -12,6 +12,11 @@ import javax.swing.table.DefaultTableModel;
 
 import giocatore.Inventario;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaInventario extends javax.swing.JFrame {
    
     private static final Color WHITE_CUSTOM = new Color(250, 249, 246);
@@ -24,6 +29,10 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     private javax.swing.JButton close;
     private javax.swing.JTable oggetti;
 
+    /**
+     *
+     * @param inv
+     */
     public InterfacciaInventario(Inventario inv) {
         initComponents(inv);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);

@@ -11,6 +11,11 @@ import javax.swing.JOptionPane;
 import componentiaggiuntivi.Musica;
 import eccezioni.GetClassificaException;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class InterfacciaIniziale extends javax.swing.JFrame {
     private final Musica musica = new Musica();
     private javax.swing.JPanel jPanel1;
@@ -21,7 +26,9 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
     private javax.swing.JButton riconoscimenti;
     private javax.swing.JButton classifica;
 
-   
+    /**
+     *
+     */
     public InterfacciaIniziale() {
         initComponents();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -263,6 +270,10 @@ public class InterfacciaIniziale extends javax.swing.JFrame {
         pack();
     }        
 
+    /**
+     *
+     * @return
+     */
     public Musica Musica() {        
         return this.musica;
     }

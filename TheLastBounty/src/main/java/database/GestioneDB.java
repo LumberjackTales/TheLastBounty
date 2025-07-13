@@ -20,6 +20,11 @@ import org.h2.tools.RunScript;
 import giocatore.Dialogo;
 import giocatore.Item;
 
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class GestioneDB {
 
     private static Connection conn;
@@ -31,7 +36,11 @@ public class GestioneDB {
         connect();
     }
 
-   
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public static GestioneDB getInstance() throws SQLException {
         if (instance == null) {
             instance = new GestioneDB();
@@ -39,7 +48,10 @@ public class GestioneDB {
         return instance;
     }
 
- 
+    /**
+     *
+     * @throws SQLException
+     */
     public void connect() throws SQLException {
         proprietaDB = new Properties();
         proprietaDB.setProperty("user", "francesco");
@@ -71,12 +83,21 @@ public class GestioneDB {
         throw new SQLException("Operation failed after " + max_retries + " attempts");
     }
 
-  
+    /**
+     *
+     * @throws SQLException
+     * @throws FileNotFoundException
+     */
     public void crea() throws SQLException, FileNotFoundException {
         RunScript.execute(conn, new FileReader("src/main/java/database/mondoDB.sql"));
     }
 
-
+    /**
+     *
+     * @param caselle
+     * @return
+     * @throws SQLException
+     */
     public Casella loadMappa(final List<Casella> caselle) throws SQLException {
         return executeWithRetry(() -> {
             Casella start = null;
@@ -153,7 +174,12 @@ public class GestioneDB {
         });
     }
 
-
+    /**
+     *
+     * @param priority
+     * @return
+     * @throws SQLException
+     */
     public List<Dialogo> loadDialoghi(boolean priority) throws SQLException {
         return executeWithRetry(() -> {
             List<Dialogo> dialoghi = new ArrayList<>();
@@ -170,7 +196,11 @@ public class GestioneDB {
         });
     }
 
-
+    /**
+     *
+     * @param dialogo
+     * @throws SQLException
+     */
     public void changeDialogo(Dialogo dialogo) throws SQLException {
         executeWithRetry(() -> {
             String query = "SELECT * FROM Dialoghi WHERE priorita = " + true + " AND id = " + dialogo.getIdCasella()
@@ -185,6 +215,12 @@ public class GestioneDB {
         });
     }
 
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws SQLException
+     */
     public HashMap<Item, Integer> loadStaringItems() throws FileNotFoundException, SQLException {
         return executeWithRetry(() -> {
             HashMap<Item, Integer> items = new HashMap<>();
@@ -248,7 +284,10 @@ public class GestioneDB {
         });
     }
 
- 
+    /**
+     *
+     * @throws SQLException
+     */
     public void close() throws SQLException {
         conn.close();
     }

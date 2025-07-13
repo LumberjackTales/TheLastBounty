@@ -13,7 +13,11 @@ import com.google.gson.Gson;
 
 import giocatore.Dialogo;
 
-
+/**
+ * @author Francesco Pio Miccoli
+ * @author Leonardo Nicola Marzulli
+ * @author Roberto Sivo
+ */
 public class QuizAPI {
 
 	
@@ -32,8 +36,10 @@ public class QuizAPI {
 		}
 	}
 
-	
-	public class Results {
+    /**
+     *
+     */
+    public class Results {
 		private String type;
 		private String difficulty;
 		private String category;
@@ -41,63 +47,99 @@ public class QuizAPI {
 		private String correct_answer;
 		private List<String> incorrect_answers;
 
-		
-		public List<String> getIncorrect_answers() {
+            /**
+             *
+             * @return
+             */
+            public List<String> getIncorrect_answers() {
 			return incorrect_answers;
 		}
 
-		
-		public void setIncorrect_answers(List<String> incorrect_answers) {
+            /**
+             *
+             * @param incorrect_answers
+             */
+            public void setIncorrect_answers(List<String> incorrect_answers) {
 			this.incorrect_answers = incorrect_answers;
 		}
 
-		
-		public String getType() {
+            /**
+             *
+             * @return
+             */
+            public String getType() {
 			return type;
 		}
 
-		
-		public String getDifficulty() {
+            /**
+             *
+             * @return
+             */
+            public String getDifficulty() {
 			return difficulty;
 		}
 
-		
-		public String getCategory() {
+            /**
+             *
+             * @return
+             */
+            public String getCategory() {
 			return category;
 		}
 
-		
-		public String getQuestion() {
+            /**
+             *
+             * @return
+             */
+            public String getQuestion() {
 			return question;
 		}
 
-		
-		public String getCorrect_answer() {
+            /**
+             *
+             * @return
+             */
+            public String getCorrect_answer() {
 			return correct_answer;
 		}
 
-		
-		public void setType(String type) {
+            /**
+             *
+             * @param type
+             */
+            public void setType(String type) {
 			this.type = type;
 		}
 
-		
-		public void setDifficulty(String difficulty) {
+            /**
+             *
+             * @param difficulty
+             */
+            public void setDifficulty(String difficulty) {
 			this.difficulty = difficulty;
 		}
 
-		
-		public void setCategory(String category) {
+            /**
+             *
+             * @param category
+             */
+            public void setCategory(String category) {
 			this.category = category;
 		}
 
-		
-		public void setQuestion(String question) {
+            /**
+             *
+             * @param question
+             */
+            public void setQuestion(String question) {
 			this.question = question;
 		}
 
-		
-		public void setCorrect_answer(String correct_answer) {
+            /**
+             *
+             * @param correct_answer
+             */
+            public void setCorrect_answer(String correct_answer) {
 			this.correct_answer = correct_answer;
 		}
 	}
@@ -115,8 +157,12 @@ public class QuizAPI {
 		return gson.fromJson(jsonString, ResponseAPI.class);
 	}
 
-	
-	public static Dialogo getQuiz(Dialogo dialogo) {
+    /**
+     *
+     * @param dialogo
+     * @return
+     */
+    public static Dialogo getQuiz(Dialogo dialogo) {
 		ResponseAPI r;
 		int maxRequest = 5;
 		int totalRequest = 0;
@@ -153,7 +199,11 @@ public class QuizAPI {
 		return dialogo;
 	}
 
-	public static String Tutorial(){
+    /**
+     *
+     * @return
+     */
+    public static String Tutorial(){
 
 		String tutorial = " \n \t \t TUTORIAL SUL QUIZ \n \n Ti verra proposta una domanda a tema mitologia antica ,con 4 risposte possibili, di cui una sola è corretta. \n Essendo che la domanda vieni generata casualmente da un sito esterno di API, la domanda verrà posta in inglese, se non sai l'inglese faresti bene ad impararlo dato che siamo nel 2025 e non nel 1940!! \n Ma non preoccuparti, basta rispondere con il nome della risposta che secondo te è corretta, ad esempio se la risposta corretta è [Cerbero] tra le 4 opzioni , basta rispondere con il nome [Cerbero] e il gioco proseguirà con il dialogo del guardiano. Se sbagli a rispondere alla domanda, puoi sempre riprovare rifacendo il comando [PARLA], oppure puoi trovare un altra soluzione.... \n \n Buona fortuna!!. \n \n";
 		return tutorial;
