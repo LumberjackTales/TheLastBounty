@@ -1,6 +1,15 @@
+<!-- Inserisci questo all'inizio del file Markdown -->
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+<!-- Poi usa uno span o un div per applicare il font -->
+<span style="font-family: 'Uncial Antiqua', cursive; font-size: 36px;">The Last Bounty</span>
+
 Descrizione dell’avventura
 
-The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di liberare 
+The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di uccidere il famigerato Vangrath.
+
+Vangrath era uno dei custodi dell'arca del vuoto situata in un antico villaggio nel triangolo delle bermuda
+
 Descrivere brevemente l’avventura testuale/grafica realizzata.
 
 Progettazione
