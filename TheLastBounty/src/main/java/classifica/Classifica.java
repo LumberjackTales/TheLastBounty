@@ -14,7 +14,7 @@ public class Classifica implements Serializable {
     private List<Record> records;
 
     /**
-     *
+     * costruttore di Classifica
      */
     public Classifica() {
         records = new ArrayList<>();

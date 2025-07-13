@@ -93,7 +93,7 @@ public class GestioneDB {
     }
 
     /**
-     *
+     * carica la mappa del gioco
      * @param caselle
      * @return
      * @throws SQLException
@@ -175,7 +175,7 @@ public class GestioneDB {
     }
 
     /**
-     *
+     * carica i dialoghi di gioco
      * @param priority
      * @return
      * @throws SQLException
@@ -197,7 +197,7 @@ public class GestioneDB {
     }
 
     /**
-     *
+     * cambia il dialogo in base alla risposta ricevuta
      * @param dialogo
      * @throws SQLException
      */

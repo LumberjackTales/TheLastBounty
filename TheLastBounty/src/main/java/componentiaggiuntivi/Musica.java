@@ -23,7 +23,7 @@ public class Musica {
     private static boolean isPaused=false;
 
     /**
-     *
+     * riproduce musica
      * @param pathAudio
      */
     public void playMusic(String pathAudio) {
@@ -45,7 +45,7 @@ public class Musica {
     }
 
     /**
-     *
+     * interrompe riproduzione musica
      */
     public void stopMusica() {
         if (musicaGioco != null && musicaGioco.isRunning()) {
@@ -55,7 +55,7 @@ public class Musica {
     }
 
     /**
-     *
+     * mette in pausa  la musica
      */
     public void pausaMusica() {
         if (musicaGioco != null && musicaGioco.isRunning()) {
@@ -65,7 +65,7 @@ public class Musica {
     }
 
     /**
-     *
+     * riprende la riproduzione della musica
      */
     public void riprendiMusica() {
         musicaGioco.start();
@@ -89,7 +89,7 @@ public class Musica {
     }
 
     /**
-     *
+     * imposta il volume della musica
      * @param volume
      */
     public void setVolume(float volume) {

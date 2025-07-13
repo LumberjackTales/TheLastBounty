@@ -34,7 +34,7 @@ public class Server {
         serverSocket = new ServerSocket(port);
     }
 
-  
+  // carica classifica
     private Classifica loadClassifica() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             return (Classifica) ois.readObject();
@@ -43,7 +43,7 @@ public class Server {
         }
     }
 
-  
+  //salva Classifica
     private void saveClassifica() throws Exception {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(classifica);

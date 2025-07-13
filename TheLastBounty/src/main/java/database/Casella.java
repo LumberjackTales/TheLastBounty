@@ -67,7 +67,7 @@ public class Casella implements Serializable {
     }
 
     /**
-     *
+     * legge tutte le descrizioni dela casella corrente dal database
      * @return
      */
     public String getDescrizione() {
@@ -83,7 +83,7 @@ public class Casella implements Serializable {
     }
 
     /**
-     *
+     * imposta la descrizione iniziale dal database
      * @param descrizione
      */
     public void setDescrizioneIniziale(String descrizione) {
@@ -91,7 +91,7 @@ public class Casella implements Serializable {
     }
 
     /**
-     *
+     * imposta la descrizione aggiornata dal database
      * @param descrizioneAggiornata
      */
     public void setDescrizioneAggiornata(String descrizioneAggiornata) {
@@ -99,7 +99,7 @@ public class Casella implements Serializable {
     }
 
     /**
-     *
+     * imposta la desrizione aggiuntiva dal database
      * @param descrizioneAggiuntiva
      */
     public void setDescrizioneAggiuntiva(String descrizioneAggiuntiva) {
@@ -107,7 +107,7 @@ public class Casella implements Serializable {
     }
 
     /**
-     *
+     * verifica se una casella è accessibile
      * @return
      */
     public boolean isEnterable() {
