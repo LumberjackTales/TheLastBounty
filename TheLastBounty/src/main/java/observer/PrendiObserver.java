@@ -16,6 +16,7 @@ import giocatore.Item;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+//questo osserrvatore gestisce la raccolta degli oggetti
 public class PrendiObserver implements GameObserver {
 
     @Override

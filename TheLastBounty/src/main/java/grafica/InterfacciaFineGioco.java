@@ -23,6 +23,12 @@ import componentiaggiuntivi.Musica;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     *  interfaccia grafica per la schermata di fine gioco
+     * 
+     */
+
 public class InterfacciaFineGioco extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);

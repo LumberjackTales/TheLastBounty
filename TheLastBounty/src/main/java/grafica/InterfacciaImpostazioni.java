@@ -24,6 +24,11 @@ import componentiaggiuntivi.StampaTesto;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     * interfaccia grafica per le impostazioni di gioco
+     */
+
 public class InterfacciaImpostazioni extends JFrame {
 
     private Musica musica;
@@ -54,7 +59,7 @@ public class InterfacciaImpostazioni extends JFrame {
     private JLabel currentVolumeLevel;
 
     /**
-     *
+     * * Costruttore dell'interfaccia delle impostazioni di gioco.
      * @param musica
      */
     public InterfacciaImpostazioni(Musica musica) {
@@ -63,7 +68,9 @@ public class InterfacciaImpostazioni extends JFrame {
         initComponents();
         cambiaStatoPulsante();
     }
-
+    /**
+     *  Imposta le proprietà di base della finestra delle impostazioni.
+     */
     private void initializeFrameSettings() {
         setTitle("Impostazioni di Gioco");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/img/Capanna_2.0_.png")));
@@ -74,7 +81,10 @@ public class InterfacciaImpostazioni extends JFrame {
         setResizable(false);
         setBackground(BLACK_CUSTOM);
     }
-
+/**
+     *  inizializza la grfafica dell'interfaccia impostazioni
+     * 
+     */
     private void initComponents() {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(BLACK_CUSTOM);
@@ -145,7 +155,10 @@ public class InterfacciaImpostazioni extends JFrame {
         button.setMinimumSize(size);
         button.setMaximumSize(size); 
     }
-
+/**
+     *  crea e configura il pulsante per mutare la musica 
+     * 
+     */
     private void setupMusicControls() {
         musicPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         musicPanel.setOpaque(false); 
@@ -182,7 +195,10 @@ public class InterfacciaImpostazioni extends JFrame {
 
         musicPanel.add(musicToggleButton);
     }
-
+/**
+     *  crea e configura i controlli del volume della musica 
+     * 
+     */
     private void setupVolumeControls() {
         volumePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         volumePanel.setOpaque(false);
@@ -216,7 +232,10 @@ public class InterfacciaImpostazioni extends JFrame {
          });
         volumePanel.add(volumeUpButton);
     }
-
+/**
+     *  crea e configura i controlli della velocità testo
+     * 
+     */
     private void setupTextSpeedControls() {
         textSpeedPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         textSpeedPanel.setOpaque(false);
@@ -247,13 +266,19 @@ public class InterfacciaImpostazioni extends JFrame {
         });
         textSpeedPanel.add(fastTextButton);
     }
-
+/**
+     *  *Crea e configura il pulsante di chiusura dell'interfaccia impostazioni
+     * 
+     */
     private void setupCloseButton() {
         closeButton = new JButton("Chiudi");
         styleButton(closeButton, RED_CUSTOM, WHITE_CUSTOM, 20f, new Dimension(150, 50));
         closeButton.addActionListener(e -> dispose());
     }
-
+/**
+     *  * Cambia lo stato del pulsante della musica in base al suo stato attuale.
+     *   
+     */ 
     private void cambiaStatoPulsante(){
         if (musica != null) {
                  if (!musica.isPlaying()) {
@@ -267,7 +292,7 @@ public class InterfacciaImpostazioni extends JFrame {
     }
 
     /**
-     *
+     * * Converte il volume della musica da un valore percentuale a un intero
      */
     public void percentualeToIntero(){
         int volume = (int) ((musica.getVolume()) * 100);

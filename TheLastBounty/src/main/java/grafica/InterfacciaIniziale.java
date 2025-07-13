@@ -16,6 +16,12 @@ import eccezioni.GetClassificaException;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     *  interfaccia grafica per l'interfaccia iniziale del gioco
+     * 
+     */
+
 public class InterfacciaIniziale extends javax.swing.JFrame {
     private final Musica musica = new Musica();
     private javax.swing.JPanel jPanel1;

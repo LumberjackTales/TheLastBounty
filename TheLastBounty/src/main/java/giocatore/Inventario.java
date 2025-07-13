@@ -16,7 +16,7 @@ public class Inventario implements Serializable {
     private final HashMap<Item, Integer> inventario;
 
     /**
-     *
+     * costruttore della classe inventario e inizializza l'inventario con gli oggetti di partenza
      */
     public Inventario() {
         inventario = new HashMap<>();
@@ -32,7 +32,7 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * aggiunge un oggetto all'inventario e incrementa la quantità se già presente
      * @param oggetto
      * @param quantity
      */
@@ -45,7 +45,7 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * rimuove un oggetto dall'inventario, decrementando la quantità se maggiore di 1
      * @param oggetto
      */
     public void remove(Item oggetto) {
@@ -59,7 +59,8 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * restituisce la dimensione dell'inventario
+     * ovvero il numero di oggetti presenti
      * @return
      */
     public int getSize() {
@@ -67,7 +68,8 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * restituisce un set di oggetti presenti nell'inventario
+     * ovvero le chiavi della mappa inventario
      * @return
      */
     public Set<Item> getOggetti() {
@@ -75,7 +77,7 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * verifica se l'inventario contiene un oggetto specifico
      * @param oggetto
      * @return
      */
@@ -84,7 +86,8 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * verifica se l'inventario contiene uno o più oggetti specifici
+     * confrontando i nomi e gli alias degli oggetti
      * @param oggetto
      * @return
      */
@@ -105,7 +108,7 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * restituisce la quantità di un oggetto specifico nell'inventario
      * @param oggetto
      * @return
      */
@@ -117,7 +120,8 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * restituisce i dati dell'inventario in un formato adatto per JTable.
+     * ogni riga contiene il nome dell'oggetto e la quantità
      * @return
      */
     public String[][] getInventarioToJTableData() {
@@ -133,7 +137,7 @@ public class Inventario implements Serializable {
     }
 
     /**
-     *
+     * restituisce l'inventario come una mappa di oggetti e quantità
      * @return
      */
     public HashMap<Item, Integer> getInventario() {

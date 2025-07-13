@@ -25,7 +25,7 @@ public class Parser implements Serializable {
     private final Command nullCommand = new Command(CommandType.NULL_COMMAND, null);
 
     /**
-     *
+     * costruttore del parser 
      * @param stopwords
      * @param commands
      */
@@ -109,7 +109,7 @@ public class Parser implements Serializable {
     }
 
     /**
-     *
+     * Parses la stringa di input e restituisce un ParserOutput.
      * @param input
      * @param inventory
      * @param roomItems

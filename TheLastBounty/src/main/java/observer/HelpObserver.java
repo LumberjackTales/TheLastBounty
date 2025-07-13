@@ -12,6 +12,7 @@ import comandi.CommandType;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+// questo osservatore gestisce la visualizzazione dei comandi help
 public class HelpObserver implements GameObserver {
 
     @Override

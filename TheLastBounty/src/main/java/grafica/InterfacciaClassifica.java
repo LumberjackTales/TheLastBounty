@@ -24,6 +24,10 @@ import eccezioni.GetClassificaException;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /** interfaccia grafica per visualizzare la classifica del gioco
+  */
+
 public class InterfacciaClassifica extends javax.swing.JFrame {
     private final Color BACKGROUND = new Color(100, 150, 150, 155);
     private final Color BACKGROUND_BLACK = new Color(54, 69, 79);
@@ -32,7 +36,7 @@ public class InterfacciaClassifica extends javax.swing.JFrame {
     private final String[] column = { "Nome Giocatore", "Tempo", "Data" };
     private JTable classifica;
     private DefaultTableModel nonEditableModel;
-
+    
     /**
      *
      * @throws Exception

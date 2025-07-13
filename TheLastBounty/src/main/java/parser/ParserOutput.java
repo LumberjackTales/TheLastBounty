@@ -15,7 +15,7 @@ public class ParserOutput {
     private Object params;
 
     /**
-     *
+     * Costruttore del ParserOutput.
      * @param command
      * @param params
      * @param interfaccia
@@ -27,7 +27,7 @@ public class ParserOutput {
     }
 
     /**
-     *
+     *  * Restituisce il comando associato a questo ParserOutput.
      * @return
      */
     public Command getCommand() {
@@ -35,7 +35,7 @@ public class ParserOutput {
     }
 
     /**
-     *
+     * 
      * @param command
      */
     public void setCommand(Command command) {

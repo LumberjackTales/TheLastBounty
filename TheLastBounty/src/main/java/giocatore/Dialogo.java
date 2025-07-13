@@ -19,7 +19,7 @@ public class Dialogo implements Serializable {
     private String messaggioRispErrata;
 
     /**
-     *
+     * costruttore della classe Dialogo
      * @param idCasella
      */
     public Dialogo(int idCasella) {
@@ -31,7 +31,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * imposta le informazioni del dialogo
      * @param dialogo
      * @param risposta
      * @param messaggioRispCorretta
@@ -46,7 +46,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * restituisce il testo del dialogo
      * @return
      */
     public String getDialogo() {
@@ -54,7 +54,8 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * valuta la risposta inserita dall'utente e
+     * confronta la risposta inserita con quella del dialogo
      * @param risposta
      * @return
      */
@@ -63,7 +64,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * restituisce l'id della casella a cui è associato il dialogo
      * @return
      */
     public int getIdCasella() {
@@ -71,7 +72,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * restituisce il messaggio di risposta corretta 
      * @return
      */
     public String getMessaggioRispCorretta() {
@@ -79,7 +80,8 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * restituisce il messaggio di risposta errata
+     * 
      * @return
      */
     public String getMessaggioRispErrata() {
@@ -87,7 +89,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * imposta la risposta del dialogo
      * @param risposta
      */
     public void setRisposta(String risposta) {
@@ -95,7 +97,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * restituisce la risposta del dialogo
      * @return
      */
     public String getRisposta() {
@@ -103,7 +105,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * imposta il testo del dialogo 
      * @param testo
      */
     public void setTestoDialogo(String testo) {
@@ -111,7 +113,7 @@ public class Dialogo implements Serializable {
     }
 
     /**
-     *
+     * cambia il dialogo nel database
      */
     public void changeDialogo() {
         try {

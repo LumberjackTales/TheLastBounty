@@ -37,7 +37,7 @@ public class QuizAPI {
 	}
 
     /**
-     *
+     * *classe interna che rappresenta i risultati della risposta dell'API 
      */
     public class Results {
 		private String type;
@@ -48,7 +48,7 @@ public class QuizAPI {
 		private List<String> incorrect_answers;
 
             /**
-             *
+             * * Restituisce le risposte errate.
              * @return
              */
             public List<String> getIncorrect_answers() {
@@ -144,7 +144,8 @@ public class QuizAPI {
 		}
 	}
 
-	
+	//si occupa di fare una richiesta all'API per ottenere una domanda di quiz
+	//restituisce la risposta 
 	private static ResponseAPI getResponseAPI() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target("https://opentdb.com/api.php");
@@ -158,7 +159,7 @@ public class QuizAPI {
 	}
 
     /**
-     *
+     * * Restituisce un dialogo con una domanda di quiz.
      * @param dialogo
      * @return
      */
@@ -200,7 +201,7 @@ public class QuizAPI {
 	}
 
     /**
-     *
+     * tutorial quiz
      * @return
      */
     public static String Tutorial(){

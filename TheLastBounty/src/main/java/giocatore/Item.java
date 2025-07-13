@@ -19,7 +19,7 @@ public class Item implements Serializable {
     private boolean visible = false;
 
     /**
-     *
+     *  costruttore di item
      * @param name
      */
     public Item(String name) {
@@ -29,7 +29,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * costruttore di item con nome e descrizione
      * @param name
      * @param description
      */
@@ -40,7 +40,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * costruttore di item con nome, descrizione e alias
      * @param name
      * @param description
      * @param alias
@@ -52,7 +52,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * restituisce un set di alias dell'oggetto
      * @return
      */
     public Set<String> getAlias() {
@@ -60,7 +60,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * restituisce il nome dell'oggetto
      * @return
      */
     public String getName() {
@@ -68,7 +68,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * imposta il nome dell'oggetto
      * @param name
      */
     public void setName(String name) {
@@ -76,7 +76,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * restituisce la descrizione dell'oggetto
      * @return
      */
     public String getDescription() {
@@ -100,7 +100,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * 
      * @param alias
      */
     public void setAlias(String[] alias) {
@@ -108,7 +108,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * restituisce se l'oggetto è pickable
      * @return
      */
     public boolean isPickable() {
@@ -116,7 +116,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     *  * imposta se l'oggetto è pickable
      * @param consumable
      */
     public void setPickable(boolean consumable) {
@@ -124,7 +124,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * restituisce se l'oggetto è visibile
      * @return
      */
     public boolean isVisible() {
@@ -132,7 +132,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * imposta se l'oggetto è visibile
      * @param visible
      */
     public void setVisible(boolean visible) {
@@ -140,7 +140,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * verifica se due oggetti sono uguali confrontando i loro nomi
      * @param obj
      * @return
      */
@@ -159,7 +159,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * * restituisce l'hashcode dell'oggetto basato sul nome
      * @return
      */
     public int hashCode() {

@@ -14,6 +14,7 @@ import comandi.CommandType;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+// questo osservatore gestisce gli spostamenti del giocatore. Ci si può muovere n una direzione specifica in un numero di caselle specifico
 public class MuoviObserver implements GameObserver {
 
     @Override

@@ -11,6 +11,7 @@ import comandi.CommandType;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+//questo osservatore gestisce la schermata di morte 
 public class MorteObserver implements GameObserver {
 
     @Override

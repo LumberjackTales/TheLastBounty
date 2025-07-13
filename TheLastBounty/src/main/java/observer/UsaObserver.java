@@ -16,6 +16,7 @@ import giocatore.Item;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+// questo osservatore gestisce l'uso degli oggetti
 public class UsaObserver implements GameObserver {
 
     @Override

@@ -12,6 +12,7 @@ import giocatore.Item;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+// questo osserrvatore gestisce la creazione degli oggetti del falegname 
 public class CreaObserver implements GameObserver{
     @Override
     public String update(GameDescription description, ParserOutput parserOutput) {

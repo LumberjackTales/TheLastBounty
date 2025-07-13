@@ -17,6 +17,12 @@ import giocatore.Inventario;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     *  interfaccia dell'inventario del giocatore.
+     * 
+     */
+
 public class InterfacciaInventario extends javax.swing.JFrame {
    
     private static final Color WHITE_CUSTOM = new Color(250, 249, 246);

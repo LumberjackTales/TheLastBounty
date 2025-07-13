@@ -38,6 +38,12 @@ import observer.TheLastBounty;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     *  interfaccia grafica per la schermata di gioco principale 
+     * 
+     */
+
 public class InterfacciaGioco extends javax.swing.JFrame {
     private final Font FONT = new Font("Serif", Font.PLAIN, 20);
     private final String HUNTER = "src/main/resources/resource/img/cacciatore.png";
@@ -74,7 +80,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     private final JFrame parentFrame;
 
     /**
-     *
+     * 
      * @param parentFrame
      * @throws Exception
      */
@@ -171,7 +177,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             throw new GameNotAvailableException();
         }
     }
-
+     /**
+      * *inizializza la schermata di gicoo e la grafica
+      */
     private void initComponents() {
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -284,7 +292,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         underPanel.add(textBox);
         
 
-
+        // aggiunge l'icona 
         aggiungiIcona(inventario, "/resource/img/icone/icona_inventario.png");
 
         inventario.setFont(caricaFontUncial(13f));
@@ -335,7 +343,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
       
         menuBar.add(javax.swing.Box.createHorizontalGlue());
 
-     
+        
         javax.swing.JPanel cronometroPanel = new javax.swing.JPanel();
         cronometroPanel.setOpaque(false);
         cronometroPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 2));
@@ -400,7 +408,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         });
 
         underPanel.add(torna_menu);
-
+        //aggiunge i componenti al pannello principale 
         javax.swing.GroupLayout macroPanelLayout = new javax.swing.GroupLayout(macroPanel);
             macroPanel.setLayout(macroPanelLayout);
 
@@ -439,7 +447,9 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         InterfacciaInventario inventario = new InterfacciaInventario(game.getInventario());
         inventario.setVisible(true);
     }
-
+    /**
+     * gestisce l'input dell'utente, elabora il comando e aggiorna lo stato del gioco
+     */
     private void elaborateInput(java.awt.event.ActionEvent evt) {
         String input = textBox.getText().toLowerCase().trim();
         if (!input.isBlank()) {
@@ -455,7 +465,12 @@ public class InterfacciaGioco extends javax.swing.JFrame {
         }
     }
 
-
+    /**
+     * Gestisce l'evento di rilascio del mouse sul pulsante "Skip".
+     * Interrompe la stampa del testo corrente e disabilita il pulsante.
+     *
+     * @param evt L'evento di rilascio del mouse.
+     */
     private void skipMouseReleased(java.awt.event.MouseEvent evt) {
         if (skip.isEnabled()) {
             stampa.interrupt();
@@ -464,7 +479,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *  mostra l'interfaccia di fine gioco dopo un timer di 3 secondi 
      */
     public void fineGioco() {
         InterfacciaFineGioco InterfacciaFineGioco = new InterfacciaFineGioco(parentFrame, game.getChrono().getElapsedTime());
@@ -473,7 +488,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     /**
-     *
+     *  mostra l'interfaccia di morte dopo un timer di 3 secondi
      */
     public void morte(){
         InterfacciaMorte InterfacciaMorte = new InterfacciaMorte(parentFrame);
@@ -486,7 +501,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * cambia l'immagine visualizzata nell'area dell'immagine 
      * @param image
      */
     public void changeImageViewer(ImageIcon image) {
@@ -494,7 +509,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * * restituisce l'istanza di Musica associata all'interfaccia di gioco.
      * @return
      */
     public final Musica getMusica() {
@@ -502,7 +517,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * restituisce l'istanza di parser associata all'interfaccia di gioco
      * @return
      */
     public Chrono getChrono() {
@@ -510,7 +525,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * restituisce il parentframe dell'interfaccia di gioco
      * @return
      */
     public JFrame getParentFrame() {

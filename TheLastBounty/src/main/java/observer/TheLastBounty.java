@@ -18,6 +18,7 @@ import comandi.CommandType;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+//questa classe rappresenta il gioco "The Last Bounty" e implementa GameObservable per gestire gli osservatori
 public class TheLastBounty extends GameDescription implements GameObservable {
     private transient List<GameObserver> observer;
     private transient ParserOutput parserOutput;

@@ -18,6 +18,11 @@ import componentiaggiuntivi.Musica;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     *  interfaccia della schermata di morte del giocatore.
+     */
+
 public class InterfacciaMorte extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);

@@ -14,6 +14,7 @@ import giocatore.Item;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+// questo osservatore gestisce i dialoghi con i personaggi 
 public class ParlaObserver implements GameObserver {
 
     @Override

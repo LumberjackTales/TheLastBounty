@@ -19,6 +19,11 @@ import javax.swing.JPanel;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+
+ /**
+     * interfaccia della schermata dei riconoscimenti del gioco.
+     */
+
 public class interfacciaRiconoscimenti extends JFrame {
 
     private static final Color BLACK_CUSTOM = new Color(32, 32, 35);
@@ -54,7 +59,7 @@ public class interfacciaRiconoscimenti extends JFrame {
         });
 
     }
-    
+    // inizializza i componenti dell'interfaccia riconoscimenti
     private void initComponents() {
         
         mainPanel = new javax.swing.JPanel() {
@@ -81,7 +86,7 @@ public class interfacciaRiconoscimenti extends JFrame {
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(0,0,0,0));
-              
+        // imposta il layout del pannello 
         JLabel headerLabel = new JLabel("Riconoscimenti");
         headerLabel.setForeground(WHITE_CUSTOM);
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -89,7 +94,7 @@ public class interfacciaRiconoscimenti extends JFrame {
 
         mainPanel.add(headerLabel, BorderLayout.NORTH);
   
- 
+        //aggiunge un jlabel con i riconoscimenti
         JLabel contentLabel = new JLabel("<html>"
                 + "<div style='display: inline-block; text-align: center; color: yellow; "
                 + "padding: 30px; font-family: sans-serif; font-size: 14px;'>"

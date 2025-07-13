@@ -15,6 +15,7 @@ import comandi.CommandType;
  * @author Leonardo Nicola Marzulli
  * @author Roberto Sivo
  */
+// questo osservatore gestisce il salvataggio del gioco
 public class SalvaObserver implements GameObserver {
 
     @Override
