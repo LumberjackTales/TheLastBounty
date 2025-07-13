@@ -69,16 +69,25 @@ public class Musica {
 
   
     public void setVolume(float volume) {
-        if (volume < 0f || volume > 1f)
-            throw new IllegalArgumentException("Volume not valid: " + volume);
-        FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);        
-        gainControl.setValue(20f * (float) Math.log10(volume));
+        volume = (float) Math.floor(volume * 100);
+        if (volume % 10 != 0)
+            volume = (volume + 10 - volume % 10);
+        volume /= 100;
+        if (!(volume < 0f || volume > 1f)){
+            FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);        
+            gainControl.setValue(20f * (float) Math.log10(volume));
+            System.out.println(getVolume());
+        }
     }
 
   
     public float getVolume() {
         FloatControl gainControl = (FloatControl) musicaGioco.getControl(FloatControl.Type.MASTER_GAIN);        
-        return (float) Math.pow(10f, gainControl.getValue() / 20f);
+        float volume = (float) Math.floor((float) Math.pow(10f, gainControl.getValue() / 20f) * 100);
+        if (volume % 10 != 0)
+            volume = (volume + 10 - volume % 10);
+        volume /= 100;
+        return volume;
     }
 
     public void riproduciClip(String filePath) {

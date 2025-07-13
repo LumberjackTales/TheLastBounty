@@ -428,7 +428,7 @@ public class InterfacciaGioco extends javax.swing.JFrame {
             textBox.setText("");
             ParserOutput p = parser.parse(input.toLowerCase(), game.getInventario().getOggetti(), game.getCurrentCasella().getOggetti(), this);
             game.nextMove(p, stampa);
-            if (p.getCommand().getType() == CommandType.MORTE){
+            if (p.getCommand().getType() == CommandType.MORTE && this.isDisplayable()){
                 stampa.join(()->morte());          
             } else if(p.getCommand().getType() == CommandType.THE_END){
                 stampa.join(()->fineGioco());            

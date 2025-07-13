@@ -73,7 +73,7 @@ public class interfacciaRiconoscimenti extends JFrame {
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        bottomPanel.setBackground(BLACK_CUSTOM);
+        bottomPanel.setBackground(new Color(0,0,0,0));
               
         JLabel headerLabel = new JLabel("Riconoscimenti");
         headerLabel.setForeground(WHITE_CUSTOM);
@@ -104,6 +104,7 @@ public class interfacciaRiconoscimenti extends JFrame {
         closeButton.setBackground(RED_CUSTOM);
         closeButton.setForeground(WHITE_CUSTOM);
         closeButton.addActionListener(e -> dispose());
+
 
         bottomPanel.add(closeButton);
 

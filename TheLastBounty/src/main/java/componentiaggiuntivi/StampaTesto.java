@@ -54,7 +54,7 @@ public class StampaTesto implements Runnable {
                 try {
                     thread.join();
                     textFieldInput.setEnabled(false);
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(StampaTesto.class.getName()).log(Level.SEVERE, null, ex);
                 }

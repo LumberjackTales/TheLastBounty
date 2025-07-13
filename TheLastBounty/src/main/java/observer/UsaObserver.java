@@ -45,6 +45,16 @@ public class UsaObserver implements GameObserver {
                             }
                         }
 
+                        case 104 ->{
+                            if((nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                msg = "\nVuoi davvero uccidere l'unica persona buona presente in questo bosco maledetto, razza di coglione.\nrazza: (dialetto brindisino che indica una persona di un certo tipo).";
+                            }else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                msg = "\nVuoi davvero uccidere l'unica persona buona presente in questo bosco maledetto, razza di coglione.\nrazza: (dialetto brindisino che indica una persona di un certo tipo).";
+                            }else{
+                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
+                            }
+                        }
+
                         case 113 ->{
                             if(nameOBJ.equals("tomoe") || nameOBJ.equals("libro") || nameOBJ.equals("libro antico") || nameOBJ.equals("manoscritto")){
                                 description.getCurrentCasella().setUpdated(true);
@@ -54,14 +64,18 @@ public class UsaObserver implements GameObserver {
                                     .orElse(null);
                                 dialogo.changeDialogo();
                                 msg = "Grazie al tomoe riesci a capire la lingua della ninfa! Ora puoi rispondere alle sue domande!";
-                            } else {
+                            }else if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                msg = "\nEiiii non provare ad uccidere la ninfa, può ancora tornarci utile giovane hunter.";
+                            }else if ((nameOBJ.equals("paletto magico") || nameOBJ.equals("arma finale") || nameOBJ.equals("paletto di quercia bianca") || nameOBJ.equals("paletto bianco") || nameOBJ.equals("paletto di quercia"))&& (description.getInventario().contains("Paletto di quercia bianca"))){
+                                msg = "\nEiiii non provare ad uccidere la ninfa, può ancora tornarci utile giovane hunter.";
+                            }else{
                                 msg = "Non puoi usare l'oggetto " + nameOBJ + " qui";
                             }
                         }
                         case 130 -> {
                             boolean kill = description.getCurrentCasella().isUpdated();
                             if (!kill){
-                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                if((nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
                                     description.getCurrentCasella().getNorth().setEnterable(true);
                                     description.getCurrentCasella().setUpdated(true);
                                     description.getInventario().remove(itemToUse);
@@ -84,7 +98,7 @@ public class UsaObserver implements GameObserver {
                         case 344 -> {
                             boolean kill = description.getCurrentCasella().isUpdated();
                             if (!kill){
-                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                if((nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
                                     description.getCurrentCasella().setUpdated(true);
                                     description.getInventario().remove(itemToUse);
                                     msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!";
@@ -104,7 +118,7 @@ public class UsaObserver implements GameObserver {
                         case 356 -> {
                             boolean kill = description.getCurrentCasella().isUpdated();
                             if (!kill){
-                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                if((nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
                                     description.getCurrentCasella().setUpdated(true);
                                     description.getInventario().remove(itemToUse);
                                     msg = "Hai ucciso una delle guardie del tempio, complimenti giovante hunter!\nSembra anche che abbia lasciato cadere una chiave, forse può esserti utile.";
@@ -134,7 +148,7 @@ public class UsaObserver implements GameObserver {
                         case 338 -> {
                             boolean kill = description.getCurrentCasella().isUpdated();
                             if (!kill){ 
-                                if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
+                                if((nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))){
                                     description.getCurrentCasella().setUpdated(true);
                                     description.getCurrentCasella().getNorth().setEnterable(true);
                                     description.getInventario().remove(itemToUse);
@@ -168,7 +182,7 @@ public class UsaObserver implements GameObserver {
                                 description.getInventario().remove(itemToUse);
                                 msg = "Hai ucciso il leggendario Vangrath,complimenti giovane hunter,però purtroppo non sei riuscito a recuperare la sua testa,sarà difficile ottenere la ricompesa finale.Guarda il lato positivo, almeno hai ottenuto la gloria e sei riuscito a liberare il bosco dalla sua malediazione, quindi adesso il falegname potrà uscire anche se non troverà più il suo villaggio.";
                                 parserOutput.setCommand(new Command(CommandType.THE_END, null));
-                            } else if((nameOBJ.equals("paletto") || nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))) {
+                            } else if((nameOBJ.equals("paletto di legno") || nameOBJ.equals("legnetto") || nameOBJ.equals("paletto legno"))) {
                                 description.getInventario().remove(itemToUse);
                                 msg = "Il paletto di legno non è abbastanza potente per sconfiggere Vangrath, devi trovare un'arma più potente, ma misà che sei bello che morto...";
                                 imagePath= "src/main/resources/resource/img/boss.png";

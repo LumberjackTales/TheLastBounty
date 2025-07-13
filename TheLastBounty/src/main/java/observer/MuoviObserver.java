@@ -197,14 +197,14 @@ public class MuoviObserver implements GameObserver {
                 if (!description.getCurrentCasella().isUpdated()) {
                     imagePath = "src/main/resources/resource/img/guardia_stupida.png";
                 } else {
-                    imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
+                    imagePath = "src/main/resources/resource/img/stanza_vuota_tempio.png";
                 }
             }
             case 356 -> {
                 if (!description.getCurrentCasella().isUpdated()) {
                     imagePath = "src/main/resources/resource/img/guardia_chiave.png";
                 } else {
-                    imagePath = "src/main/resources/resource/img/Corridoio_tempio.png";
+                    imagePath = "src/main/resources/resource/img/stanza_vuota_tempio.png";
                 }
             }
 
