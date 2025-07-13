@@ -86,7 +86,7 @@ public class interfacciaRiconoscimenti extends JFrame {
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(0,0,0,0));
-        // imposta il layout del pannello 
+      
         JLabel headerLabel = new JLabel("Riconoscimenti");
         headerLabel.setForeground(WHITE_CUSTOM);
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -94,8 +94,8 @@ public class interfacciaRiconoscimenti extends JFrame {
 
         mainPanel.add(headerLabel, BorderLayout.NORTH);
   
-        //aggiunge un jlabel con i riconoscimenti
-        JLabel contentLabel = new JLabel("<html>"
+       
+        JLabel testo = new JLabel("<html>"
                 + "<div style='display: inline-block; text-align: center; color: yellow; "
                 + "padding: 30px; font-family: sans-serif; font-size: 14px;'>"
                 + "<h2 style='margin: 0;'>\n\nGrazie per aver giocato a <span style='color: orange;'>The Last Bounty</span>!</h2>"
@@ -105,11 +105,18 @@ public class interfacciaRiconoscimenti extends JFrame {
                 + "<p style='margin: 4px 0;'>• Dino Marzulli</p>"
                 + "<p style='margin: 4px 0;'>• Roberto Sivo</p>"
                 + "</div></html>");
-        contentLabel.setHorizontalAlignment(JLabel.CENTER);
-        contentLabel.setFont(caricaFontUncial(20f));
-        contentLabel.setForeground(Color.yellow);
+        testo.setHorizontalAlignment(JLabel.CENTER);
+        testo.setFont(caricaFontUncial(20f));
+        testo.setForeground(Color.YELLOW);
+        testo.setOpaque(true);
+        testo.setBackground(new Color(0, 0, 0, 100)); 
 
-        mainPanel.add(contentLabel, BorderLayout.CENTER);
+        JPanel textWrapper = new JPanel(new BorderLayout());
+        textWrapper.setOpaque(false);
+        textWrapper.add(testo, BorderLayout.CENTER);
+        textWrapper.setBorder(javax.swing.BorderFactory.createEmptyBorder(130, 150, 130, 150));
+
+        mainPanel.add(textWrapper, BorderLayout.CENTER);
 
         
         closeButton = new JButton("Chiudi");
