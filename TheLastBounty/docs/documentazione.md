@@ -10,7 +10,7 @@
 
 Descrizione dell’avventura
 
-#### TRAMA:
+## 1 - Descrizione dell'avventura
 
 The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di uccidere il famigerato Vangrath.
 
@@ -30,10 +30,12 @@ il package interfaccia contiene 8 classi ognuna delle quali è relativa ad un in
 
 Fornire dettagli sulla progettazione. Come sono state individuate le classi, quali sono le competenze di ogni classe, come sono state organizzate le classi in package.
 
-Diagramma delle classi
+## 2 - Diagramma delle classi
 Inserire una diagramma delle classi di una porzione significativa del progetto e commentare il diagramma fornendo dettagli sui principi della programmazione ad oggetti che sono stati utilizzati (ereditarietà, interfacce, classi astratte, composizione, …)
 ![uml](./img/uml_provvisorio.jpeg
 )
+
+## 3 - Progettazione delle Classi
 
 CLASSI
 
@@ -235,6 +237,11 @@ Si noti come <code>Item</code> è un tipo generico, che può essere sostituito c
 
 Fornire una specifica algebrica di una struttura dati a scelta tra quelle utilizzate nel progetto. Deve essere fornita una specifica algebrica non assiomatica!
 
+## 5 - Dettagli Implementativi
+
+### Clicca [qui](./argomenti_del_corso.md) per visualizzare il file contenente i dettagli implementativi
+
+## eliminare quanto sotto
 Dettagli implementativi
 Per ciascun argomento del corso spiegare se e come è stato utilizzato all’interno del progetto.
 Programmazione generica
