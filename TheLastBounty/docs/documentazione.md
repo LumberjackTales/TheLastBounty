@@ -1,15 +1,3 @@
-1. Descrizione dell'avventura
-2. Progettazione
-
-
-<!-- Inserisci questo all'inizio del file Markdown -->
-<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
-
-<!-- Poi usa uno span o un div per applicare il font -->
-<span style="font-family: 'Uncial Antiqua', cursive; font-size: 36px;">The Last Bounty</span>
-
-Descrizione dell’avventura
-
 ## 1 - Descrizione dell'avventura
 
 The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di uccidere il famigerato Vangrath.
@@ -31,9 +19,10 @@ il package interfaccia contiene 8 classi ognuna delle quali è relativa ad un in
 Fornire dettagli sulla progettazione. Come sono state individuate le classi, quali sono le competenze di ogni classe, come sono state organizzate le classi in package.
 
 ## 2 - Diagramma delle classi
+
+
 Inserire una diagramma delle classi di una porzione significativa del progetto e commentare il diagramma fornendo dettagli sui principi della programmazione ad oggetti che sono stati utilizzati (ereditarietà, interfacce, classi astratte, composizione, …)
-![uml](./img/uml_provvisorio.jpeg
-)
+![uml](./img/uml.png)
 
 ## 3 - Progettazione delle Classi
 
