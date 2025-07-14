@@ -3,15 +3,10 @@
 #### Miccoli Francesco Pio
 #### Marzulli Leonardo Nicola
 #### Sivo Roberto
-
-```java
-
-```
-
 ## Dettagli Implementativi
 
 ### 1. Utilizzo dei File
-    ```java
+    
         carica_partita = new javax.swing.JButton("Carica Partita");
         buttonPanel.add(carica_partita);
         carica_partita.setFont(caricaFontUncial(30f));
@@ -44,14 +39,42 @@
                 }
             }
         });
-    ```
+    
 Snippet di codice contenuto in [InterfacciaIniziale.java](../src/main/java/grafica/InterfacciaIniziale.java) carica la partita salvata in un file .dat utilizzando l'import JFileChooser.
 
-( Qui sotto andrà messa la parte di codice che crea il file .dat)
+    
+    public class SalvaObserver implements GameObserver {
 
-    ```@Miccoli04
+    @Override
+    public String update(GameDescription description, ParserOutput parserOutput) {
+        String msg = "";
+        if (parserOutput.getCommand().getType() == CommandType.SAVE) {
+            Object arg = parserOutput.getParams();
+            if (arg == null) {
+                msg = "Collega il tuo cervello, non hai specificato il nome del file di salvataggio! Usa il comando 'Salva' seguito dal nome del file.";
+                return msg;
+            }
+            String nameFile = (String) arg;
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(
+                        new FileOutputStream(System.getProperty("user.dir") + File.separator + "src/main/resources/resource/salvataggi"
+                                + File.separator + nameFile + ".dat"));
+                description.getChrono().stop();
+                out.writeObject(description);
+                description.getChrono().startAgain(description.getChrono().getElapsedTime());
+                out.close();
+                msg = "Salvataggio effettuato in " + System.getProperty("user.dir") + File.separator + "resource"
+                        + File.separator + "salvataggi" + File.separator + nameFile + ".dat";
+            } catch (IOException e) {
+                msg = "[ERRORE] Salvataggio del gioco non riuscito!";
+            }
+        }
+        return msg;
+    }
+    }
+    
 
-    ```
+Questa classe SalvaObserver crea il file di salvataggio .dat utilizzato.
 
 ### 2. Utilizzo dei Database/JDBC
     
@@ -65,12 +88,40 @@ Snippet di codice contenuto in [InterfacciaIniziale.java](../src/main/java/grafi
 Snippet di codice contenuto in [GestioneDB.java](../src/main/java/database/GestioneDB.java) effettua la connessione al Database SQL [mondoDB.sql](../src/main/java/database/mondoDB.sql).
 
 ### 3. Utilizzo dei Thread e della Programmazione Concorrente
-    ```java
- 
-     ```
+    public void stampa(String testo) {
+        this.paroleDaStampare = testo.split(" ");
+        if (thread != null && thread.isAlive()) {
+            interrupt();
+        }
+        thread = new Thread(this);
+        textFieldInput.setEnabled(false);
+        thread.start();
+    }
+
+    /**
+     *
+     * @param r
+     */
+    public void join(Runnable r){
+        new Thread(() -> {
+            if (thread != null && thread.isAlive()) {
+                try {
+                    thread.join();
+                    textFieldInput.setEnabled(false);
+                    Thread.sleep(3000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(StampaTesto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            r.run();
+        }).start();
+        
+    }
+
+Grazie all'utilizzo dei thread stampiamo a video tutto sulle caselle.
 
 ### 4. Utilizzo delle Socket e/o delle REST
-    ```java
+    
     private static ResponseAPI getResponseAPI() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target("https://opentdb.com/api.php");
@@ -82,11 +133,11 @@ Snippet di codice contenuto in [GestioneDB.java](../src/main/java/database/Gesti
 		Gson gson = new Gson();
 		return gson.fromJson(jsonString, ResponseAPI.class);
 	}
-    ```
+
 Questa rest è stata utilizzata per il sistema di gestione delle domande del gioco.
 
 ### 5. Utilizzo delle Swing
-       ```java
+       
        jPanel1 = new javax.swing.JPanel() {
             private java.awt.Image backgroundImage = null;
             {
@@ -166,14 +217,52 @@ Questa rest è stata utilizzata per il sistema di gestione delle domande del gio
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
             }
         });
-       ```
+       
 Questa è la swing principale utilizzata in [InterfacciaIniziale.java](../src/main/java/grafica/InterfacciaIniziale.java). 
 Per ogni interfaccia abbiamo utilizzato impostazioni diverse.
 
 ### 6. Utilizzo delle lambda Expression, Stream e Pipeline
-    ```java
+    
+     private void connectCaselle(List<Casella> caselle) throws SQLException {
+        executeWithRetry(() -> {
+            Map<Integer, Casella> MapCaselle = new HashMap<>();
+            for (Casella c : caselle) {
+                MapCaselle.put(c.getId(), c);
+            }
 
-     ```
+            String query = "SELECT * FROM ConnessioniCaselle";
+            try (Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    Casella c1 = MapCaselle.get(rs.getInt("casella_id1"));
+                    Casella c2 = MapCaselle.get(rs.getInt("casella_id2"));
+                    switch (rs.getString("direzione")) {
+                        case "n":
+                            c1.setNorth(c2);
+                            c2.setSouth(c1);
+                            break;
+                        case "s":
+                            c1.setSouth(c2);
+                            c2.setNorth(c1);
+                            break;
+                        case "e":
+                            c1.setEast(c2);
+                            c2.setWest(c1);
+                            break;
+                        case "o":
+                            c1.setWest(c2);
+                            c2.setEast(c1);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            return null;
+        });
+    }
+Grazie all'utilizzo delle lambda expression , siamo riusciti a creare la rete di connessione tra le caselle.
 
 
     

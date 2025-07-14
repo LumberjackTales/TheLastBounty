@@ -14,8 +14,6 @@ Università degli Studi di Bari Aldo Moro - Dipartimento di Informatica
 L'utente giocherà nei panni di un cacciatore di taglie, che per completare la sua ultima taglia rimane intrappolato in una foresta maledetta situata nel triangolo delle bermuda, la cui unica via d'uscita è quella di uccidere il famigerato mostro che si annida lì dentro.
 
 
-
-
 ## Intallazione del Programma
 Il programma utilizza la JDK 21 è possibile scaricarla cliccando [qui](https://www.oracle.com/it/java/technologies/downloads/#java21)
 
