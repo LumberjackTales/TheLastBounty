@@ -1,22 +1,7 @@
 ## 1 - Descrizione dell'avventura
 
-The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di uccidere il famigerato Vangrath.
+The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di uccidere un'entita molto putente mutata nei secoli
 
-Vangrath era uno dei custodi dell'arca del vuoto situata in un antico villaggio nel triangolo delle bermuda
-
-Descrivere brevemente l’avventura testuale/grafica realizzata.
-
-Progettazione
-la suddivisione è stata 
-
-ogni package ha un nome autoesplicativo delle classi ivi contenute.
-1. Package Classifica
-2. Package Comandi
-3. Package componentiaggiuntivi
-il package interfaccia contiene 8 classi ognuna delle quali è relativa ad un interfaccia del gioco.
-
-
-Fornire dettagli sulla progettazione. Come sono state individuate le classi, quali sono le competenze di ogni classe, come sono state organizzate le classi in package.
 
 ## 2 - Diagramma delle classi
 

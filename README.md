@@ -39,7 +39,32 @@ Mappa della terza cripta
 ![mappa cripta 3](./TheLastBounty/docs/img/mappa-cripta3.png)
 
 
-## Soluzione del Gioco
+[Clicca qui per visualizzare la Documentazione del progetto](./TheLastBounty/docs/documentazione.md)
 
-[Clicca qui per visualizzare la Documentazione del progetto](./TheLastBounty/docs/documentazione.md
-)
+## Soluzione del Gioco
+    N
+    Usa Coltello
+    O x3
+    CREA Paletto quercia bianca
+    E x5
+    N x5
+    USA legnetto
+    N 
+    O x2
+    N x2
+    O x2
+    N x2
+    USA legnetto
+    PRENDI chiave
+    S x2
+    E x2
+    S x2
+    E x2
+    N 
+    USA chiave
+    N x2
+    PRENDI gemma
+    PARLA
+    USA Paletto quercia bianca
+
+    
