@@ -39,20 +39,22 @@ Inserire una diagramma delle classi di una porzione significativa del progetto e
 
 CLASSI
 
-CLASSIFICA
+### Package Classifica
+Il package Classifica Contiene 4 classi:
 
 	1.	classificaClientRecordServer = Gestisce i dati del tempo e dell’utente quando viene una partita attraverso l’utilizzo del Client e del Server
 	2.	Client = gestisce l’utente che sta giocando la partita
 	3.	Record = Crea il record con nome utente, tempo impiegato per finire il gioco e data
 	4.	Server. = avvia un server che aspetta che venga aggiunto il record
 
-
-COMANDI
+### Package Comandi
+Il package Comandi contiene 2 classi
 
 	1.	Command = attraverso l’implementazione di serializable gestisce i comandi che l’utente scrive
 	2.	CommandType = Lista dei comandi disponibili all’interno del gioco
 
-COMPONENTI AGGIUNTIVI
+### Package Componenti Aggiuntivi
+Il Package Componenti Aggiuntivi contiene 7 classi
 
 	1.	Chrono = gestisce il tempo
 	2.	GameDescription = gestisce le informazioni del gioco
@@ -62,13 +64,15 @@ COMPONENTI AGGIUNTIVI
 	6.	StampaTesto = attraverso l’utilizzo dei thread gestisce come il thread viene stampato a video
 	7.	Utils = legge i comandi ed elimina le stopwords
 
-DATABASE
+### Package Database
+Il Package Database contiene 3 classi
 
 	1.	Casella = gestisce la casella le descrizioni e le coordinate
 	2.	GestioneDB = carica il DB in GameDescription e si occupa della connessione tra le caselle
 	3.	MondoDB.sql = database del gioco
 
-ECCEZIONI
+### Package Eccezioni
+Il Package Eccezioni contiene 4 classi
 
 	1.	GameFileException = si occupa di lanciare un’eccezione se il file di salvataggio da caricare non esiste o è corrotto
 
@@ -76,13 +80,15 @@ ECCEZIONI
 	3.	GetClassificaException. = stampa eccezione se non riesce a salvare i dati nella classifica
 	4.	SendRecordException = Stampa l’eccezione se non tra un server in ascolto oppure se il record inviato non arriva al server (gestisce l’invio del record al server)
 
-GIOCATORE
+### Package Giocatore
+il Package Giocatore contiene 3 classi 
 
 	1.	Dialogo = gestisce i dialoghi del gioco con gli NPC
 	2.	Inventario = gestisce l’inventario del giocatore
 	3.	Item = gestisce il tipo di item presente nel database
 
-GRAFICA
+### Package Grafica
+Il Package Grafica contiene 8 classi
 
 	1.	InterfacciaClassifica = gestisce l’interfaccia della classifica
 	2.	InterfacciaFineGioco = gestisce l’interfaccia di Fine Gioco
@@ -93,8 +99,9 @@ GRAFICA
 	7.	InterfacciaRiconoscimenti = gestisce l’interfaccia dei riconoscimenti
 	8.	InterfacciaMorte = gestisce l’interfaccia di morte
 
+### Package Observer
+Il Package Observer contiene 10 classi
 
-OBSERVER
 
 	1.	CreaObserver = Gestisce il comando crea
 	2.	HelpObserver = Gestisce il comando Help/Aiuto
@@ -107,21 +114,25 @@ OBSERVER
 	9.	UsaObserver = gestisce il comando usa per gli oggetti del gioco
 	10.	TheLastBounty = gestisce l’aggiunta e la creazione di tutti gli observer con i vari comandi
 
-PARSER
+### Package Parser
+Il Package Parser contiene 2 classi
 
 	1.	Parser = gestisce l’input dell’utente e lo trasforma in eventuali comandi
 	2.	ParserOutput = una volta gestito l’input dell’utente mostra a video il risultato
 
-REST
+
+
+### Package Rest
+Il Package Rest contiene 1 classe
 
 	1.	QuizAPI = gestisce il dialogo speciale grazie all’utilizzo delle RESTFul per prendere da un sito esterno domande sulla mitologia ponendole al giocatore come fosse un quiz
 
-thelastbounty
+### Package Thelastbounty
+Il Package thelastbounty contiene 1 classe
 
 	1.	TheLastBounty = gestisce l’avvio del programma
 
 
-Specifica algebrica
 
 
 ## 4 - Specifiche Algebriche
