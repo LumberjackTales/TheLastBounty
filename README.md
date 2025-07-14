@@ -11,7 +11,7 @@ A.A.: 2024-2025 - Corso di Metodi Avanzati di Programmazione - Docente: Basile P
 Università degli Studi di Bari Aldo Moro - Dipartimento di Informatica
 
 ## TRAMA
-L'utente giocherà nei panni di un cacciatore di taglie, rimasto intrappolato in una foresta magica la cui unica via d'uscita è quella di uccidere uno dei custodi alle prese con la sua ultima missione, quella di uccidere il Famigerato Vangrath.
+L'utente giocherà nei panni di un cacciatore di taglie, che per completare la sua ultima taglia rimane intrappolato in una foresta maledetta situata nel triangolo delle bermuda, la cui unica via d'uscita è quella di uccidere il famigerato mostro che si annida lì dentro.
 
 
 
