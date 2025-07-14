@@ -1,3 +1,0 @@
-2025-07-13 08:10:25.271116+02:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "OGGETTI_INIZIALI" not found (this database is empty); SQL statement:
-SELECT o.*, oi.quantita FROM Oggetti_Iniziali oi JOIN Oggetto o ON oi.id = o.id [42104-224]
