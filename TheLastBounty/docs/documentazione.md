@@ -132,7 +132,7 @@ Il Package thelastbounty contiene 1 classe
 
 
 ## 4 - Specifiche Algebriche
-Due delle strutture dati più utilizzate nel nostro progetto sono la **Mappa** e la **Lista**, in questa sezione verranno presentate le specifiche algebriche di entrambe.
+La struttura più utilizzata nel nostro progetto è la **Mappa**, in questa sezione viene presentata la sua specificha algebrica.
 
 #### Specifica algebrica della Mappa
 
