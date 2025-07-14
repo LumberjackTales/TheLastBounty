@@ -1,11 +1,47 @@
-The Last Bounty è un'avventura testuale. l'utente giocherà nei panni di un Cacciatore di taglie, il cui ultimo incarico è quello di uccidere il famigerato Vangrath.
+# The Last Bounty 
+Avventura Testuale in JAVA
+
+Progetto di : 
+* [Miccoli Francesco Pio](https://github.com/Miccoli04)
+* [Marzulli Leonardo Nicola](https://github.com/marzullidino)
+* [Sivo Roberto](https://github.com/drROBotnik1803)
+
+A.A.: 2024-2025 - Corso di Metodi Avanzati di Programmazione - Docente: Basile Pierpaolo
+
+Università degli Studi di Bari Aldo Moro - Dipartimento di Informatica
+
+## TRAMA
+L'utente giocherà nei panni di un cacciatore di taglie, rimasto intrappolato in una foresta magica la cui unica via d'uscita è quella di uccidere uno dei custodi alle prese con la sua ultima missione, quella di uccidere il Famigerato Vangrath.
 
 
-Il programma utilizza la JDK 21 è possibile scaricarla cliccnado qui
+
+
+## Intallazione del Programma
+Il programma utilizza la JDK 21 è possibile scaricarla cliccando [qui](https://www.oracle.com/it/java/technologies/downloads/#java21)
+
+![downloadJava21](./TheLastBounty/docs/img/download-java21.png)
 
 
 
 
-è possibile scaricare l'ultima versione dei files del progetto clonasndo la repository github 
+
+è possibile scaricare l'ultima versione dei files del progetto clonando la repository github 
 https://github.com/LumberjackTales/TheLastBounty
 
+
+
+## Mappa del Gioco
+Mappa del Bosco
+![mappa bosco](./TheLastBounty/docs/img/mappa-bosco.png)
+
+Mappa del tempio
+![mappa tempio](./TheLastBounty/docs/img/mappa-tempio.png)
+
+Mappa della terza cripta
+![mappa cripta 3](./TheLastBounty/docs/img/mappa-cripta3.png)
+
+
+## Soluzione del Gioco
+
+[Clicca qui per visualizzare la Documentazione del progetto](./TheLastBounty/docs/documentazione.md
+)

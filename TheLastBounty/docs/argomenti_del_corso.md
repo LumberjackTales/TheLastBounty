@@ -45,24 +45,24 @@
             }
         });
     ```
-Questo pezzo di codice presente in [InterfacciaIniziale.java](./src/main/java/grafica/InterfacciaIniziale.java) serve a caricare la partita presente in un file di salvataggio .dat utilizzando l'import JFileChooser.
+Snippet di codice contenuto in [InterfacciaIniziale.java](../src/main/java/grafica/InterfacciaIniziale.java) carica la partita salvata in un file .dat utilizzando l'import JFileChooser.
 
 ( Qui sotto andrà messa la parte di codice che crea il file .dat)
 
-    ```java
+    ```@Miccoli04
 
     ```
 
 ### 2. Utilizzo dei Database/JDBC
-    ```java
+    
     public void connect() throws SQLException {
         proprietaDB = new Properties();
         proprietaDB.setProperty("user", "francesco");
         proprietaDB.setProperty("password", "cattivissimo");
         conn = DriverManager.getConnection("jdbc:h2:./database", proprietaDB);
     }
-     ```
-Questa è la parte di codice in [GestioneDB.java](./src/main/java/database/GestioneDB.java) che serve a collegare il [mondoDB.sql](./src/main/java/database/mondoDB.sql).
+
+Snippet di codice contenuto in [GestioneDB.java](../src/main/java/database/GestioneDB.java) effettua la connessione al Database SQL [mondoDB.sql](../src/main/java/database/mondoDB.sql).
 
 ### 3. Utilizzo dei Thread e della Programmazione Concorrente
     ```java
@@ -167,7 +167,7 @@ Questa rest è stata utilizzata per il sistema di gestione delle domande del gio
             }
         });
        ```
-Questa è la swing principale utilizzata in [InterfacciaIniziale.java](./src/main/java/grafica/InterfacciaIniziale.java). 
+Questa è la swing principale utilizzata in [InterfacciaIniziale.java](../src/main/java/grafica/InterfacciaIniziale.java). 
 Per ogni interfaccia abbiamo utilizzato impostazioni diverse.
 
 ### 6. Utilizzo delle lambda Expression, Stream e Pipeline

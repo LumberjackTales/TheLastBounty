@@ -32,6 +32,8 @@ Fornire dettagli sulla progettazione. Come sono state individuate le classi, qua
 
 Diagramma delle classi
 Inserire una diagramma delle classi di una porzione significativa del progetto e commentare il diagramma fornendo dettagli sui principi della programmazione ad oggetti che sono stati utilizzati (ereditarietà, interfacce, classi astratte, composizione, …)
+![uml](./img/uml_provvisorio.jpeg
+)
 
 CLASSI
 
