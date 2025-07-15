@@ -24,7 +24,7 @@ Il programma utilizza la JDK 21 è possibile scaricarla cliccando [qui](https://
 
 
 è possibile scaricare l'ultima versione dei files del progetto clonando la repository github 
-https://github.com/LumberjackTales/TheLastBounty
+https://github.com/LumberjackTales/TheLastBounty.git
 
 
 
