@@ -19,13 +19,10 @@ Il programma utilizza la JDK 21 è possibile scaricarla cliccando [qui](https://
 
 ![downloadJava21](./TheLastBounty/docs/img/download-java21.png)
 
-
-
-
-
-è possibile scaricare l'ultima versione dei files del progetto clonando la repository github 
-https://github.com/LumberjackTales/TheLastBounty.git
-
+Per scaricare ed iniziare a giocare è necessario seguire i seguenti passaggi
+1. Clonare la repository con il comando: git clone https://github.com/LumberjackTales/TheLastBounty.git
+2. importare il progetto nell'ide di preferenza
+3.  Eseguire il progetto e se necessario selezionare la main class: thelastbounty.TheLastBounty
 
 
 ## Mappa del Gioco
